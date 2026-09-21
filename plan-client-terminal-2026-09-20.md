@@ -101,9 +101,9 @@ Cada funcionalidad mapea a una competencia evaluable por un reclutador técnico 
 - [x] **D3**. **Checkpoint pre-producción**: resumen de qué cambió, qué NO cambió (aislamiento de credenciales), riesgo residual. **⏸ Espera confirmación explícita del usuario.** ✔ checkpoint presentado 2026-09-20 — **en espera de confirmación para Fase E (publicación)**.
 
 ### Fase E — Publicación (solo tras confirmación)
-- [ ] **E1**. Crear repo `jivagrisma/client-terminal` (privado → público a gusto), push inicial respetando formato de commits existente (`type(scope): msg`).
-- [ ] **E2**. Secrets en GHA (`GITHUB_TOKEN` deploy, `LLM_API_KEY` z.ai + `FALLBACK_LLM_API_KEY` Anthropic, `GITHUB_PAT` read-only) + Artifact Registry.
-- [ ] **E3**. Workflow GitHub Actions: build+push+deploy de ambos servicios a Cloud Run (us-central1). *Verificación*: `gh run watch` → success, URLs públicas responden.
+- [x] **E1**. Crear repo `jivagrisma/client-terminal` (privado → público a gusto), push inicial respetando formato de commits existente (`type(scope): msg`). ✔ 2026-09-21 — repo público creado, commits estilo type(scope).
+- [x] **E2**. Secrets en GHA (`GITHUB_TOKEN` deploy, `LLM_API_KEY` z.ai + `FALLBACK_LLM_API_KEY` Anthropic, `GITHUB_PAT` read-only) + Artifact Registry. ✔ 2026-09-21 — 6 secrets LLM en repo; proyecto GCP independiente client-terminal-jigm + Artifact Registry us-central1 + WIF (sin llaves de SA).
+- [x] **E3**. Workflow GitHub Actions: build+push+deploy de ambos servicios a Cloud Run (us-central1). *Verificación*: `gh run watch` → success, URLs públicas responden. ✔ 2026-09-21 — 3 runs exitosos; fix intermedio: actAs SA runtime, proxy runtime Route Handler, ingress api.
 - [x] **E4**. Verificación en producción con Playwright contra la URL final. Cierre: este .md queda como registro final. ✔ 2026-09-21 — producción verificada: GET/HEAD 200, robots 200, /api/* 200 (tras fix de ingress, ver plan-fix-upwork-link-2026-09-21.md), agente streaming OK. URL: https://client-terminal-web-649560126274.us-central1.run.app/
 
 ---
