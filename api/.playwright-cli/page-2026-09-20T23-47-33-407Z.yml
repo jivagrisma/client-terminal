@@ -1,0 +1,124 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - img "Jorge Iván Grisales Marín" [ref=e4]
+      - generic [ref=e5]:
+        - heading "Jorge Iván Grisales Marín" [level=1] [ref=e6]
+        - paragraph [ref=e7]: Founder & CTO. Building agentic systems on AWS/GCP.
+      - generic [ref=e8]: session active
+    - generic [ref=e10]:
+      - generic [ref=e11]: $ whoami
+      - generic [ref=e12]:
+        - paragraph [ref=e112]: jorge — founder, CTO & AI agent architect
+        - paragraph [ref=e113]: 7+ years shipping cloud-native platforms on AWS & GCP
+        - paragraph [ref=e114]: co-founder & CTO, Giroplay S.A.S. — payment infrastructure, 99.9% uptime
+        - paragraph [ref=e115]: co-founder & Head of AI Engineering, Agrosurkapital LLC — autonomous agents, LLM orchestration
+        - paragraph [ref=e116]: adjunct professor, CESDE — mentored 200+ engineers
+        - paragraph [ref=e117]: "this terminal is alive: the agent below reads the real repo via MCP"
+    - generic [ref=e14]:
+      - generic [ref=e15]: $ git log --oneline career.git
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - generic [ref=e19]: 2026 — in progress
+            - generic [ref=e20]: BSc Software Engineering — Atlantic International University
+          - generic [ref=e21]:
+            - generic [ref=e22]: 2021 — present
+            - generic [ref=e23]: Head of AI Engineering — Agrosurkapital LLC
+          - generic [ref=e24]:
+            - generic [ref=e25]: 2022 — 2025
+            - generic [ref=e26]: Adjunct Professor, Software Development — CESDE
+          - generic [ref=e27]:
+            - generic [ref=e28]: "2024"
+            - generic [ref=e29]: BA Social Communication — Journalism — Universidad de Antioquia
+          - generic [ref=e30]:
+            - generic [ref=e31]: 2019 — present
+            - generic [ref=e32]: Co-Founder & CTO — Giroplay S.A.S.
+          - generic [ref=e33]:
+            - generic [ref=e34]: "2021"
+            - generic [ref=e35]: Associate Degree, Software & App Development — CESDE
+        - link "↓ download cv.pdf" [ref=e37] [cursor=pointer]:
+          - /url: /cv-jorge-grisales.pdf
+    - generic [ref=e38]:
+      - generic [ref=e39]: $ ls ~/projects --live
+      - generic [ref=e40]: production
+      - generic [ref=e41]:
+        - link "drwxr-xr-x viajemos.co intermunicipal mobility & tourism platform — Next.js, booking agent, payments" [ref=e42] [cursor=pointer]:
+          - /url: https://viajemos.co/
+          - generic [ref=e43]: drwxr-xr-x
+          - generic [ref=e44]: viajemos.co
+          - generic [ref=e45]: intermunicipal mobility & tourism platform — Next.js, booking agent, payments
+        - link "drwxr-xr-x viajemos app android client — Google Play" [ref=e46] [cursor=pointer]:
+          - /url: https://play.google.com/store/apps/details?id=co.viajemos.app
+          - generic [ref=e47]: drwxr-xr-x
+          - generic [ref=e48]: viajemos app
+          - generic [ref=e49]: android client — Google Play
+        - link "drwxr-xr-x giroplay.online payment collection infrastructure — REST/JWT, banking-as-a-service" [ref=e50] [cursor=pointer]:
+          - /url: https://www.giroplay.online/
+          - generic [ref=e51]: drwxr-xr-x
+          - generic [ref=e52]: giroplay.online
+          - generic [ref=e53]: payment collection infrastructure — REST/JWT, banking-as-a-service
+        - link "drwxr-xr-x agrosurkapital.online AI agents for agri-finance — LLM orchestration" [ref=e54] [cursor=pointer]:
+          - /url: https://www.agrosurkapital.online/
+          - generic [ref=e55]: drwxr-xr-x
+          - generic [ref=e56]: agrosurkapital.online
+          - generic [ref=e57]: AI agents for agri-finance — LLM orchestration
+        - link "drwxr-xr-x motos-web AI lead-scoring demo — Cloud Run" [ref=e58] [cursor=pointer]:
+          - /url: https://motos-web-53117453818.us-central1.run.app/
+          - generic [ref=e59]: drwxr-xr-x
+          - generic [ref=e60]: motos-web
+          - generic [ref=e61]: AI lead-scoring demo — Cloud Run
+        - link "drwxr-xr-x esic-fabrica-ia AI factory demo — Cloud Run" [ref=e62] [cursor=pointer]:
+          - /url: https://esic-fabrica-ia-985215895070.us-central1.run.app/
+          - generic [ref=e63]: drwxr-xr-x
+          - generic [ref=e64]: esic-fabrica-ia
+          - generic [ref=e65]: AI factory demo — Cloud Run
+        - link "drwxr-xr-x waia AI agent marketplace — Python/FastAPI backend" [ref=e66] [cursor=pointer]:
+          - /url: https://jivagrisma.github.io/WaIA/
+          - generic [ref=e67]: drwxr-xr-x
+          - generic [ref=e68]: waia
+          - generic [ref=e69]: AI agent marketplace — Python/FastAPI backend
+      - generic [ref=e70]: experimental
+      - generic [ref=e71]:
+        - link "-rw-r--r-- frutos-de-mi-tierra rural heritage portfolio site" [ref=e72] [cursor=pointer]:
+          - /url: https://jivagrisma.github.io/portafolio-frutos-de-mi-tierra/
+          - generic [ref=e73]: "-rw-r--r--"
+          - generic [ref=e74]: frutos-de-mi-tierra
+          - generic [ref=e75]: rural heritage portfolio site
+        - link "-rw-r--r-- sonora static site experiment" [ref=e76] [cursor=pointer]:
+          - /url: https://jivagrisma.github.io/sonora/
+          - generic [ref=e77]: "-rw-r--r--"
+          - generic [ref=e78]: sonora
+          - generic [ref=e79]: static site experiment
+        - link "-rw-r--r-- el-hombre-de-mis-sue-os static site experiment" [ref=e80] [cursor=pointer]:
+          - /url: https://jivagrisma.github.io/el-hombre-de-mis-sue-os/
+          - generic [ref=e81]: "-rw-r--r--"
+          - generic [ref=e82]: el-hombre-de-mis-sue-os
+          - generic [ref=e83]: static site experiment
+    - generic [ref=e84]:
+      - generic [ref=e85]: $ ./agent --interactive
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - generic [ref=e88]: type help to see what this can do — free text is answered by an AI agent with read-only access to github.com/jivagrisma
+          - generic [ref=e119]: "> status"
+          - generic [ref=e120]: ▍
+        - generic [ref=e89]:
+          - generic [ref=e90]: ">"
+          - textbox "console input" [disabled] [ref=e91]:
+            - /placeholder: agent is thinking...
+      - paragraph [ref=e92]: "try: help · whoami · projects · status — or free text, e.g. “what was the last commit in motos-y-servicios-ia?”"
+    - contentinfo [ref=e93]:
+      - link "jivagris1989@gmail.com" [ref=e94] [cursor=pointer]:
+        - /url: mailto:jivagris1989@gmail.com
+      - link "github.com/jivagrisma" [ref=e95] [cursor=pointer]:
+        - /url: https://github.com/jivagrisma
+      - link "linkedin.com/in/ivangrisales" [ref=e96] [cursor=pointer]:
+        - /url: https://linkedin.com/in/ivangrisales
+  - status [ref=e97]:
+    - generic [ref=e98]: "repo: motos-y-servicios-ia"
+    - generic [ref=e99]: "branch: main"
+    - generic [ref=e100]: "last commit: 8c587f2 docs(sustentacion): 20 preguntas probabl"
+    - generic [ref=e101]: "ci: ● passing"
+    - generic [ref=e102]: "region: gcp:us-central1"
+  - button "Open Next.js Dev Tools" [ref=e108] [cursor=pointer]
+  - alert [ref=e118]

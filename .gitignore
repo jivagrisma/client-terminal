@@ -1,0 +1,27 @@
+# deps / builds
+node_modules/
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+next-plugin-swc-cache/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# env & secrets — NUNCA commit
+.env
+.env.*
+*.pem
+*.key
+service-account*.json
+
+# tooling / os
+.DS_Store
+*.log
+.claude/
