@@ -53,7 +53,7 @@ jobs:
             --port=8000 \
             --min-instances=0 --max-instances=2 \
             --cpu=1 --memory=512Mi \
-            --ingress=internal-and-cloud-load-balancing \
+            --ingress=all \
             --set-env-vars=LLM_BASE_URL=${{ secrets.LLM_BASE_URL }},LLM_API_KEY=${{ secrets.LLM_API_KEY }},LLM_MODEL=${{ secrets.LLM_MODEL }},FALLBACK_LLM_BASE_URL=${{ secrets.FALLBACK_LLM_BASE_URL }},FALLBACK_LLM_API_KEY=${{ secrets.FALLBACK_LLM_API_KEY }},FALLBACK_LLM_MODEL=${{ secrets.FALLBACK_LLM_MODEL }},ALLOWED_ORIGIN=${{ env.WEB_URL }} \
             --quiet
 
