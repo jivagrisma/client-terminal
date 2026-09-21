@@ -1,0 +1,98 @@
+# Client Terminal — Deploy a producción (Cloud Run) desde GitHub Actions
+# Auth a GCP vía Workload Identity Federation (sin llaves de SA en GitHub):
+#   pool github-actions / provider client-terminal-repo / SA github-actions-deployer
+# Trigger EXCLUSIVAMENTE manual (workflow_dispatch): el deploy nunca es automático.
+
+name: Deploy Producción (Cloud Run)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  PROJECT_ID: client-terminal-jigm
+  PROJECT_NUMBER: "649560126274"
+  REGION: us-central1
+  REPO: us-central1-docker.pkg.dev/client-terminal-jigm/client-terminal
+  WIF_PROVIDER: projects/649560126274/locations/global/workloadIdentityPools/github-actions/providers/client-terminal-repo
+  DEPLOYER_SA: github-actions-deployer@client-terminal-jigm.iam.gserviceaccount.com
+  API_URL: https://client-terminal-api-649560126274.us-central1.run.app
+  WEB_URL: https://client-terminal-web-649560126274.us-central1.run.app
+
+jobs:
+  deploy-api:
+    name: API (FastAPI)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.DEPLOYER_SA }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & push api
+        run: |
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+          docker build -t ${{ env.REPO }}/api:${{ github.sha }} ./api
+          docker push ${{ env.REPO }}/api:${{ github.sha }}
+
+      - name: Deploy api → Cloud Run
+        run: |
+          gcloud run deploy client-terminal-api \
+            --project=${{ env.PROJECT_ID }} \
+            --region=${{ env.REGION }} \
+            --image=${{ env.REPO }}/api:${{ github.sha }} \
+            --port=8000 \
+            --min-instances=0 --max-instances=2 \
+            --cpu=1 --memory=512Mi \
+            --ingress=internal-and-cloud-load-balancing \
+            --set-env-vars=LLM_BASE_URL=${{ secrets.LLM_BASE_URL }},LLM_API_KEY=${{ secrets.LLM_API_KEY }},LLM_MODEL=${{ secrets.LLM_MODEL }},FALLBACK_LLM_BASE_URL=${{ secrets.FALLBACK_LLM_BASE_URL }},FALLBACK_LLM_API_KEY=${{ secrets.FALLBACK_LLM_API_KEY }},FALLBACK_LLM_MODEL=${{ secrets.FALLBACK_LLM_MODEL }},ALLOWED_ORIGIN=${{ env.WEB_URL }} \
+            --quiet
+
+  deploy-web:
+    name: Web (Next.js)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: deploy-api
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.DEPLOYER_SA }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & push web
+        run: |
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+          docker build -t ${{ env.REPO }}/web:${{ github.sha }} ./web
+          docker push ${{ env.REPO }}/web:${{ github.sha }}
+
+      - name: Deploy web → Cloud Run
+        run: |
+          gcloud run deploy client-terminal-web \
+            --project=${{ env.PROJECT_ID }} \
+            --region=${{ env.REGION }} \
+            --image=${{ env.REPO }}/web:${{ github.sha }} \
+            --port=3000 \
+            --min-instances=0 --max-instances=2 \
+            --cpu=1 --memory=512Mi \
+            --ingress=all \
+            --set-env-vars=BACKEND_URL=${{ env.API_URL }} \
+            --quiet
+
+      - name: URLs
+        run: |
+          echo "web → ${{ env.WEB_URL }}"
+          echo "api → ${{ env.API_URL }} (internal)"
