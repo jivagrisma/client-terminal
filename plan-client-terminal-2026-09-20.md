@@ -109,6 +109,14 @@ Cada funcionalidad mapea a una competencia evaluable por un reclutador técnico 
 ---
 
 ## Pendientes / supuestos
+
+### Pendientes para próxima sesión
+- **Dominio propio para Upwork (decisión de marca)**: Upwork rechaza los URLs `*.run.app` por política de dominios (verificado 2026-09-21: GET/HEAD 200 en <0.5s, robots válido, todos los bot-UA 200, y AÚN así rechazado; también el canónico `*.a.run.app`). **Workaround vigente**: se usa el link de Linktree del perfil, donde client-terminal está asociado y SÍ pasa la validación. Decisiones pendientes:
+  - `jorgegrisales.dev` (dominio nuevo, ~$12/año) → mejor posicionamiento de marca personal en Upwork.
+  - `terminal.giroplay.online` (subdominio existente) → asocia la demo a la empresa, costo cero.
+  - Implementación: mapear dominio a Cloud Run (`gcloud beta run domain-mappings create`), TLS automático, verificación de propiedad (TXT/CNAME en DNS), ALLOWED_ORIGIN del api y CORS actualizados al nuevo origen.
+- Tool `list_repos` para el agente (hoy se niega correctamente a contar repos: no tiene la tool).
+- PAT fine-grained read-only opcional para subir quota de GitHub (60→5000 req/h).
 - **Vite+React vs Next.js**: resuelto — el usuario confirmó **Next.js App Router** (lo de Vite fue error de escritura en el brief).
 - Repo de GitHub destino: `client-terminal`, **público** (confirmado por el usuario 2026-09-20).
 - Alcance del PAT del agente: **solo repos públicos** (confirmado). El agente narra CI/CD de repos públicos + el propio client-terminal; viajemos/landing-giroplay quedan fuera del agente.
