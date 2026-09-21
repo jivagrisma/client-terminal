@@ -35,8 +35,8 @@ Justificación de seguridad: los endpoints del api son read-only, rate-limited (
 
 ## Tasks (atómicas y verificables)
 
-- [ ] **T1**. Crear `web/src/app/robots.ts` con `Allow: /`. *Verificación*: `npm run build` + `curl /robots.txt` en local → 200 con `Allow: /`.
-- [ ] **T2**. Editar `deploy.yml`: api `--ingress=all`. *Verificación*: diff del YAML revisado; sin otros cambios.
-- [ ] **T3**. Commit + push + disparar workflow. *Verificación*: `gh run watch` → success.
-- [ ] **T4**. Verificación en producción: `/robots.txt` 200, `/api/status` 200 vía web, `/api/agent` streaming OK, GET/HEAD `/` 200, latencias reportadas numéricamente.
-- [ ] **T5**. Limpieza: la variable `COLD_TEST=1` (añadida durante el diagnóstico) desaparece automáticamente porque el workflow regenera el set completo de env vars.
+- [x] **T1**. Crear `web/src/app/robots.ts` con `Allow: /`. *Verificación*: `npm run build` + `curl /robots.txt` en local → 200 con `Allow: /`. ✔ 2026-09-21 — local: HTTP 200, body correcto.
+- [x] **T2**. Editar `deploy.yml`: api `--ingress=all`. *Verificación*: diff del YAML revisado; sin otros cambios. ✔ 2026-09-21
+- [x] **T3**. Commit + push + disparar workflow. *Verificación*: `gh run watch` → success. ✔ 2026-09-21 — run 35575479234, ambos jobs success.
+- [x] **T4**. Verificación en producción: `/robots.txt` 200, `/api/status` 200 vía web, `/api/agent` streaming OK, GET/HEAD `/` 200, latencias reportadas numéricamente.
+- [x] **T5**. Limpieza: la variable `COLD_TEST=1` (añadida durante el diagnóstico) desaparece automáticamente porque el workflow regenera el set completo de env vars.
