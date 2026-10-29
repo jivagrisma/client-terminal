@@ -41,3 +41,11 @@ Reglas:
 - La Fase 1 añade 0 KB de JS de cliente por la escena.
 - Riesgo: la oclusión de sprites con escritorios y objetos requerirá máscaras o un plate por capas; se decide cuando existan los assets.
 - Matiz con el protocolo ("la escena es un único componente de cliente aislado"): se cumple con `SceneCamera` como única pieza de cliente; si el dueño prefiere todo `SceneStage` como `'use client'`, el costo es un pequeño aumento de JS.
+
+## Enmienda (2026-10-29): plate para la capa de fondo desde la Fase 2
+
+El dueño entregó `imag/fabrica-ia-plate.png` (raíz del repo, **sin versionar**): plate limpio sin Jorge, sin el burro (Turismo), sin la recepcionista y sin el gato con audífonos (Matamune). Desde la Fase 2, la capa `background` usa ese plate como base y los 4 personajes quitados se animan como sprites (nivel 2) sobre él; los 6 personajes restantes (reservas, copiloto, pagos, cobros, ops, soporte) siguen formando parte del fondo.
+
+- **Verificado visualmente (2026-10-29):** no quedan restos de los 4 personajes eliminados ni artefactos de retoque visibles a tamaño completo.
+- **⚠️ Dimensiones por confirmar:** el plate mide **1376×768** y la referencia `imag/fabrica-ia.png` mide **1280×714** (igual que el antiguo `fabrica-ia.jpg`). Mismo encuadre y proporción (~1.79:1, cercano a 16:9), pero **no coinciden en píxeles**. Dato relevante: 1376×768 es exactamente el tamaño que indica el brief §2. El dueño debe confirmar cuál es la referencia canónica antes de la Fase 2. Impacto actual: nulo — `SceneStage` usa `aspect-ratio` ~16:9 y posiciones en %, inmunes a esta diferencia.
+- **Regla de commits:** `imag/fabrica-ia-plate.png`, `imag/fabrica-ia.png` y `imag/referencias/` no se añaden a ningún commit sin aprobación explícita del dueño.
