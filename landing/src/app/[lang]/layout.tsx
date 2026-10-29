@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
+import { Nunito_Sans, Pixelify_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 
 import "../globals.css";
+
+// Display pixel para wordmark y titulares cortos; sans legible para cuerpo.
+// next/font autoaloja las fuentes en el build: sin dependencia ni request externo.
+const fontDisplay = Pixelify_Sans({
+  subsets: ["latin"],
+  variable: "--next-font-display",
+  display: "swap",
+});
+
+const fontBody = Nunito_Sans({
+  subsets: ["latin"],
+  variable: "--next-font-body",
+  display: "swap",
+});
 
 // Solo los idiomas de `generateStaticParams` existen; el resto responde 404.
 export const dynamicParams = false;
@@ -31,7 +46,11 @@ export default async function RootLayout({
   if (!hasLocale(lang)) notFound();
 
   return (
-    <html lang={lang}>
+    <html
+      lang={lang}
+      data-scene="day"
+      className={`${fontDisplay.variable} ${fontBody.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

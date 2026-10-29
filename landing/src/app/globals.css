@@ -1,11 +1,82 @@
 :root {
   color-scheme: light;
+
+  /*
+   * Tokens de tema derivados de fabrica-ia.jpg (paleta muestreada, plan T3):
+   * cremas/dorados #f7e09a · #cbb27f · #a3895d · marrón tinta #2e2f29 · #6f5e4a.
+   * Contrastes AA verificados: ink/bg 12.54 · ink/surface 13.44 · ink-muted/bg 5.69
+   * · ink-muted/surface 6.10 · gold-strong/bg 4.71 · ink/accent 7.18 · blanco/ink 14.25.
+   */
+  --color-bg: #f8f0dc;
+  --color-surface: #fdf8ec;
+  --color-ink: #2f2a21;
+  --color-ink-muted: #6b5c48;
+  --color-gold: #b98a3e; /* decorativo: bordes, subrayados, aros */
+  --color-gold-strong: #8a6420; /* texto dorado (AA sobre bg y surface) */
+  --color-accent: #25d366; /* verde WhatsApp, solo acento (§10 del brief) */
+  --color-line: #d9c9a3;
+
+  /* Tipografía: variables asignadas por next/font en src/app/[lang]/layout.tsx */
+  --font-display: var(--next-font-display), var(--font-body-fallback);
+  --font-body: var(--next-font-body), var(--font-body-fallback);
+  --font-body-fallback: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala base */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+}
+
+/*
+ * Punto de extensión para la versión nocturna (scene-night.jpg, Fase 6):
+ * los componentes leen solo estos tokens; alternar día/noche es cambiar
+ * data-scene en <html>, sin tocar CSS de componentes.
+ */
+[data-scene="night"] {
+  /* TODO_CONTENT: tokens nocturnos cuando exista scene-night.jpg */
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-gold-strong);
+}
+
+/* Base de reduced-motion (ADR-0004 §D): sin transiciones ni animaciones.
+   Los efectos de la Fase 2 se cuelgan de esta misma media query. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
