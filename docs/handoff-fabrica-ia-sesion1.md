@@ -13,7 +13,7 @@
 - i18n con `app/[lang]` + `proxy.ts` + diccionarios JSON, sin `next-intl` (ADR-0002).
 - Deploy automatizado solo al servicio nuevo `fabrica-ia-landing-staging` mediante un workflow propio; staging con `noindex` (ADR-0003).
 - Escena con 4 capas que comparten cámara; en Fase 1 solo se pinta el fondo; efectos y sprites por JSON (ADR-0004).
-- La sección 5.2 "Capa de animación" se añade al brief (archivo sin versionar) en la tarea T0a.
+- La sección 5.2 "Capa de animación" está guardada literal en `docs/brief-seccion-5.2-capa-animacion.md` y se copia al brief (archivo sin versionar) en la tarea T0a.
 - La "Fase 4 · Evaluación opcional: capa de decisión" queda como **Fase 4b** en el backlog del plan.
 - Los MCPs no están configurados en este perfil (`~/.claude-sonnet`): se trabaja con CLI (`gh`, `gcloud`, `playwright-cli`) y ADRs manuales.
 
