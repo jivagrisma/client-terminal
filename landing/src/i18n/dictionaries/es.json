@@ -2,6 +2,19 @@
   "site": {
     "name": "Fábrica de IA"
   },
+  "nav": {
+    "ariaMain": "Navegación principal",
+    "ariaLanguages": "Idiomas",
+    "skip": "Saltar al contenido",
+    "explorar": "Explorar",
+    "express": "Modo express",
+    "ingeniero": "Modo ingeniero",
+    "cv": "CV",
+    "cta": "Comenzar",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "switchTo": "Cambiar a inglés"
+  },
   "home": {
     "placeholder": "TODO_CONTENT: base de la Fase 1 — hero y contenido llegan con las tareas T3 a T7."
   }

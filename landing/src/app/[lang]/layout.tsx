@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Nunito_Sans, Pixelify_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 
+import { Header } from "@/components/Header";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 
@@ -45,13 +47,22 @@ export default async function RootLayout({
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
 
+  const dict = await getDictionary(lang);
+
   return (
     <html
       lang={lang}
       data-scene="day"
       className={`${fontDisplay.variable} ${fontBody.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <a href="#contenido" className="skip-link">
+          {dict.nav.skip}
+        </a>
+        <Header lang={lang} dict={dict} />
+        <main id="contenido">{children}</main>
+        <MobileCtaBar href={`/${lang}/contacto`} label={dict.nav.cta} />
+      </body>
     </html>
   );
 }
