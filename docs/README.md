@@ -15,6 +15,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 ## Handoffs
 
 - [handoff-fabrica-ia-sesion1.md](handoff-fabrica-ia-sesion1.md) — estado tras la sesión de planificación (2026-10-28), decisiones, riesgos y primera tarea a ejecutar.
+- [handoff-fabrica-ia-sesion2.md](handoff-fabrica-ia-sesion2.md) — ejecución Fase 1 parte 1 (2026-10-28/29): T0a–T4 completas; T5 en pausa con preguntas al dueño.
 
 ## Anexos del brief
 
@@ -26,7 +27,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 
 - `prompt-claude-code-landing-waia.md` — brief del producto, **fuente de verdad**.
 - `prompt-sesion-claude-code-fabrica-ia.md` — protocolo de trabajo por sesión.
-- `fabrica-ia.jpg` — escena original (asset final; no modificar ni regenerar).
+- `imag/` — escenas y referencias: `fabrica-ia.png` (referencia, 1280×714), `fabrica-ia-plate.png` (plate para Fase 2, 1376×768) y `referencias/`. Nada de esta carpeta se versiona sin aprobación del dueño.
 
 **Versionados:**
 

@@ -11,9 +11,9 @@ Monorepo: `web/` (terminal agéntica en producción, Next.js 16) · `api/` (Fast
 2. `prompt-claude-code-landing-waia.md`: brief del producto, **fuente de verdad**. Sin versionar; no moverlo ni renombrarlo.
 3. `plan-fabrica-ia-fase1-2026-10-28.md`: plan vigente (Requirements → Design → Tasks).
 4. `docs/adr/`: decisiones de arquitectura (inmutables).
-5. `docs/handoff-fabrica-ia-sesion1.md`: estado y primera tarea al retomar.
+5. `docs/handoff-fabrica-ia-sesion2.md`: estado más reciente (sesión 2; el de la sesión 1 queda como historial).
 
-Imagen de la escena: `fabrica-ia.jpg` en la raíz (sin versionar, no se modifica). Se copia a `landing/public/assets/scene-day.jpg` cuando toque la tarea.
+Imágenes de la escena (carpeta `imag/`, sin versionar, no se modifican; nada se comitea sin preguntar): `fabrica-ia.png` (referencia) y `fabrica-ia-plate.png` (plate para la Fase 2, ver ADR-0004). La copia al proyecto se hace en la tarea T5 (pendiente de decisión: nombre `scene-day.png` vs `.jpg`).
 
 ### Rama de trabajo
 `feat/fabrica-ia-fase-1` (una rama por fase: `feat/fabrica-ia-fase-N`). PRs con `gh`, solo tras confirmación del dueño.
