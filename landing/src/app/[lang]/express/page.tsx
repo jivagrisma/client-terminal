@@ -1,12 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 
 // Modo express (brief §9): landing lineal de 9 secciones, 100 % Server
 // Components. §5.2 D: express NO carga la escena por capas — aquí solo hay una
 // miniatura <Image> que enlaza a Explorar.
+export async function generateMetadata({
+  params,
+}: PageProps<"/[lang]/express">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+
+  const dict = await getDictionary(lang);
+  const meta = dict.meta.pages.express;
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: `/${lang}/express`,
+      languages: {
+        es: "/es/express",
+        en: "/en/express",
+        "x-default": "/es/express",
+      },
+    },
+  };
+}
+
 export default async function ExpressPage({
   params,
 }: PageProps<"/[lang]/express">) {

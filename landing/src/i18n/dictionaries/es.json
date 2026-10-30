@@ -2,6 +2,37 @@
   "site": {
     "name": "Fábrica de IA"
   },
+  "meta": {
+    "site": {
+      "description": "WaIA es la plataforma para crear un sistema de empleados IA siempre activo en WhatsApp: reservas, pagos y soporte para tu negocio."
+    },
+    "pages": {
+      "express": {
+        "title": "Empleados IA en WhatsApp",
+        "description": "WaIA crea empleados IA que atienden reservas, pagos y soporte de tu negocio por WhatsApp, 24/7."
+      },
+      "ingeniero": {
+        "title": "Modo ingeniero",
+        "description": "La terminal técnica de la Fábrica de IA: stack, arquitectura y herramientas."
+      },
+      "contacto": {
+        "title": "Contacto",
+        "description": "Cuéntanos qué quieres automatizar y armamos tu fábrica de IA."
+      }
+    },
+    "ingeniero": {
+      "title": "Modo ingeniero",
+      "text": "La terminal técnica de la fábrica (stack, arquitectura y herramientas) llega con la Fase 5 del proyecto.",
+      "back": "Volver a Explorar"
+    },
+    "contacto": {
+      "title": "Contacto",
+      "text": "El formulario de contacto llega con la Fase 4 del proyecto. Mientras tanto, puedes descargar mi CV para conocer mi trayectoria.",
+      "cv": "Descargar CV",
+      "todo": "TODO_CONTENT: canales directos (WhatsApp, Upwork, correo).",
+      "back": "Volver a Explorar"
+    }
+  },
   "nav": {
     "ariaMain": "Navegación principal",
     "ariaLanguages": "Idiomas",

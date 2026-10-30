@@ -2,6 +2,37 @@
   "site": {
     "name": "Fábrica de IA"
   },
+  "meta": {
+    "site": {
+      "description": "WaIA is the platform for creating a system of always-on AI employees on WhatsApp: bookings, payments and support for your business."
+    },
+    "pages": {
+      "express": {
+        "title": "AI employees on WhatsApp",
+        "description": "WaIA builds AI employees that handle your business's bookings, payments and support over WhatsApp, 24/7."
+      },
+      "ingeniero": {
+        "title": "Engineer mode",
+        "description": "The AI Factory's technical terminal: stack, architecture and tools."
+      },
+      "contacto": {
+        "title": "Contact",
+        "description": "Tell us what you want to automate and we build your AI factory."
+      }
+    },
+    "ingeniero": {
+      "title": "Engineer mode",
+      "text": "The factory's technical terminal (stack, architecture and tools) arrives with Phase 5 of the project.",
+      "back": "Back to Explore"
+    },
+    "contacto": {
+      "title": "Contact",
+      "text": "The contact form arrives with Phase 4 of the project. Meanwhile, you can download my CV to learn about my background.",
+      "cv": "Download CV",
+      "todo": "TODO_CONTENT: direct channels (WhatsApp, Upwork, email).",
+      "back": "Back to Explore"
+    }
+  },
   "nav": {
     "ariaMain": "Main navigation",
     "ariaLanguages": "Languages",

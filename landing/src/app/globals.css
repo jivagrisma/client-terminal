@@ -519,6 +519,30 @@ main {
   font-style: italic;
 }
 
+/* Páginas placeholder (/ingeniero, /contacto) y 404 (T7) */
+.placeholder-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) 0;
+  text-align: center;
+}
+
+.placeholder-page h1 {
+  margin: 0;
+}
+
+.placeholder-page p {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--color-ink-muted);
+}
+
+.placeholder-page a {
+  font-weight: 700;
+}
+
 @media (max-width: 767px) {
   .site-nav,
   .site-header > .site-header-inner > .cta-button {

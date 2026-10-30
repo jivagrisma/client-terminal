@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { Header } from "@/components/Header";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
+import { SITE_URL } from "@/config/site";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 
@@ -37,7 +38,34 @@ export async function generateMetadata({
   if (!hasLocale(lang)) return {};
 
   const dict = await getDictionary(lang);
-  return { title: dict.site.name };
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: dict.site.name, template: `%s | ${dict.site.name}` },
+    description: dict.meta.site.description,
+    alternates: {
+      canonical: `/${lang}`,
+      languages: { es: "/es", en: "/en", "x-default": "/es" },
+    },
+    openGraph: {
+      title: dict.site.name,
+      description: dict.meta.site.description,
+      url: `/${lang}`,
+      siteName: dict.site.name,
+      locale: lang,
+      type: "website",
+      // Escena canónica del plate (ADR-0004): sigue excluida del repo hasta la
+      // aprobación del dueño; en staging funciona igual porque el deploy la
+      // requiere (mismo bloqueo que el hero, resuelto antes de T8).
+      images: [
+        {
+          url: "/assets/scene-day.png",
+          width: 1376,
+          height: 768,
+          alt: dict.home.sceneAlt,
+        },
+      ],
+    },
+  };
 }
 
 export default async function RootLayout({
