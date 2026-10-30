@@ -49,3 +49,13 @@ El dueño entregó `imag/fabrica-ia-plate.png` (raíz del repo, **sin versionar*
 - **Verificado visualmente (2026-10-29):** no quedan restos de los 4 personajes eliminados ni artefactos de retoque visibles a tamaño completo.
 - **⚠️ Dimensiones por confirmar:** el plate mide **1376×768** y la referencia `imag/fabrica-ia.png` mide **1280×714** (igual que el antiguo `fabrica-ia.jpg`). Mismo encuadre y proporción (~1.79:1, cercano a 16:9), pero **no coinciden en píxeles**. Dato relevante: 1376×768 es exactamente el tamaño que indica el brief §2. El dueño debe confirmar cuál es la referencia canónica antes de la Fase 2. Impacto actual: nulo — `SceneStage` usa `aspect-ratio` ~16:9 y posiciones en %, inmunes a esta diferencia.
 - **Regla de commits:** `imag/fabrica-ia-plate.png`, `imag/fabrica-ia.png` y `imag/referencias/` no se añaden a ningún commit sin aprobación explícita del dueño.
+
+## Enmienda (2026-10-29): el plate 1376×768 es la imagen canónica del fondo, desde la Fase 1
+
+Decisión del dueño: `imag/fabrica-ia-plate.png` (**1376×768**) es la imagen canónica del fondo. Resuelve la duda de dimensiones de la enmienda anterior y adelanta su uso a la Fase 1: la escena estática del hero ya es el plate, no la escena original con personajes.
+
+- La copia del hero es `landing/public/assets/scene-day.png`, **literal desde el plate y sin conversión de formato** (sha256 de origen y copia verificados idénticos). El nombre `scene-day.*` se conserva por el brief, aunque la fuente sea el plate.
+- **Sin versionar todavía:** el dueño aún no aprueba publicar la imagen en el repo público; mientras tanto queda excluida en `.git/info/exclude`. Su publicación será un commit propio cuando haya aprobación explícita.
+- El escenario usa `aspect-ratio: 1376 / 768` y `next/image` con `width={1376} height={768}`. No es 16:9 exacto (la imagen es ~0.8 % más ancha que 1.778:1); las posiciones en % de las capas son inmunes.
+- La **optimización de entrega (AVIF/WebP, preload/calidad, LCP) queda diferida a la Fase 2**; en la Fase 1 la sirve `next/image` con su comportamiento por defecto.
+- La referencia `imag/fabrica-ia.png` (1280×714) queda como documento de la escena original con personajes; ya no es la base del fondo.

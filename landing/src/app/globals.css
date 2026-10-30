@@ -211,6 +211,33 @@ main {
   padding: calc(64px + var(--space-6)) var(--space-4) var(--space-8);
 }
 
+/* --- Hero y escena estática (T5, ADR-0004) --- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.hero-phrase {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--color-ink-muted);
+  font-size: 1.25rem;
+}
+
+/* Plate canónico 1376×768 (ADR-0004): proporción fija, ancho fluido, sin CLS.
+   No es 16:9 exacto (~0.8 % más ancho); las posiciones van en %. */
+.scene-static {
+  aspect-ratio: 1376 / 768;
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+}
+
 .mobile-cta-bar {
   display: none;
 }

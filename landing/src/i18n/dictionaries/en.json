@@ -16,6 +16,8 @@
     "switchTo": "Switch to Spanish"
   },
   "home": {
-    "placeholder": "TODO_CONTENT: Phase 1 scaffold — hero and content arrive with tasks T3 to T7."
+    "heroPhrase": "A factory of AI agents handling bookings, payments and support for your business.",
+    "heroCta": "Tour the factory",
+    "sceneAlt": "Pixel-art illustration of the AI Factory: robot and pet agents work on laptops at their stations around a central console showing WhatsApp and payment symbols; a Colombian town is visible through the windows."
   }
 }
