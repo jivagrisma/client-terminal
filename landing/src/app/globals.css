@@ -211,7 +211,7 @@ main {
   padding: calc(64px + var(--space-6)) var(--space-4) var(--space-8);
 }
 
-/* --- Hero y escena estática (T5, ADR-0004) --- */
+/* --- Hero y escena por capas (T5/T5b, ADR-0004) --- */
 
 .hero {
   display: flex;
@@ -228,14 +228,42 @@ main {
   font-size: 1.25rem;
 }
 
-/* Plate canónico 1376×768 (ADR-0004): proporción fija, ancho fluido, sin CLS.
-   No es 16:9 exacto (~0.8 % más ancho); las posiciones van en %. */
-.scene-static {
+/*
+ * Plate canónico 1376×768 (ADR-0004): proporción fija, ancho fluido, sin CLS.
+ * No es 16:9 exacto (~0.8 % más ancho); las posiciones de las capas van en %.
+ *
+ * Cámara compartida (variables --cam-*): identidad en Fase 1. En Fase 2,
+ * SceneCamera ('use client') anima estas variables y todas las capas comparten
+ * zoom y desplazamiento por construcción al vivir dentro de este elemento.
+ */
+.scene-stage {
+  --cam-x: 0px;
+  --cam-y: 0px;
+  --cam-zoom: 1;
+
+  position: relative;
   aspect-ratio: 1376 / 768;
   width: 100%;
-  height: auto;
+  overflow: hidden;
   border: 2px solid var(--color-line);
   border-radius: 8px;
+  transform: translate(var(--cam-x), var(--cam-y)) scale(var(--cam-zoom));
+  transform-origin: center;
+}
+
+/* Capas absolutas apiladas (z-index lo asigna SceneStage desde scene/layers.ts);
+   todo hijo de una capa se posiciona en % sobre la imagen (ADR-0004). */
+.scene-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* Imagen de fondo: ocupa la capa completa; su relación intrínseca (1376×768,
+   atributos width/height de next/image) coincide con la del escenario. */
+.scene-static {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .mobile-cta-bar {

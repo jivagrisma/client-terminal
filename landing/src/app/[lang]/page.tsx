@@ -1,3 +1,4 @@
+import { SceneStage } from "@/components/SceneStage";
 import { SceneStatic } from "@/components/SceneStatic";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -17,7 +18,9 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
       <a href={`/${lang}/express`} className="cta-button">
         {dict.home.heroCta}
       </a>
-      <SceneStatic alt={dict.home.sceneAlt} />
+      <SceneStage>
+        <SceneStatic alt={dict.home.sceneAlt} />
+      </SceneStage>
     </section>
   );
 }
