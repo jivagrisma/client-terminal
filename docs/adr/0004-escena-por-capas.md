@@ -59,3 +59,7 @@ Decisión del dueño: `imag/fabrica-ia-plate.png` (**1376×768**) es la imagen c
 - El escenario usa `aspect-ratio: 1376 / 768` y `next/image` con `width={1376} height={768}`. No es 16:9 exacto (la imagen es ~0.8 % más ancha que 1.778:1); las posiciones en % de las capas son inmunes.
 - La **optimización de entrega (AVIF/WebP, preload/calidad, LCP) queda diferida a la Fase 2**; en la Fase 1 la sirve `next/image` con su comportamiento por defecto.
 - La referencia `imag/fabrica-ia.png` (1280×714) queda como documento de la escena original con personajes; ya no es la base del fondo.
+
+## Enmienda (2026-10-30): aprobada la publicación de scene-day.png
+
+El dueño aprobó versionar `landing/public/assets/scene-day.png` en el repo público (necesario para T8 Docker y el deploy a staging; también la referencia la metadata OG de T7). Commit propio de publicación con `sha256` verificado idéntico al plate (`226c0952…f1c37`). Quedan sin versionar `imag/` y `prompt-*.md`.
