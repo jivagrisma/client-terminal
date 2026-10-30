@@ -19,5 +19,157 @@
     "heroPhrase": "A factory of AI agents handling bookings, payments and support for your business.",
     "heroCta": "Tour the factory",
     "sceneAlt": "Pixel-art illustration of the AI Factory: robot and pet agents work on laptops at their stations around a central console showing WhatsApp and payment symbols; a Colombian town is visible through the windows."
+  },
+  "express": {
+    "hero": {
+      "title": "Run your AI factory.",
+      "subtitle": "WaIA is the platform for creating a system of always-on AI employees on WhatsApp.",
+      "cta": "Get started",
+      "thumbAlt": "Thumbnail of the AI Factory scene",
+      "thumbCta": "Explore the factory"
+    },
+    "problem": {
+      "title": "The problem it solves",
+      "items": [
+        {
+          "pain": "Unanswered messages outside business hours",
+          "solution": "An AI employee answers 24/7 from your business's WhatsApp number."
+        },
+        {
+          "pain": "Bookings lost in the chat",
+          "solution": "The agent checks availability and confirms bookings with no human intervention."
+        },
+        {
+          "pain": "Slow, manual collections",
+          "solution": "The system sends payment links and confirms every transaction in the same chat."
+        }
+      ]
+    },
+    "how": {
+      "title": "How it works in 3 steps",
+      "steps": [
+        "Pick your assistants based on what your business needs.",
+        "Connect them to your WhatsApp Business number.",
+        "Direct them from a panel: what they do, when, and under which rules."
+      ]
+    },
+    "team": {
+      "title": "Meet your team",
+      "members": [
+        {
+          "id": "recepcionista",
+          "name": "Receptionist",
+          "role": "Greets your guests 24/7",
+          "description": "Answers on WhatsApp from your business's number, at any hour."
+        },
+        {
+          "id": "reservas",
+          "name": "Bookings",
+          "role": "Availability and bookings",
+          "description": "Checks calendar and inventory, and confirms bookings over chat."
+        },
+        {
+          "id": "turismo",
+          "name": "Tourism",
+          "role": "Local tourism",
+          "description": "Recommends routes and experiences around the region."
+        },
+        {
+          "id": "copiloto",
+          "name": "Copilot",
+          "role": "Driver's copilot",
+          "description": "Helps drivers pick the most worthwhile trips."
+        },
+        {
+          "id": "pagos",
+          "name": "Payments",
+          "role": "Payments over chat",
+          "description": "Sends payment links (Wompi) and confirms transactions."
+        },
+        {
+          "id": "cobros",
+          "name": "Collections",
+          "role": "Billing and collections",
+          "description": "Invoices and recurring collections (Giroplay) with retries."
+        },
+        {
+          "id": "soporte",
+          "name": "Nuve",
+          "role": "Support",
+          "description": "Handles the everyday and escalates to a person when needed."
+        },
+        {
+          "id": "ops",
+          "name": "Ops",
+          "role": "Operations",
+          "description": "Watches over every assistant staying online."
+        },
+        {
+          "id": "gatico",
+          "name": "Matamune",
+          "role": "Live chat",
+          "description": "The factory's live demo: you'll be able to try it soon."
+        }
+      ]
+    },
+    "proof": {
+      "title": "Already working in production",
+      "body": "The production use case is viajemos.co: the assistants serve real travelers end to end.",
+      "todoMetrics": "TODO_CONTENT: verifiable Viajemos figures (conversations handled, bookings, response time).",
+      "todoCaptures": "TODO_CONTENT: real screenshots of the agent's conversations.",
+      "linkLabel": "See it live →"
+    },
+    "architecture": {
+      "title": "Architecture and stack",
+      "flowTitle": "The journey of a message",
+      "flow": [
+        "WhatsApp Cloud API",
+        "AI agent",
+        "Tools (bookings, inventory, payments)",
+        "Charge (Wompi · Giroplay)"
+      ],
+      "stackTitle": "Stack",
+      "stack": "Next.js + TypeScript on the frontend; Python backend with MCP tools on Cloud Run; WhatsApp Cloud API as the channel.",
+      "securityTitle": "Security",
+      "security": "Keys only on the backend, per-IP and per-session limits, daily spend cap, antibot and input validation. The demo stores no personal data."
+    },
+    "about": {
+      "title": "Who builds this",
+      "name": "Jorge Grisales",
+      "lines": [
+        "Architect of this factory: I design and operate systems of AI agents that serve customers over WhatsApp.",
+        "I work with the WhatsApp Cloud API, LLMs and payments (Wompi/Giroplay), from idea to production.",
+        "\"I built this network of assistants\": every character in the scene is a role an AI employee can take on in your business."
+      ],
+      "cvLabel": "Download CV",
+      "upworkLabel": "Hire me on Upwork",
+      "todoUpwork": "TODO_CONTENT: link to the Upwork profile."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "What is a WhatsApp Tech Provider?",
+          "a": "A technology provider authorized by Meta to set up and manage other businesses' WhatsApp Cloud API: it registers the number, verifies it, and keeps the integration running."
+        },
+        {
+          "q": "How long does it take to get my factory ready?",
+          "a": "TODO_CONTENT: implementation time depending on the type of business."
+        },
+        {
+          "q": "Which WhatsApp number do the assistants use?",
+          "a": "Your business's own. Your customers write to the number they already know and the agents reply right there."
+        },
+        {
+          "q": "What happens to my data and my customers' data?",
+          "a": "The demo stores no personal data. In real operation, data processing follows Colombian Law 1581 of 2012 and the contact form asks for explicit consent."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Ready to run your own factory?",
+      "cta": "Get started",
+      "todoForm": "TODO_CONTENT: short form (name, email or WhatsApp, business type, what you want to automate, and data consent)."
+    }
   }
 }
