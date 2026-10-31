@@ -14,6 +14,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # el workflow de staging lo inyecta con la URL del servicio (ADR-0003).
 ARG NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
+# SITE_ENV=staging → robots.txt con Disallow / (se genera en build).
+ARG SITE_ENV
+ENV SITE_ENV=$SITE_ENV
 RUN npm run build
 
 FROM node:24-alpine AS runner

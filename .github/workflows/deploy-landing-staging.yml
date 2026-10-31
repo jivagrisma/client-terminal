@@ -1,0 +1,73 @@
+# Fábrica de IA — Deploy de la landing a staging (Cloud Run) — ADR-0003
+# Auth a GCP vía Workload Identity Federation (sin llaves de SA en GitHub):
+#   pool github-actions / provider client-terminal-repo / SA github-actions-deployer
+# Despliega EXCLUSIVAMENTE el servicio fabrica-ia-landing-staging:
+#   los servicios de producción actuales y su deploy.yml NO se tocan.
+# Staging no se indexa: SITE_ENV=staging → robots Disallow + X-Robots-Tag noindex.
+
+name: Deploy Landing Staging (Cloud Run)
+
+on:
+  push:
+    branches:
+      - "feat/fabrica-ia-*"
+      - main
+    paths:
+      - "landing/**"
+      - ".github/workflows/deploy-landing-staging.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-landing-staging
+  cancel-in-progress: false
+
+env:
+  PROJECT_ID: client-terminal-jigm
+  REGION: us-central1
+  REPO: us-central1-docker.pkg.dev/client-terminal-jigm/client-terminal
+  WIF_PROVIDER: projects/649560126274/locations/global/workloadIdentityPools/github-actions/providers/client-terminal-repo
+  DEPLOYER_SA: github-actions-deployer@client-terminal-jigm.iam.gserviceaccount.com
+  SERVICE: fabrica-ia-landing-staging
+  STAGING_URL: https://fabrica-ia-landing-staging-649560126274.us-central1.run.app
+
+jobs:
+  deploy-landing:
+    name: Landing (Next.js standalone)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.DEPLOYER_SA }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & push landing
+        run: |
+          gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+          docker build \
+            --build-arg NEXT_PUBLIC_SITE_URL=${{ env.STAGING_URL }} \
+            --build-arg SITE_ENV=staging \
+            -t ${{ env.REPO }}/landing:${{ github.sha }} ./landing
+          docker push ${{ env.REPO }}/landing:${{ github.sha }}
+
+      - name: Deploy landing → Cloud Run (staging, noindex)
+        run: |
+          gcloud run deploy ${{ env.SERVICE }} \
+            --project=client-terminal-jigm \
+            --region=${{ env.REGION }} \
+            --image=${{ env.REPO }}/landing:${{ github.sha }} \
+            --port=3000 \
+            --min-instances=0 --max-instances=2 \
+            --cpu=1 --memory=512Mi \
+            --ingress=all \
+            --set-env-vars=SITE_ENV=staging \
+            --quiet

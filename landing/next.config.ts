@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // ADR-0003: staging con noindex por cabecera. next.config se evalúa al
+  // arrancar el servidor standalone, así que SITE_ENV llega como env var de
+  // Cloud Run (--set-env-vars) sin recompilar.
+  async headers() {
+    if (process.env.SITE_ENV !== "staging") return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
