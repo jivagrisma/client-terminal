@@ -1,6 +1,14 @@
 # Handoff — Fábrica de IA · Sesión 4 (ejecución Fase 1, parte 3)
 
-**Fecha**: 2026-10-30 · **Rama**: `feat/fabrica-ia-fase-1` · **Plan**: `plan-fabrica-ia-fase1-2026-10-28.md`
+**Fecha**: 2026-10-30/31 · **Rama**: `feat/fabrica-ia-fase-1` (fusionada a `main`) · **Plan**: `plan-fabrica-ia-fase1-2026-10-28.md`
+
+## Cierre de la Fase 1 (avances al 2026-10-31)
+
+- **PR #1 fusionado a `main`** con confirmación del dueño (merge commit `8067119`); el workflow de staging corrió verde también desde `main`. Rama de la fase fusionada, sin borrar.
+- **`fabrica-ia-landing-staging` desplegado y vivo**: `https://fabrica-ia-landing-staging-649560126274.us-central1.run.app` — `/es`, `/en` y `/es/express` responden 200 con `X-Robots-Tag: noindex` y robots `Disallow: /`.
+- **Producción intacta**: `client-terminal-web` en `00005-bgf` y `client-terminal-api` en `00004-6ht` (mismas revisiones pre-Fase 1, verificadas con `gcloud run revisions list` tras cada deploy).
+- **Fase 1 completa (T0a→T12)**: escena por capas (ADR-0004, 0 KB de JS de cliente), modo express bilingüe de 9 secciones, SEO completo (hreflang/OG/sitemap), placeholders, Docker standalone, e2e Playwright (24 verdes), Lighthouse (95/93 con gap de LCP en `/express` documentado), workflow de staging con noindex.
+- **Fix en el primer deploy**: `gcloud run deploy` no-interactivo no concedía invocación pública → `allUsers/run.invoker` solo en el servicio nuevo + `--allow-unauthenticated` en el workflow (idempotente, commit `67bd5ea`).
 
 ## Estado actual
 
@@ -43,10 +51,11 @@
 - MCPs verificados con llamada real al inicio: tavily ✅, context7 ✅, sequential-thinking ✅, code-index ✅ (62 archivos), anthropic-sonnet ✅, kiro-prompts ✅; playwright MCP y adr-kit disponibles. auggie sigue sin auth (`auggie login` lo arregla).
 - `actionlint` no está instalado: el YAML se validó con pyyaml.
 
-## ⏭ Al reanudar
+## ⏭ Al reanudar: prompt para la sesión 5 (copiar y pegar)
 
-1. ~~Pedir confirmación de push + PR~~ → **hecho tras la confirmación del dueño (2026-10-31)**: push ejecutado, **PR #1** abierto (`github.com/jivagrisma/client-terminal/pull/1`) y el workflow `Deploy Landing Staging` corrió con éxito: `fabrica-ia-landing-staging` desplegado en `https://fabrica-ia-landing-staging-649560126274.us-central1.run.app` (robots `Disallow: /`, `X-Robots-Tag: noindex`, `/es`, `/en` y `/es/express` 200, escena 2K servida). Producción intacta: `client-terminal-web-00005-bgf` y `client-terminal-api-00004-6ht` (mismas revisiones). Fix aplicado: el deploy no-interactivo no concedía invocación pública → `allUsers/run.invoker` solo en el servicio nuevo + `--allow-unauthenticated` en el workflow (idempotente).
-2. ~~Merge del PR #1~~ → **hecho con confirmación del dueño (2026-10-31)**: PR #1 fusionado a `main` (merge commit `8067119`); el workflow de staging corrió verde también desde `main` y `fabrica-ia-landing-staging` sigue sirviendo con noindex. La rama `feat/fabrica-ia-fase-1` quedó fusionada (sin borrar). **Siguiente paso: planear la Fase 2** (cámara, efectos nivel 1, sprites de los 4 personajes, elección de efectos v1, `scene-night.jpg`, tuning LCP/AVIF con el fix del LCP de `/express` ya identificado).
+> Lee `docs/handoff-fabrica-ia-sesion4.md` y `docs/handoff-fabrica-ia-sesion3.md`; el plan `plan-fabrica-ia-fase1-2026-10-28.md` tiene todas las tareas `[x]` y el PR #1 está fusionado a `main`: la **Fase 1 está cerrada** (escena por capas, `/express`, SEO, Docker, e2e 24 verdes, Lighthouse 95/93 y staging desplegado en `fabrica-ia-landing-staging` con noindex; producción intacta: web `00005-bgf`, api `00004-6ht`). Continúa con la **Fase 2** del brief (§5.2 y §11.2): crea la rama `feat/fabrica-ia-fase-2` desde `main`, planifícala con la metodología Kiro en `plan-fabrica-ia-fase2-*.md` (Requirements → Design → Tasks) y registra ADR si hay decisión de arquitectura. Orden sugerido: (1) **cámara 2D del `SceneStage`** — arrastre, zoom, teclado y "Vista general" animando las variables `--cam-x/--cam-y/--cam-zoom` que ya existen, `SceneCamera` como único componente de cliente con el fondo pasado como `children` (ADR-0004), respetando `prefers-reduced-motion`; (2) **hotspots** desde `src/config/hotspots.json` con la tabla §6 del brief — ubica tú mismo las coordenadas en % sobre el plate 2752×1536, tooltips enfocables con `aria-label`, adaptación móvil; (3) después **efectos nivel 1** y soporte de **sprites** (el dueño aún NO generó los sprite sheets de Jorge, Recepcionista, Matamune y Turismo: con `effects: []` y `sprites.enabled=false` la escena debe verse idéntica — regla verificada en T5b). También en Fase 2: fix del LCP de `/express` (miniatura lazy que es el elemento LCP, 2.6 s > meta 2.5 s) y tuning AVIF. Reglas fijas: no tocar `web/`, `api/` ni `deploy.yml`; servidor local solo en el puerto 3000; un commit por tarea con formato `tipo(scope): mensaje` referenciando su ADR; `git add` con rutas explícitas; sin push ni PR sin mi confirmación; verifica con build + Playwright antes de cerrar cada tarea y registra en `.claude/state/verify.log`.
+
+Al terminar la sesión 5, repetir el ritual de cierre: handoff nuevo en `docs/`, índice en `docs/README.md` y checkpoint con `git diff main -- web api .github/workflows/deploy.yml` vacío antes de cualquier push/PR.
 
 ## Pendientes del dueño (assets/contenidos)
 

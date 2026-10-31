@@ -17,7 +17,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 - [handoff-fabrica-ia-sesion1.md](handoff-fabrica-ia-sesion1.md) — estado tras la sesión de planificación (2026-10-28), decisiones, riesgos y primera tarea a ejecutar.
 - [handoff-fabrica-ia-sesion2.md](handoff-fabrica-ia-sesion2.md) — ejecución Fase 1 parte 1 (2026-10-28/29): T0a–T4 completas; T5 en pausa con preguntas al dueño.
 - [handoff-fabrica-ia-sesion3.md](handoff-fabrica-ia-sesion3.md) — ejecución Fase 1 parte 2 (2026-10-29): T5 completa con el plate canónico (1376×768, PNG, sin publicar); próxima tarea T5b; decisiones del dueño y advertencia de build sin la imagen versionada.
-- [handoff-fabrica-ia-sesion4.md](handoff-fabrica-ia-sesion4.md) — ejecución Fase 1 parte 3 (2026-10-30): **T0a–T11b completas** (capas, /express, SEO, Docker, e2e 24 verdes, Lighthouse, workflow staging); escena publicada y migrada a 2K JPG; **T12 en espera de confirmación del dueño para push + PR**.
+- [handoff-fabrica-ia-sesion4.md](handoff-fabrica-ia-sesion4.md) — ejecución Fase 1 parte 3 y **cierre de la Fase 1** (2026-10-30/31): T0a–T12 completas, PR #1 fusionado a `main`, staging `fabrica-ia-landing-staging` desplegado con noindex, producción intacta; assets 2K JPG (hero + OG con personajes); **incluye el prompt para la sesión 5** (inicio de Fase 2).
 
 ## Anexos del brief
 
