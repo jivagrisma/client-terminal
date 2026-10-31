@@ -55,10 +55,10 @@ export default async function ExpressPage({
         </Link>
         <Link href={`/${lang}`} className="express-thumb">
           <Image
-            src="/assets/scene-day.png"
+            src="/assets/scene-day.jpg"
             alt={t.hero.thumbAlt}
-            width={688}
-            height={384}
+            width={1376}
+            height={768}
             sizes="(max-width: 767px) 100vw, 688px"
             className="scene-static"
           />

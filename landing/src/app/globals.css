@@ -230,8 +230,9 @@ main {
 }
 
 /*
- * Plate canónico 1376×768 (ADR-0004): proporción fija, ancho fluido, sin CLS.
- * No es 16:9 exacto (~0.8 % más ancho); las posiciones de las capas van en %.
+ * Plate canónico (ADR-0004): proporción fija 2752×1536 (el doble del plate
+ * original 1376×768; misma proporción, no es 16:9 exacto), ancho fluido, sin
+ * CLS. Las posiciones de las capas van en %.
  *
  * Cámara compartida (variables --cam-*): identidad en Fase 1. En Fase 2,
  * SceneCamera ('use client') anima estas variables y todas las capas comparten
@@ -243,7 +244,7 @@ main {
   --cam-zoom: 1;
 
   position: relative;
-  aspect-ratio: 1376 / 768;
+  aspect-ratio: 2752 / 1536;
   width: 100%;
   overflow: hidden;
   border: 2px solid var(--color-line);
@@ -259,7 +260,7 @@ main {
   inset: 0;
 }
 
-/* Imagen de fondo: ocupa la capa completa; su relación intrínseca (1376×768,
+/* Imagen de fondo: ocupa la capa completa; su relación intrínseca (2752×1536,
    atributos width/height de next/image) coincide con la del escenario. */
 .scene-static {
   display: block;

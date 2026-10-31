@@ -53,14 +53,13 @@ export async function generateMetadata({
       siteName: dict.site.name,
       locale: lang,
       type: "website",
-      // Escena canónica del plate (ADR-0004): sigue excluida del repo hasta la
-      // aprobación del dueño; en staging funciona igual porque el deploy la
-      // requiere (mismo bloqueo que el hero, resuelto antes de T8).
+      // OG (decisión del dueño 2026-10-30): la escena 2K CON personajes,
+      // más representativa al compartir; el hero usa el plate sin personajes.
       images: [
         {
-          url: "/assets/scene-day.png",
-          width: 1376,
-          height: 768,
+          url: "/assets/scene-og.jpg",
+          width: 2752,
+          height: 1536,
           alt: dict.home.sceneAlt,
         },
       ],

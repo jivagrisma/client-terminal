@@ -63,3 +63,12 @@ Decisión del dueño: `imag/fabrica-ia-plate.png` (**1376×768**) es la imagen c
 ## Enmienda (2026-10-30): aprobada la publicación de scene-day.png
 
 El dueño aprobó versionar `landing/public/assets/scene-day.png` en el repo público (necesario para T8 Docker y el deploy a staging; también la referencia la metadata OG de T7). Commit propio de publicación con `sha256` verificado idéntico al plate (`226c0952…f1c37`). Quedan sin versionar `imag/` y `prompt-*.md`.
+
+## Enmienda (2026-10-30): assets 2K en JPG como canónicos
+
+El dueño regeneró los assets a doble resolución y en JPG: `fabrica-ia-plate_2K.jpg` (**2752×1536**, exactamente 2× del plate 1376×768, misma proporción) y `fabrica-ia_2K.jpg` (misma medida, la escena **con** personajes). Decisiones:
+
+- **Fondo del hero**: `landing/public/assets/scene-day.jpg` = copia literal de `fabrica-ia-plate_2K.jpg` (sha256 `88d42521…8300`). Reemplaza a `scene-day.png`, que se elimina (queda en el historial). El atributo de aspect-ratio pasa a `2752 / 1536` (proporción idéntica a la anterior: cero impacto en el layout).
+- **Open Graph**: `landing/public/assets/scene-og.jpg` = copia literal de `fabrica-ia_2K.jpg` (sha256 `91572bba…fec4`), decisión del dueño: al compartir se muestra la escena con personajes. Nota: son ~2,8 MB sin optimizar (los crawlers la descargan completa); si pesa en el rendimiento social, se re-encodea con aprobación del dueño.
+- El formato canónico pasa de PNG a JPG por decisión del dueño (él mismo generó los JPG); sigue la regla de copia literal sin re-encodear.
+- Ambas quedan versionadas (uso explícito pedido por el dueño). `imag/` sigue sin versionar.
