@@ -46,7 +46,7 @@
 ## ⏭ Al reanudar
 
 1. ~~Pedir confirmación de push + PR~~ → **hecho tras la confirmación del dueño (2026-10-31)**: push ejecutado, **PR #1** abierto (`github.com/jivagrisma/client-terminal/pull/1`) y el workflow `Deploy Landing Staging` corrió con éxito: `fabrica-ia-landing-staging` desplegado en `https://fabrica-ia-landing-staging-649560126274.us-central1.run.app` (robots `Disallow: /`, `X-Robots-Tag: noindex`, `/es`, `/en` y `/es/express` 200, escena 2K servida). Producción intacta: `client-terminal-web-00005-bgf` y `client-terminal-api-00004-6ht` (mismas revisiones). Fix aplicado: el deploy no-interactivo no concedía invocación pública → `allUsers/run.invoker` solo en el servicio nuevo + `--allow-unauthenticated` en el workflow (idempotente).
-2. **Siguiente paso: merge del PR #1** (decisión del dueño) y planear **Fase 2** (cámara, efectos nivel 1, sprites de los 4 personajes, elección de efectos v1, `scene-night.jpg`, tuning LCP/AVIF con el fix del LCP de `/express` ya identificado).
+2. ~~Merge del PR #1~~ → **hecho con confirmación del dueño (2026-10-31)**: PR #1 fusionado a `main` (merge commit `8067119`); el workflow de staging corrió verde también desde `main` y `fabrica-ia-landing-staging` sigue sirviendo con noindex. La rama `feat/fabrica-ia-fase-1` quedó fusionada (sin borrar). **Siguiente paso: planear la Fase 2** (cámara, efectos nivel 1, sprites de los 4 personajes, elección de efectos v1, `scene-night.jpg`, tuning LCP/AVIF con el fix del LCP de `/express` ya identificado).
 
 ## Pendientes del dueño (assets/contenidos)
 
