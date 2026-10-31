@@ -1,0 +1,206 @@
+{
+  "site": {
+    "name": "Fábrica de IA"
+  },
+  "meta": {
+    "site": {
+      "description": "WaIA es la plataforma para crear un sistema de empleados IA siempre activo en WhatsApp: reservas, pagos y soporte para tu negocio."
+    },
+    "pages": {
+      "express": {
+        "title": "Empleados IA en WhatsApp",
+        "description": "WaIA crea empleados IA que atienden reservas, pagos y soporte de tu negocio por WhatsApp, 24/7."
+      },
+      "ingeniero": {
+        "title": "Modo ingeniero",
+        "description": "La terminal técnica de la Fábrica de IA: stack, arquitectura y herramientas."
+      },
+      "contacto": {
+        "title": "Contacto",
+        "description": "Cuéntanos qué quieres automatizar y armamos tu fábrica de IA."
+      }
+    },
+    "ingeniero": {
+      "title": "Modo ingeniero",
+      "text": "La terminal técnica de la fábrica (stack, arquitectura y herramientas) llega con la Fase 5 del proyecto.",
+      "back": "Volver a Explorar"
+    },
+    "contacto": {
+      "title": "Contacto",
+      "text": "El formulario de contacto llega con la Fase 4 del proyecto. Mientras tanto, puedes descargar mi CV para conocer mi trayectoria.",
+      "cv": "Descargar CV",
+      "todo": "TODO_CONTENT: canales directos (WhatsApp, Upwork, correo).",
+      "back": "Volver a Explorar"
+    }
+  },
+  "nav": {
+    "ariaMain": "Navegación principal",
+    "ariaLanguages": "Idiomas",
+    "skip": "Saltar al contenido",
+    "explorar": "Explorar",
+    "express": "Modo express",
+    "ingeniero": "Modo ingeniero",
+    "cv": "CV",
+    "cta": "Comenzar",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "switchTo": "Cambiar a inglés"
+  },
+  "home": {
+    "heroPhrase": "Una fábrica de agentes de IA que atiende reservas, pagos y soporte de tu negocio.",
+    "heroCta": "Recorrer la fábrica",
+    "sceneAlt": "Ilustración pixel-art de la Fábrica de IA: agentes robots y mascotas trabajan con laptops en sus puestos alrededor de una consola central con los símbolos de WhatsApp y pagos; por las ventanas se ve un pueblo colombiano."
+  },
+  "express": {
+    "hero": {
+      "title": "Dirige tu fábrica de IA.",
+      "subtitle": "WaIA es la plataforma para crear un sistema de empleados IA siempre activo en WhatsApp.",
+      "cta": "Comenzar",
+      "thumbAlt": "Miniatura de la escena de la Fábrica de IA",
+      "thumbCta": "Explorar la fábrica"
+    },
+    "problem": {
+      "title": "El problema que resuelve",
+      "items": [
+        {
+          "pain": "Mensajes sin responder fuera de horario",
+          "solution": "Un empleado IA responde 24/7 con el número de WhatsApp de tu negocio."
+        },
+        {
+          "pain": "Reservas que se pierden en el chat",
+          "solution": "El agente consulta disponibilidad y confirma reservas sin intervención humana."
+        },
+        {
+          "pain": "Cobros manuales y lentos",
+          "solution": "El sistema envía enlaces de pago y confirma cada transacción por el mismo chat."
+        }
+      ]
+    },
+    "how": {
+      "title": "Cómo funciona en 3 pasos",
+      "steps": [
+        "Eliges tus asistentes según lo que tu negocio necesita.",
+        "Los conectas a tu número de WhatsApp Business.",
+        "Los diriges desde un panel: qué hacen, cuándo y con qué reglas."
+      ]
+    },
+    "team": {
+      "title": "Conoce a tu equipo",
+      "members": [
+        {
+          "id": "recepcionista",
+          "name": "Recepcionista",
+          "role": "Recibe a tus huéspedes 24/7",
+          "description": "Responde por WhatsApp con el número de tu negocio, a cualquier hora."
+        },
+        {
+          "id": "reservas",
+          "name": "Reservas",
+          "role": "Disponibilidad y reservas",
+          "description": "Consulta calendario e inventario y confirma reservas por chat."
+        },
+        {
+          "id": "turismo",
+          "name": "Turismo",
+          "role": "Turismo local",
+          "description": "Recomienda rutas y planes de la región."
+        },
+        {
+          "id": "copiloto",
+          "name": "Copiloto",
+          "role": "Copiloto del conductor",
+          "description": "Ayuda a elegir los viajes más convenientes."
+        },
+        {
+          "id": "pagos",
+          "name": "Pagos",
+          "role": "Pagos por chat",
+          "description": "Envía enlaces de pago (Wompi) y confirma las transacciones."
+        },
+        {
+          "id": "cobros",
+          "name": "Cobros",
+          "role": "Cobros y facturación",
+          "description": "Facturas y cobros recurrentes (Giroplay) con reintentos."
+        },
+        {
+          "id": "soporte",
+          "name": "Nuve",
+          "role": "Soporte",
+          "description": "Resuelve lo cotidiano y escala a una persona cuando hace falta."
+        },
+        {
+          "id": "ops",
+          "name": "Ops",
+          "role": "Operación",
+          "description": "Vigila que todos los asistentes estén en línea."
+        },
+        {
+          "id": "gatico",
+          "name": "Matamune",
+          "role": "Chat en vivo",
+          "description": "La demo viva de la fábrica: podrás probarlo muy pronto."
+        }
+      ]
+    },
+    "proof": {
+      "title": "Ya trabaja en producción",
+      "body": "El caso de uso en producción es viajemos.co: los asistentes atienden a viajeros reales de principio a fin.",
+      "todoMetrics": "TODO_CONTENT: cifras verificables de Viajemos (conversaciones atendidas, reservas, tiempo de respuesta).",
+      "todoCaptures": "TODO_CONTENT: capturas reales de las conversaciones del agente.",
+      "linkLabel": "Verlo en producción →"
+    },
+    "architecture": {
+      "title": "Arquitectura y stack",
+      "flowTitle": "El recorrido de un mensaje",
+      "flow": [
+        "WhatsApp Cloud API",
+        "Agente de IA",
+        "Herramientas (reservas, inventario, pagos)",
+        "Cobro (Wompi · Giroplay)"
+      ],
+      "stackTitle": "Stack",
+      "stack": "Next.js + TypeScript en el frontend; backend Python con herramientas MCP en Cloud Run; WhatsApp Cloud API como canal.",
+      "securityTitle": "Seguridad",
+      "security": "Llaves solo en el backend, límites por IP y por sesión, tope diario de gasto, antibot y validación de entrada. La demo no guarda datos personales."
+    },
+    "about": {
+      "title": "Quién construye esto",
+      "name": "Jorge Grisales",
+      "lines": [
+        "Arquitecto de esta fábrica: diseño y opero sistemas de agentes de IA que atienden clientes por WhatsApp.",
+        "Trabajo con la WhatsApp Cloud API, modelos LLM y pagos (Wompi/Giroplay), de la idea a producción.",
+        "«Construí esta red de asistentes»: cada personaje de la escena es un rol que un empleado IA puede asumir en tu negocio."
+      ],
+      "cvLabel": "Descargar CV",
+      "upworkLabel": "Contratarme en Upwork",
+      "todoUpwork": "TODO_CONTENT: enlace al perfil de Upwork."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "q": "¿Qué es un Tech Provider de WhatsApp?",
+          "a": "Un proveedor tecnológico autorizado por Meta para configurar y administrar la WhatsApp Cloud API de otros negocios: registra el número, lo verifica y mantiene la integración funcionando."
+        },
+        {
+          "q": "¿Cuánto tarda tener mi fábrica lista?",
+          "a": "TODO_CONTENT: tiempo de implementación según el tipo de negocio."
+        },
+        {
+          "q": "¿Qué número de WhatsApp usan los asistentes?",
+          "a": "El de tu negocio. Tus clientes escriben al número que ya conocen y los agentes responden por ahí."
+        },
+        {
+          "q": "¿Qué pasa con mis datos y los de mis clientes?",
+          "a": "La demo no guarda datos personales. En la operación real, el tratamiento de datos sigue la Ley 1581 de 2012 y pide consentimiento explícito en el formulario de contacto."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "¿Listo para dirigir tu propia fábrica?",
+      "cta": "Comenzar",
+      "todoForm": "TODO_CONTENT: formulario corto (nombre, correo o WhatsApp, tipo de negocio, qué quieres automatizar y consentimiento de datos)."
+    }
+  }
+}

@@ -1,0 +1,590 @@
+:root {
+  color-scheme: light;
+
+  /*
+   * Tokens de tema derivados de fabrica-ia.jpg (paleta muestreada, plan T3):
+   * cremas/dorados #f7e09a · #cbb27f · #a3895d · marrón tinta #2e2f29 · #6f5e4a.
+   * Contrastes AA verificados: ink/bg 12.54 · ink/surface 13.44 · ink-muted/bg 5.69
+   * · ink-muted/surface 6.10 · gold-strong/bg 4.71 · ink/accent 7.18 · blanco/ink 14.25.
+   */
+  --color-bg: #f8f0dc;
+  --color-surface: #fdf8ec;
+  --color-ink: #2f2a21;
+  --color-ink-muted: #6b5c48;
+  --color-gold: #b98a3e; /* decorativo: bordes, subrayados, aros */
+  --color-gold-strong: #8a6420; /* texto dorado (AA sobre bg y surface) */
+  --color-accent: #25d366; /* verde WhatsApp, solo acento (§10 del brief) */
+  --color-line: #d9c9a3;
+
+  /* Tipografía: variables asignadas por next/font en src/app/[lang]/layout.tsx */
+  --font-display: var(--next-font-display), var(--font-body-fallback);
+  --font-body: var(--next-font-body), var(--font-body-fallback);
+  --font-body-fallback: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+}
+
+/*
+ * Punto de extensión para la versión nocturna (scene-night.jpg, Fase 6):
+ * los componentes leen solo estos tokens; alternar día/noche es cambiar
+ * data-scene en <html>, sin tocar CSS de componentes.
+ */
+[data-scene="night"] {
+  /* TODO_CONTENT: tokens nocturnos cuando exista scene-night.jpg */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-gold-strong);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-gold-strong);
+  outline-offset: 2px;
+}
+
+/* --- Header y navegación (T4) --- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 100;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  padding: var(--space-2) var(--space-3);
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 64px;
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-line);
+  z-index: 50;
+}
+
+.site-header-inner {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-4);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.site-nav a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--color-gold-strong);
+  text-decoration: underline;
+}
+
+.locale-switcher {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.locale-switcher a {
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.locale-switcher a[aria-current="true"] {
+  color: var(--color-ink);
+  text-decoration: underline;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  border: 2px solid var(--color-ink);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 var(--color-ink);
+  padding: 6px var(--space-4);
+  text-decoration: none;
+  text-align: center;
+}
+
+.cta-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  border-radius: 6px;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.mobile-menu-panel {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 49;
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-line);
+  padding: var(--space-4);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mobile-nav a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(64px + var(--space-6)) var(--space-4) var(--space-8);
+}
+
+/* --- Hero y escena por capas (T5/T5b, ADR-0004) --- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.hero-phrase {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--color-ink-muted);
+  font-size: 1.25rem;
+}
+
+/*
+ * Plate canónico (ADR-0004): proporción fija 2752×1536 (el doble del plate
+ * original 1376×768; misma proporción, no es 16:9 exacto), ancho fluido, sin
+ * CLS. Las posiciones de las capas van en %.
+ *
+ * Cámara compartida (variables --cam-*): identidad en Fase 1. En Fase 2,
+ * SceneCamera ('use client') anima estas variables y todas las capas comparten
+ * zoom y desplazamiento por construcción al vivir dentro de este elemento.
+ */
+.scene-stage {
+  --cam-x: 0px;
+  --cam-y: 0px;
+  --cam-zoom: 1;
+
+  position: relative;
+  aspect-ratio: 2752 / 1536;
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  transform: translate(var(--cam-x), var(--cam-y)) scale(var(--cam-zoom));
+  transform-origin: center;
+}
+
+/* Capas absolutas apiladas (z-index lo asigna SceneStage desde scene/layers.ts);
+   todo hijo de una capa se posiciona en % sobre la imagen (ADR-0004). */
+.scene-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* Imagen de fondo: ocupa la capa completa; su relación intrínseca (2752×1536,
+   atributos width/height de next/image) coincide con la del escenario. */
+.scene-static {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mobile-cta-bar {
+  display: none;
+}
+
+/* --- Modo express (T6, brief §9): 9 secciones, solo Server Components --- */
+
+.express {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.express-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.express-subtitle {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--color-ink-muted);
+  font-size: 1.25rem;
+}
+
+.express-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 688px;
+  color: var(--color-ink-muted);
+  text-decoration: none;
+}
+
+.express-thumb .scene-static {
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+}
+
+.express-thumb:hover .express-thumb-cta,
+.express-thumb:focus-visible .express-thumb-cta {
+  color: var(--color-gold-strong);
+  text-decoration: underline;
+}
+
+.express-thumb-cta {
+  font-weight: 600;
+}
+
+.express-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.express-section h2 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.express-section h3 {
+  margin: var(--space-2) 0 0;
+  font-size: 1.15rem;
+}
+
+.express-section p {
+  margin: 0;
+  max-width: 46rem;
+}
+
+.express-final {
+  align-items: center;
+  text-align: center;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.problem-card {
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-line);
+  padding: var(--space-4);
+}
+
+.problem-pain {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+}
+
+.problem-solution {
+  margin: 0;
+  color: var(--color-ink-muted);
+}
+
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+  list-style: none;
+  max-width: 46rem;
+}
+
+.how-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.how-steps li::before {
+  content: counter(step);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-gold-strong);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team-card {
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-line);
+  padding: var(--space-4);
+}
+
+.team-card h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.team-role {
+  margin: var(--space-1) 0 0;
+  color: var(--color-gold-strong);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.team-description {
+  margin: var(--space-2) 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.95rem;
+}
+
+.arch-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.arch-flow li {
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+}
+
+.arch-flow li + li::before {
+  content: "→";
+  margin-right: var(--space-3);
+  color: var(--color-gold-strong);
+}
+
+.about-card {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-line);
+  padding: var(--space-4);
+  max-width: 46rem;
+}
+
+.about-photo {
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+}
+
+.about-card h3 {
+  margin: 0 0 var(--space-2);
+}
+
+.about-card p {
+  margin: 0 0 var(--space-2);
+}
+
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+  margin-top: var(--space-2);
+}
+
+.about-link-todo {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+}
+
+.faq-item {
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  background: var(--color-surface);
+  padding: var(--space-3) var(--space-4);
+  max-width: 46rem;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq-item p {
+  margin: var(--space-2) 0 0;
+}
+
+/* Placeholder visible del dueño: nunca inventar datos (regla del proyecto). */
+.todo-note {
+  color: var(--color-ink-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Páginas placeholder (/ingeniero, /contacto) y 404 (T7) */
+.placeholder-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) 0;
+  text-align: center;
+}
+
+.placeholder-page h1 {
+  margin: 0;
+}
+
+.placeholder-page p {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--color-ink-muted);
+}
+
+.placeholder-page a {
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .site-nav,
+  .site-header > .site-header-inner > .cta-button {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 50;
+    background: var(--color-surface);
+    border-top: 2px solid var(--color-line);
+    padding: var(--space-2) var(--space-4) calc(var(--space-2) + env(safe-area-inset-bottom));
+  }
+
+  .mobile-cta-bar .cta-button {
+    flex: 1;
+  }
+
+  main {
+    padding-bottom: calc(72px + var(--space-6) + env(safe-area-inset-bottom));
+  }
+}
+
+/* Base de reduced-motion (ADR-0004 §D): sin transiciones ni animaciones.
+   Los efectos de la Fase 2 se cuelgan de esta misma media query. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
