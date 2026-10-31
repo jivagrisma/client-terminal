@@ -45,8 +45,8 @@
 
 ## ⏭ Al reanudar
 
-1. Pedir confirmación de **push + PR** (T12, pendiente de la sesión anterior y de esta): el push a `feat/fabrica-ia-fase-1` dispara el primer deploy a staging; el PR va a `main`. Tras el deploy, verificar con `gcloud run services list --project client-terminal-jigm` que `client-terminal-web` sigue en `00005-bgf` y `client-terminal-api` en `00004-6ht`, más el servicio nuevo.
-2. Cierre de Fase 1 → planear **Fase 2** (cámara, efectos nivel 1, sprites de los 4 personajes, elección de efectos v1, `scene-night.jpg`).
+1. ~~Pedir confirmación de push + PR~~ → **hecho tras la confirmación del dueño (2026-10-31)**: push ejecutado, **PR #1** abierto (`github.com/jivagrisma/client-terminal/pull/1`) y el workflow `Deploy Landing Staging` corrió con éxito: `fabrica-ia-landing-staging` desplegado en `https://fabrica-ia-landing-staging-649560126274.us-central1.run.app` (robots `Disallow: /`, `X-Robots-Tag: noindex`, `/es`, `/en` y `/es/express` 200, escena 2K servida). Producción intacta: `client-terminal-web-00005-bgf` y `client-terminal-api-00004-6ht` (mismas revisiones). Fix aplicado: el deploy no-interactivo no concedía invocación pública → `allUsers/run.invoker` solo en el servicio nuevo + `--allow-unauthenticated` en el workflow (idempotente).
+2. **Siguiente paso: merge del PR #1** (decisión del dueño) y planear **Fase 2** (cámara, efectos nivel 1, sprites de los 4 personajes, elección de efectos v1, `scene-night.jpg`, tuning LCP/AVIF con el fix del LCP de `/express` ya identificado).
 
 ## Pendientes del dueño (assets/contenidos)
 

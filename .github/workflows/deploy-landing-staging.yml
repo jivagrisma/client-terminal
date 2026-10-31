@@ -69,5 +69,6 @@ jobs:
             --min-instances=0 --max-instances=2 \
             --cpu=1 --memory=512Mi \
             --ingress=all \
+            --allow-unauthenticated \
             --set-env-vars=SITE_ENV=staging \
             --quiet
