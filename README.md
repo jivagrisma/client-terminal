@@ -7,8 +7,9 @@ y el panel de estado muestra CI/CD real (GitHub Actions + Cloud Run).
 ## Estructura
 
 ```
-web/   → Next.js (App Router, output: 'standalone') — UI de terminal, streaming SSE
-api/   → FastAPI — harness del agente, tools MCP read-only sobre GitHub, estado CI/CD
+web/     → Next.js (App Router, output: 'standalone') — UI de terminal, streaming SSE
+api/     → FastAPI — harness del agente, tools MCP read-only sobre GitHub, estado CI/CD
+landing/ → Fábrica de IA — landing interactiva (Next.js 16, satélite aislado; ver landing/README.md)
 ```
 
 ## Desarrollo local
