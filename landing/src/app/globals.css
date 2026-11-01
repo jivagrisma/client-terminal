@@ -234,23 +234,71 @@ main {
  * original 1376×768; misma proporción, no es 16:9 exacto), ancho fluido, sin
  * CLS. Las posiciones de las capas van en %.
  *
- * Cámara compartida (variables --cam-*): identidad en Fase 1. En Fase 2,
- * SceneCamera ('use client') anima estas variables y todas las capas comparten
+ * Cámara compartida (variables --cam-*): las define el envoltorio .scene-camera
+ * (SceneCamera, ADR-0006) y este elemento las hereda; los fallbacks mantienen
+ * la identidad en montajes estáticos (hero hasta T8). Todas las capas comparten
  * zoom y desplazamiento por construcción al vivir dentro de este elemento.
  */
 .scene-stage {
-  --cam-x: 0px;
-  --cam-y: 0px;
-  --cam-zoom: 1;
-
   position: relative;
   aspect-ratio: 2752 / 1536;
   width: 100%;
   overflow: hidden;
   border: 2px solid var(--color-line);
   border-radius: 8px;
-  transform: translate(var(--cam-x), var(--cam-y)) scale(var(--cam-zoom));
+  transform: translate(var(--cam-x, 0px), var(--cam-y, 0px)) scale(var(--cam-zoom, 1));
   transform-origin: center;
+}
+
+/* Cámara 2D (ADR-0006, T3): envoltorio de cliente que define las variables
+   --cam-* y captura puntero/rueda/teclado. touch-action: none habilita el
+   arrastre y el pellizco propios; en la tarjeta móvil (T8) se relaja a pan-y
+   para no bloquear el scroll de la página. */
+.scene-camera {
+  --cam-x: 0px;
+  --cam-y: 0px;
+  --cam-zoom: 1;
+
+  position: relative;
+  touch-action: none;
+  cursor: grab;
+  border-radius: 8px;
+}
+
+.scene-camera[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+/* La transición es SOLO para cambios programáticos (Vista general, focus de
+   T5): durante el arrastre data-dragging la apaga para un paneo 1:1. */
+.scene-stage {
+  transition: transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.scene-camera[data-dragging="true"] .scene-stage {
+  transition: none;
+}
+
+/* image-rendering pixelated al hacer zoom (brief §5). */
+.scene-camera[data-zoomed="true"] .scene-static {
+  image-rendering: pixelated;
+}
+
+/* Botón "Vista general" (brief §5): sobre la escena, esquina superior. */
+.scene-overview {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 4;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 var(--color-ink);
+  padding: 4px var(--space-3);
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* Capas absolutas apiladas (z-index lo asigna SceneStage desde scene/layers.ts);
