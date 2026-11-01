@@ -6,6 +6,9 @@ import { defineConfig, devices } from "@playwright/test";
 // escritorio 1440×900 y móvil 390×844.
 export default defineConfig({
   testDir: "./tests",
+  // Solo e2e (*.spec.ts): las unitarias (*.test.ts) corren con vitest
+  // (ADR-0006); sin este filtro Playwright intentaría ejecutarlas también.
+  testMatch: "**/*.spec.ts",
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
   use: {

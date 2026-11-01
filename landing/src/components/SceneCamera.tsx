@@ -113,6 +113,11 @@ export function SceneCamera({ children, overviewLabel, ariaLabel, ref }: SceneCa
     if (!el) return;
 
     const onPointerDown = (event: PointerEvent) => {
+      // Los controles de la escena (Vista general, y en T5 los hotspots) son
+      // interactivos: sin esta guardia, setPointerCapture les roba el click.
+      if (event.target instanceof Element && event.target.closest("button, a, [data-camera-ignore]")) {
+        return;
+      }
       stopInertia();
       el.setPointerCapture(event.pointerId);
       pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY });

@@ -11,4 +11,4 @@ export const SITE_ENV = process.env.SITE_ENV;
 export const SITE_LOCALES = ["es", "en"] as const;
 
 /** Rutas relativas (sin prefijo de idioma) que se anuncian en sitemap/hreflang. */
-export const SITE_PATHS = ["", "/express", "/ingeniero", "/contacto"] as const;
+export const SITE_PATHS = ["", "/express", "/fabrica", "/ingeniero", "/contacto"] as const;

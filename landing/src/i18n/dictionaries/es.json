@@ -7,6 +7,10 @@
       "description": "WaIA es la plataforma para crear un sistema de empleados IA siempre activo en WhatsApp: reservas, pagos y soporte para tu negocio."
     },
     "pages": {
+      "fabrica": {
+        "title": "La fábrica",
+        "description": "Explora la oficina de empleados IA de WaIA: muévete por la escena, toca un asistente y descubre qué hace por tu negocio."
+      },
       "express": {
         "title": "Empleados IA en WhatsApp",
         "description": "WaIA crea empleados IA que atienden reservas, pagos y soporte de tu negocio por WhatsApp, 24/7."
@@ -202,6 +206,11 @@
       "cta": "Comenzar",
       "todoForm": "TODO_CONTENT: formulario corto (nombre, correo o WhatsApp, tipo de negocio, qué quieres automatizar y consentimiento de datos)."
     }
+  },
+  "fabrica": {
+    "aria": "Escena interactiva de la fábrica: arrastra para mirar, rueda o pellizco para acercar y teclado para moverte",
+    "overview": "Vista general",
+    "back": "Volver"
   },
   "segments": {
     "negocio": "Negocio",
