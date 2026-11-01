@@ -202,5 +202,28 @@
       "cta": "Comenzar",
       "todoForm": "TODO_CONTENT: formulario corto (nombre, correo o WhatsApp, tipo de negocio, qué quieres automatizar y consentimiento de datos)."
     }
+  },
+  "segments": {
+    "negocio": "Negocio",
+    "conductor": "Conductor",
+    "creador": "Creador"
+  },
+  "badge": {
+    "proximamente": "Próximamente"
+  },
+  "personas": {
+    "jorge": { "name": "Jorge", "role": "Fundador e ingeniero de IA de la red" },
+    "recepcionista": { "name": "Recepcionista IA", "role": "Recepción de hotel y finca", "row": "Atiende a tus huéspedes 24/7" },
+    "reservas": { "name": "Reservas", "role": "Reservas y disponibilidad", "row": "Disponibilidad y reservas por chat" },
+    "turismo": { "name": "Turismo", "role": "Turismo local", "row": "Rutas y planes de la región" },
+    "cobros": { "name": "Cobros", "role": "Facturación y cobros", "row": "Facturas y cobros recurrentes" },
+    "legal-experto": { "name": "Experto Legal", "role": "Preguntas frecuentes del negocio", "row": "Responde preguntas frecuentes de tu negocio" },
+    "copiloto": { "name": "Copiloto", "role": "Copiloto del conductor", "row": "Para conductores de Uber, inDrive y DiDi" },
+    "youtube-automatiza": { "name": "Automatiza YouTube", "role": "Automatización de video con IA", "row": "Genera videos con IA" },
+    "pagos": { "name": "Pagos", "role": "Pagos y confirmaciones" },
+    "soporte": { "name": "Soporte", "role": "Soporte con escalado a humano" },
+    "ops": { "name": "Operaciones", "role": "Vigila que todo esté arriba" },
+    "matamune": { "name": "Matamune", "role": "Chat en vivo (demo)" },
+    "mesa": { "name": "Mesa central", "role": "El sistema: mensaje → IA → acción → cobro" }
   }
 }

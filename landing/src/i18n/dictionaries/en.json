@@ -202,5 +202,28 @@
       "cta": "Get started",
       "todoForm": "TODO_CONTENT: short form (name, email or WhatsApp, business type, what you want to automate, and data consent)."
     }
+  },
+  "segments": {
+    "negocio": "Business",
+    "conductor": "Driver",
+    "creador": "Creator"
+  },
+  "badge": {
+    "proximamente": "Coming soon"
+  },
+  "personas": {
+    "jorge": { "name": "Jorge", "role": "Founder and AI engineer of the network" },
+    "recepcionista": { "name": "Front Desk AI", "role": "Hotel and farm reception", "row": "Answers your guests 24/7" },
+    "reservas": { "name": "Bookings", "role": "Bookings and availability", "row": "Availability and bookings via chat" },
+    "turismo": { "name": "Tourism", "role": "Local tourism", "row": "Local routes and plans" },
+    "cobros": { "name": "Billing", "role": "Invoicing and collections", "row": "Invoices and recurring payments" },
+    "legal-experto": { "name": "Legal Expert", "role": "Business FAQs", "row": "Answers your business's frequently asked questions" },
+    "copiloto": { "name": "Copilot", "role": "Driver's copilot", "row": "For Uber, inDrive and DiDi drivers" },
+    "youtube-automatiza": { "name": "Automate YouTube", "role": "AI video automation", "row": "Make videos with AI" },
+    "pagos": { "name": "Payments", "role": "Payments and confirmations" },
+    "soporte": { "name": "Support", "role": "Support with human handoff" },
+    "ops": { "name": "Operations", "role": "Keeps everything up and running" },
+    "matamune": { "name": "Matamune", "role": "Live chat (demo)" },
+    "mesa": { "name": "Central table", "role": "The system: message → AI → action → billing" }
   }
 }
