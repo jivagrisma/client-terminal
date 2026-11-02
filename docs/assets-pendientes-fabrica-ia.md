@@ -53,7 +53,7 @@ Paleta de los 9 pelajes (1 fila, editable por ti): `#5D4037` `#795548` `#9E9E9E`
 
 Para animar a los personajes que el plate dejó fuera. **La pose es isométrica** (la misma de la escena, ángulo ~3/4), no el retrato frontal de los avatares.
 
-**Recorte de referencia sobre la escena original `fabrica-ia_2K.jpg` (2752×1536 px)** — caja que ocupa cada personaje (ajustable al integrar):
+**Recorte de referencia sobre la escena original 2K con personajes (2752×1536 px, asset del dueño)** — caja que ocupa cada personaje (ajustable al integrar):
 
 | Personaje | Caja (x, y, ancho, alto en px) | Celda sugerida del sheet |
 |---|---|---|
@@ -95,7 +95,7 @@ con `[CHARACTER]` = `man with amber glasses, dark hair, dark green cardigan and 
 
 > `same cozy AI office scene at night, pixel art isometric view, warm desk lamps and monitor glow, moonlight through the large windows, Colombian town rooftops with lights outside, deep blue night sky with stars, no people, no characters, 16-bit retro game style, chunky pixels, no text`
 
-Regla: sin personajes (es el plate) y mismo encuadre exacto que `fabrica-ia-plate_2K.jpg`.
+Regla: sin personajes (es el plate) y mismo encuadre exacto que el plate 2K del dueño.
 
 ## 5. Opcional / futuro
 
