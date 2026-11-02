@@ -21,6 +21,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 - [handoff-fabrica-ia-sesion2.md](handoff-fabrica-ia-sesion2.md) — ejecución Fase 1 parte 1 (2026-10-28/29): T0a–T4 completas; T5 en pausa con preguntas al dueño.
 - [handoff-fabrica-ia-sesion3.md](handoff-fabrica-ia-sesion3.md) — ejecución Fase 1 parte 2 (2026-10-29): T5 completa con el plate canónico (1376×768, PNG, sin publicar); próxima tarea T5b; decisiones del dueño y advertencia de build sin la imagen versionada.
 - [handoff-fabrica-ia-sesion4.md](handoff-fabrica-ia-sesion4.md) — ejecución Fase 1 parte 3 y **cierre de la Fase 1** (2026-10-30/31): T0a–T12 completas, PR #1 fusionado a `main`, staging `fabrica-ia-landing-staging` desplegado con noindex, producción intacta; assets 2K JPG (hero + OG con personajes); **incluye el prompt para la sesión 5** (inicio de Fase 2).
+- [handoff-fabrica-ia-sesion5.md](handoff-fabrica-ia-sesion5.md) — **Fase 2 completa** (2026-11-01/02): 2A escena interactiva (cámara, `/fabrica`, hotspots con `?focus=`, efectos) desplegada a staging (`-00004-9b5`); 2B home de acción (home dual móvil/escritorio, Nunito, `/crear` placeholder, fix LCP express); ADR-0006/0007/0008; spec de assets; gaps LCP home móvil y Perf<90 documentados; **incluye el prompt para la sesión 6** (Fase 3).
 
 ## Anexos del brief
 
