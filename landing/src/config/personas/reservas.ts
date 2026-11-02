@@ -8,6 +8,6 @@ export const reservas: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: false,
-  avatar: null,
+  avatar: "/assets/avatars/reservas.png",
   status: "live",
 };

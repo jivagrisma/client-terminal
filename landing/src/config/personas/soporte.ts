@@ -7,6 +7,6 @@ export const soporte: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: false,
-  avatar: null,
+  avatar: "/assets/avatars/soporte.png",
   status: "live",
 };

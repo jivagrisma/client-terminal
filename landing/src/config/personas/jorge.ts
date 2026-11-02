@@ -9,6 +9,6 @@ export const jorge: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: true,
-  avatar: null,
+  avatar: "/assets/avatars/jorge.png",
   status: "live",
 };

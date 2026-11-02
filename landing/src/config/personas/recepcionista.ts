@@ -8,6 +8,6 @@ export const recepcionista: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: true,
-  avatar: null,
+  avatar: "/assets/avatars/recepcionista.png",
   status: "live",
 };

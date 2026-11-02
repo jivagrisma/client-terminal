@@ -9,6 +9,6 @@ export const youtubeAutomatiza: Persona = {
   inScene: false,
   kind: "personaje",
   spritePending: false,
-  avatar: null,
+  avatar: "/assets/avatars/youtube-automatiza.png",
   status: "proximamente",
 };

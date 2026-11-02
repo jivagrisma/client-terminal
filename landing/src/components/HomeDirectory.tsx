@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 
@@ -13,6 +14,8 @@ export interface DirectoryPersona {
   name: string;
   description: string;
   href: string | null;
+  /** Avatar pixel-art 128×128; null = inicial en placeholder. */
+  avatar: string | null;
 }
 
 export interface DirectorySegment {
@@ -58,9 +61,19 @@ export function HomeDirectory({ segments, badge, ariaLabel, between }: HomeDirec
           <li key={persona.id}>
             {persona.href ? (
               <Link className="home-row" href={persona.href}>
-                <span className="home-row-avatar" aria-hidden="true">
-                  {persona.name.charAt(0)}
-                </span>
+                {persona.avatar ? (
+                  <Image
+                    src={persona.avatar}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="home-row-avatar home-row-avatar-img"
+                  />
+                ) : (
+                  <span className="home-row-avatar" aria-hidden="true">
+                    {persona.name.charAt(0)}
+                  </span>
+                )}
                 <span className="home-row-text">
                   <strong>{persona.name}</strong>
                   <span>{persona.description}</span>
@@ -68,9 +81,19 @@ export function HomeDirectory({ segments, badge, ariaLabel, between }: HomeDirec
               </Link>
             ) : (
               <div className="home-row home-row-soon">
-                <span className="home-row-avatar" aria-hidden="true">
-                  {persona.name.charAt(0)}
-                </span>
+                {persona.avatar ? (
+                  <Image
+                    src={persona.avatar}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="home-row-avatar home-row-avatar-img"
+                  />
+                ) : (
+                  <span className="home-row-avatar" aria-hidden="true">
+                    {persona.name.charAt(0)}
+                  </span>
+                )}
                 <span className="home-row-text">
                   <strong>{persona.name}</strong>
                   <span>{persona.description}</span>

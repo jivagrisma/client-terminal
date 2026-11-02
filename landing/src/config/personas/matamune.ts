@@ -10,6 +10,6 @@ export const matamune: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: true,
-  avatar: null,
+  avatar: "/assets/avatars/matamune.png",
   status: "live",
 };

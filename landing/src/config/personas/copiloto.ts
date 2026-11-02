@@ -8,6 +8,6 @@ export const copiloto: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: false,
-  avatar: null,
+  avatar: "/assets/avatars/copiloto.png",
   status: "live",
 };

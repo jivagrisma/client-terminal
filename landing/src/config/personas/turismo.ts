@@ -8,6 +8,6 @@ export const turismo: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: true,
-  avatar: null,
+  avatar: "/assets/avatars/turismo.png",
   status: "live",
 };

@@ -10,6 +10,6 @@ export const legalExperto: Persona = {
   inScene: false,
   kind: "personaje",
   spritePending: false,
-  avatar: null,
+  avatar: "/assets/avatars/legal-experto.png",
   status: "proximamente",
 };

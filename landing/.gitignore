@@ -45,3 +45,7 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Avatares: los .jpeg son el material fuente del dueño (fondo verde);
+# los .png convertidos (128x128, transparentes) son los assets canónicos.
+public/assets/avatars/*.jpeg

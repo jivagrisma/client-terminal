@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -49,7 +50,13 @@ export function AppHeader({ lang, question, labels }: AppHeaderProps) {
           aria-label={open ? labels.menuClose : labels.menuOpen}
           onClick={() => setOpen((value) => !value)}
         >
-          <span aria-hidden="true">J</span>
+          <Image
+            src="/assets/avatars/jorge.png"
+            alt=""
+            width={44}
+            height={44}
+            className="app-avatar-img"
+          />
         </button>
         {open ? (
           <div

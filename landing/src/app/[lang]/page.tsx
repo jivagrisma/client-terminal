@@ -47,6 +47,7 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
         name: copy?.name ?? id,
         description: copy?.row ?? copy?.role ?? id,
         href: persona?.status === "live" ? `/${lang}/fabrica?focus=${id}` : null,
+        avatar: persona?.avatar ?? null,
       };
     }),
   }));

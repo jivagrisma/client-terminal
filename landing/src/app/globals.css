@@ -1312,3 +1312,14 @@ body:has(.fabrica-view) .mobile-cta-bar {
     border-radius: 8px;
   }
 }
+
+/* Avatares pixel-art del dueño (128×128 PNG transparente) en fila y cabecera. */
+.home-row-avatar-img {
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+.app-avatar-img {
+  border-radius: 50%;
+}

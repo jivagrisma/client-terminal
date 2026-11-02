@@ -8,6 +8,6 @@ export const cobros: Persona = {
   inScene: true,
   kind: "personaje",
   spritePending: false,
-  avatar: null,
+  avatar: "/assets/avatars/cobros.png",
   status: "live",
 };
