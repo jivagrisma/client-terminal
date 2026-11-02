@@ -16,20 +16,22 @@ import { SCENE_LAYERS, type SceneLayerId } from "@/scene/layers";
 export function SceneStage({
   children,
   hotspots,
+  effects,
 }: {
   children: ReactNode;
   hotspots?: ReactNode;
+  effects?: ReactNode;
 }) {
   // Se validan ambas configuraciones aunque hoy no rendericen nada: una config
   // inválida rompe el build en vez de producir una escena rota en producción.
-  const effects = parseEffectsConfig(effectsJson);
+  const effectsConfig = parseEffectsConfig(effectsJson);
   const sprites = parseSpritesConfig(spritesJson);
 
   // Qué capas tienen contenido activo hoy (las de Fase 2 montan el suyo con
   // la carga diferida de SceneCamera).
   const enabled: Record<SceneLayerId, boolean> = {
     background: true,
-    effects: effects.effects.length > 0,
+    effects: Boolean(effects) && effectsConfig.effects.some((effect) => effect.enabled),
     sprites: sprites.sprites.enabled,
     hotspots: Boolean(hotspots),
   };
@@ -45,6 +47,7 @@ export function SceneStage({
           style={{ zIndex: z }}
         >
           {id === "background" ? children : null}
+          {id === "effects" ? effects : null}
           {id === "hotspots" ? hotspots : null}
         </div>
       ))}

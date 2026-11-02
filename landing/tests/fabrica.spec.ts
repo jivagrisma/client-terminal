@@ -125,3 +125,27 @@ test.describe("/es/fabrica · hotspots (T5)", () => {
     await expect(page.locator(".scene-hotspot")).toHaveCount(7);
   });
 });
+
+test.describe("/es/fabrica · efectos nivel 1 (T6)", () => {
+  test("capa de efectos activa con los 14 efectos de config", async ({ page }) => {
+    await page.goto("/es/fabrica");
+    await expect(page.locator('.scene-layer[data-layer="effects"]')).toHaveAttribute(
+      "data-enabled",
+      "true",
+    );
+    await expect(page.locator(".scene-effects .fx")).toHaveCount(14);
+    await expect(page.locator(".fx-light-blink")).toHaveCount(3);
+    await expect(page.locator(".fx-steam")).toHaveCount(2);
+  });
+
+  test("con prefers-reduced-motion no hay vapor ni partículas (§5.2 D)", async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/es/fabrica");
+    await expect(page.locator(".fx-steam").first()).toBeHidden();
+    await expect(page.locator(".fx-light-particles").first()).toBeHidden();
+    // Las luces quedan como estado estático (visibles, sin animación).
+    await expect(page.locator(".fx-light-blink").first()).toBeVisible();
+  });
+});

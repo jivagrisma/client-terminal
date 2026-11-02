@@ -876,3 +876,154 @@ body:has(.fabrica-view) .mobile-cta-bar {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* --- Efectos nivel 1 (T6, brief §5.2 B): decorativos, aria-hidden --- */
+
+.scene-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Pausa global (pestaña oculta / escena fuera de pantalla, §5.2 D). */
+.scene-effects[data-active="false"] .fx {
+  animation-play-state: paused;
+}
+
+/* Degradación gradual: primero las partículas (§5.2 D). */
+.scene-effects[data-quality="low"] .fx-light-particles {
+  display: none;
+}
+
+.fx {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* Luces de servidores: LED que parpadea. */
+.fx-light-blink {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.85;
+  animation: fx-blink 2.6s ease-in-out infinite;
+}
+
+.fx-light-blink:nth-of-type(2n) {
+  animation-duration: 3.4s;
+  animation-delay: 0.8s;
+}
+
+.fx-light-blink:nth-of-type(3n) {
+  animation-duration: 4.1s;
+  animation-delay: 1.5s;
+}
+
+@keyframes fx-blink {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Pantallas: brillo suave que respira. */
+.fx-screen-glow {
+  width: 9%;
+  max-width: 84px;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  background: radial-gradient(ellipse at center, rgb(255 244 194 / 0.55), transparent 70%);
+  animation: fx-glow 3.6s ease-in-out infinite;
+}
+
+@keyframes fx-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* Vapor de cafeteras: volutas que ascienden. */
+.fx-steam {
+  width: 4%;
+  max-width: 40px;
+  aspect-ratio: 1 / 1.4;
+  background:
+    radial-gradient(circle at 30% 100%, rgb(255 255 255 / 0.5), transparent 60%),
+    radial-gradient(circle at 70% 100%, rgb(255 255 255 / 0.4), transparent 60%);
+  filter: blur(2px);
+  animation: fx-steam 3.2s ease-in-out infinite;
+}
+
+@keyframes fx-steam {
+  0% {
+    transform: translate(-50%, 0) scaleY(0.7);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -140%) scaleY(1.15);
+    opacity: 0;
+  }
+}
+
+/* Banderas: brillo leve que recorre (aproxima la ondulación sin editar la imagen). */
+.fx-flag-wave {
+  width: 4.5%;
+  max-width: 46px;
+  aspect-ratio: 3 / 2;
+  border-radius: 2px;
+  background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.5) 50%, transparent 70%);
+  background-size: 250% 100%;
+  animation: fx-flag 4.4s linear infinite;
+}
+
+@keyframes fx-flag {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+/* Partículas de luz de los ventanales: motas que derivan. */
+.fx-light-particles {
+  width: 14%;
+  max-width: 170px;
+  aspect-ratio: 1;
+  background-image:
+    radial-gradient(circle 2px at 20% 30%, rgb(255 240 180 / 0.9), transparent 3px),
+    radial-gradient(circle 2px at 60% 10%, rgb(255 240 180 / 0.7), transparent 3px),
+    radial-gradient(circle 3px at 80% 55%, rgb(255 240 180 / 0.8), transparent 4px),
+    radial-gradient(circle 2px at 40% 75%, rgb(255 240 180 / 0.6), transparent 3px);
+  animation: fx-particles 7s ease-in-out infinite alternate;
+}
+
+@keyframes fx-particles {
+  from {
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate(-46%, -44%);
+    opacity: 1;
+  }
+}
+
+/* §5.2 D: reduced-motion = sin parpadeos/partículas/vapor; solo estados estáticos. */
+@media (prefers-reduced-motion: reduce) {
+  .fx-light-particles,
+  .fx-steam {
+    display: none;
+  }
+}

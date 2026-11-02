@@ -1,3 +1,18 @@
 {
-  "effects": []
+  "effects": [
+    { "id": "blink-servidores-1", "type": "light-blink", "x": 9.0, "y": 26.0, "enabled": true },
+    { "id": "blink-servidores-2", "type": "light-blink", "x": 11.5, "y": 38.0, "enabled": true },
+    { "id": "blink-servidores-3", "type": "light-blink", "x": 16.0, "y": 30.0, "enabled": true },
+    { "id": "glow-laptop-reservas", "type": "screen-glow", "x": 24.5, "y": 43.0, "enabled": true },
+    { "id": "glow-laptop-copiloto", "type": "screen-glow", "x": 56.0, "y": 43.0, "enabled": true },
+    { "id": "glow-laptop-cobros", "type": "screen-glow", "x": 77.5, "y": 43.0, "enabled": true },
+    { "id": "glow-laptop-izq", "type": "screen-glow", "x": 23.5, "y": 62.0, "enabled": true },
+    { "id": "glow-laptop-soporte", "type": "screen-glow", "x": 87.5, "y": 62.0, "enabled": true },
+    { "id": "steam-cafetera-izq", "type": "steam", "x": 8.5, "y": 33.0, "enabled": true },
+    { "id": "steam-cafetera-der", "type": "steam", "x": 77.5, "y": 87.0, "enabled": true },
+    { "id": "flag-balconia-1", "type": "flag-wave", "x": 57.0, "y": 21.0, "enabled": true },
+    { "id": "flag-balconia-2", "type": "flag-wave", "x": 85.5, "y": 22.0, "enabled": true },
+    { "id": "flag-balconia-3", "type": "flag-wave", "x": 92.5, "y": 26.0, "enabled": true },
+    { "id": "particles-ventanal", "type": "light-particles", "x": 72.0, "y": 20.0, "enabled": true }
+  ]
 }
