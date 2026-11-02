@@ -6,7 +6,7 @@ Cómo usar este documento: cada tabla dice **qué**, **dónde va** (ruta exacta 
 
 ## Estilo base (vale para todos los prompts)
 
-Paleta de la escena: cremas `#f8f0dc` / `#fdf8ec`, dorados `#b98a3e` / `#a3895d`, tinta `#2f2a21`, acento verde WhatsApp `#25d366`. Estilo del universo: **pixel-art cálido, 16 bits, chibi/amable, contorno limpio, sombreado suave**, coherente con `fabrica-ia.jpg`.
+Paleta de la escena: cremas `#f8f0dc` / `#fdf8ec`, dorados `#b98a3e` / `#a3895d`, tinta `#2f2a21`, acento verde WhatsApp `#25d366`. Estilo del universo: **pixel-art cálido, 16 bits, chibi/amable, contorno limpio, sombreado suave**, coherente con la escena original del dueño.
 
 Sufijo recomendado para todos los prompts (en inglés, los modelos responden mejor):
 
@@ -114,3 +114,8 @@ Regla: sin personajes (es el plate) y mismo encuadre exacto que el plate 2K del 
 5. **Tiempos de implementación** para la FAQ ("¿Cuánto tarda…?").
 6. Confirmación de **qué efectos nivel 1** quedan activos por defecto en la v1 (los 14 están disponibles por config; hoy todos activos).
 7. Veto o confirmación del nombre **Matamune** (ADR-0007).
+
+## Estado de entrega (2026-11-02)
+
+- **Avatares de la sección 1: ENTREGADOS** por el dueño (Nano Banana, JPEG 1024×1024 con fondo verde ≈`#6FEB72`–`#8EF088`) y convertidos a PNG 128×128 transparentes en `landing/public/assets/avatars/` (chroma key por rango de tono + recorte + reducción; gate visual aprobado con recepcionista a 128/72 px). Integrados: los 7 de la sección 1 + jorge (cabecera app), matamune y soporte/nuve (registro). `investigacion-mercado.png` queda como referencia sin entrada en el registro (definición pendiente: el dueño lo identifica como el fantasma rosa de la escena — choque de diseño con `pagos`, §6, por resolver). `reservas` entregado fuera de hora y convertido.
+- Pendientes del resto de la lista: capas del burro (sección 2), sprite sheets (sección 3), escena nocturna (sección 4). Los `.jpeg` fuente quedan sin versionar (gitignore).
