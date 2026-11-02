@@ -25,7 +25,7 @@ const SPRITE_STATES: readonly SpriteState[] = [
 ];
 
 export interface SceneSpriteCharacter {
-  /** jorge | recepcionista | gatica | turismo (§5.2 C). */
+  /** Id del registro de personajes (ADR-0007): jorge, recepcionista, matamune, turismo. */
   id: string;
   /** % del ancho de la imagen (0–100): borde izquierdo del sprite. */
   x: number;
@@ -35,6 +35,13 @@ export interface SceneSpriteCharacter {
   width: number;
   /** Debe incluir "idle": la máquina de estados del chat arranca siempre ahí. */
   states: SpriteState[];
+  /**
+   * Ruta del sprite sheet (PNG con fondo transparente, una fila de cuadros
+   * uniformes; ADR-0004 §C). Requerido por personaje cuando enabled=true.
+   */
+  src?: string;
+  /** Cuadros de la animación idle en el sheet (el validador fija 2 por defecto). */
+  idleFrames: number;
 }
 
 export interface EffectsConfig {
@@ -124,12 +131,23 @@ export function parseSpritesConfig(data: unknown): SpritesConfig {
         if (!states.includes("idle")) {
           fail(`${path}.states`, 'debe incluir "idle"');
         }
+        const src = character.src === undefined ? undefined : nonEmptyString(`${path}.src`, character.src);
+        if (sprites.enabled && !src) {
+          fail(`${path}.src`, "con sprites.enabled=true cada personaje necesita su sprite sheet");
+        }
+        const idleFrames =
+          character.idleFrames === undefined ? 2 : (character.idleFrames as number);
+        if (!Number.isInteger(idleFrames) || idleFrames < 1 || idleFrames > 12) {
+          fail(`${path}.idleFrames`, "se espera un entero entre 1 y 12");
+        }
         return {
           id: nonEmptyString(`${path}.id`, character.id),
           x: percent(`${path}.x`, character.x),
           y: percent(`${path}.y`, character.y),
           width: percent(`${path}.width`, character.width),
           states,
+          src,
+          idleFrames,
         };
       }),
     },

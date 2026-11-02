@@ -25,6 +25,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 ## Anexos del brief
 
 - [brief-seccion-5.2-capa-animacion.md](brief-seccion-5.2-capa-animacion.md) — texto literal de §5.2 "Capa de animación", insertado en el brief en la tarea T0a. Base del ADR-0004.
+- [assets-pendientes-fabrica-ia.md](assets-pendientes-fabrica-ia.md) — lista de assets que el dueño debe diseñar (avatares, capas del burro, sprite sheets con recortes, escena nocturna), con medidas, formatos, rutas destino y prompts de texto-a-imagen.
 
 ## Documentos en la raíz (fuera de `docs/`)
 

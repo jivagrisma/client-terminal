@@ -1027,3 +1027,28 @@ body:has(.fabrica-view) .mobile-cta-bar {
     display: none;
   }
 }
+
+/* --- Sprites nivel 2 (T7, ADR-0004 §C): montaje listo, hoy desactivado --- */
+
+.scene-sprite {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 2 / 3;
+  background-repeat: no-repeat;
+  background-position: left center;
+  image-rendering: pixelated;
+  /* Recorre los cuadros del sheet con steps(): 0 JS por frame. */
+  animation: sprite-idle 1.6s steps(var(--sprite-steps, 1), end) infinite;
+}
+
+@keyframes sprite-idle {
+  to {
+    background-position-x: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-sprite {
+    animation: none;
+  }
+}

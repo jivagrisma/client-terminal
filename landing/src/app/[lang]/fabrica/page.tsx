@@ -5,14 +5,16 @@ import type { Metadata } from "next";
 import { SceneCamera } from "@/components/SceneCamera";
 import { SceneEffects } from "@/components/SceneEffects";
 import { SceneHotspots } from "@/components/SceneHotspots";
+import { SceneSprites } from "@/components/SceneSprites";
 import { SceneStage } from "@/components/SceneStage";
 import { SceneStatic } from "@/components/SceneStatic";
 import effectsJson from "@/config/effects.json";
 import hotspotsJson from "@/config/hotspots.json";
 import { PERSONAS } from "@/config/personas";
+import spritesJson from "@/config/sprites.json";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { parseEffectsConfig } from "@/scene/config";
+import { parseEffectsConfig, parseSpritesConfig } from "@/scene/config";
 import { parseHotspotsConfig } from "@/scene/hotspots";
 
 // /fabrica (ADR-0006): escena a pantalla completa con cámara 2D y hotspots
@@ -53,6 +55,7 @@ export default async function FabricaPage({
   const effects = parseEffectsConfig(effectsJson).effects.filter(
     (effect) => effect.enabled,
   );
+  const sprites = parseSpritesConfig(spritesJson).sprites;
 
   // Copy por hotspot desde el diccionario (regla: nada de texto incrustado en
   // componentes de cliente), aplanado al formato {name, role, business, technique}.
@@ -89,6 +92,9 @@ export default async function FabricaPage({
       <SceneCamera overviewLabel={dict.fabrica.overview} ariaLabel={dict.fabrica.aria}>
         <SceneStage
           effects={<SceneEffects effects={effects} />}
+          sprites={
+            <SceneSprites enabled={sprites.enabled} characters={sprites.characters} />
+          }
           hotspots={
             <SceneHotspots
               hotspots={hotspots}
