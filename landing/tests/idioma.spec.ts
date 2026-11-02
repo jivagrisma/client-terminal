@@ -22,12 +22,19 @@ test("ES → EN conserva la ruta y fija la cookie NEXT_LOCALE", async ({
 
 test("EN → ES conserva la ruta y vuelve al copy en español", async ({
   page,
+  viewport,
 }) => {
   await page.goto("/en");
+  // En el home móvil el conmutador vive dentro del menú de la cabecera app (T8).
+  if ((viewport?.width ?? 0) < 1024) {
+    await page.locator(".app-avatar").click();
+  }
   await page.getByRole("link", { name: "ES", exact: true }).click();
   await expect(page).toHaveURL(/\/es$/);
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Fábrica de IA",
+  // En móvil el h1 del home es la pregunta de la cabecera app (T8): el copy
+  // en español se verifica con el subtítulo, presente en ambas variantes.
+  await expect(page.locator(".home-subtitle")).toContainText(
+    "Crea tu asistente en WhatsApp.",
   );
 
   const cookies = await page.context().cookies();

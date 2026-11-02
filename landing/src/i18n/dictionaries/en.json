@@ -45,7 +45,9 @@
     "express": "Express mode",
     "ingeniero": "Engineer mode",
     "cv": "CV",
-    "cta": "Get started",
+    "cta": "Create employee",
+    "tecnico": "I'm a developer",
+    "contacto": "Contact",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "switchTo": "Switch to Spanish"
@@ -53,6 +55,10 @@
   "home": {
     "heroPhrase": "A factory of AI agents handling bookings, payments and support for your business.",
     "heroCta": "Tour the factory",
+    "question": "Do you run a hotel, a farm, or a business?",
+    "subtitle": "Create your assistant on WhatsApp.",
+    "enterFactory": "Enter the factory",
+    "directoryAria": "Assistant segments",
     "sceneAlt": "Pixel-art illustration of the AI Factory: robot and pet agents work on laptops at their stations around a central console showing WhatsApp and payment symbols; a Colombian town is visible through the windows."
   },
   "express": {

@@ -16,6 +16,7 @@ import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { parseEffectsConfig, parseSpritesConfig } from "@/scene/config";
 import { parseHotspotsConfig } from "@/scene/hotspots";
+import { buildSceneCopy } from "@/scene/scene-data";
 
 // /fabrica (ADR-0006): escena a pantalla completa con cámara 2D y hotspots
 // (brief §5, Fase 2 §11.2). Los hotspots se validan contra el registro de
@@ -57,32 +58,8 @@ export default async function FabricaPage({
   );
   const sprites = parseSpritesConfig(spritesJson).sprites;
 
-  // Copy por hotspot desde el diccionario (regla: nada de texto incrustado en
-  // componentes de cliente), aplanado al formato {name, role, business, technique}.
-  const personaCopy = (p: {
-    name: string;
-    role: string;
-    ficha: { business: string; technique: string };
-  }) => ({
-    name: p.name,
-    role: p.role,
-    business: p.ficha.business,
-    technique: p.ficha.technique,
-  });
-
-  const copy = {
-    recepcionista: personaCopy(dict.personas.recepcionista),
-    jorge: personaCopy(dict.personas.jorge),
-    turismo: personaCopy(dict.personas.turismo),
-    matamune: personaCopy(dict.personas.matamune),
-    reservas: personaCopy(dict.personas.reservas),
-    copiloto: personaCopy(dict.personas.copiloto),
-    pagos: personaCopy(dict.personas.pagos),
-    cobros: personaCopy(dict.personas.cobros),
-    ops: personaCopy(dict.personas.ops),
-    soporte: personaCopy(dict.personas.soporte),
-    mesa: personaCopy(dict.personas.mesa),
-  };
+  // Copy por hotspot desde el diccionario (builder compartido con el home, T8).
+  const copy = buildSceneCopy(dict);
 
   return (
     <div className="fabrica-view">

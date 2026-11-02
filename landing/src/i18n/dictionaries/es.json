@@ -45,7 +45,9 @@
     "express": "Modo express",
     "ingeniero": "Modo ingeniero",
     "cv": "CV",
-    "cta": "Comenzar",
+    "cta": "Crear empleado",
+    "tecnico": "Soy técnico",
+    "contacto": "Contacto",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "switchTo": "Cambiar a inglés"
@@ -53,6 +55,10 @@
   "home": {
     "heroPhrase": "Una fábrica de agentes de IA que atiende reservas, pagos y soporte de tu negocio.",
     "heroCta": "Recorrer la fábrica",
+    "question": "¿Tienes un hotel, una finca o un negocio?",
+    "subtitle": "Crea tu asistente en WhatsApp.",
+    "enterFactory": "Entrar a la fábrica",
+    "directoryAria": "Segmentos de asistentes",
     "sceneAlt": "Ilustración pixel-art de la Fábrica de IA: agentes robots y mascotas trabajan con laptops en sus puestos alrededor de una consola central con los símbolos de WhatsApp y pagos; por las ventanas se ve un pueblo colombiano."
   },
   "express": {

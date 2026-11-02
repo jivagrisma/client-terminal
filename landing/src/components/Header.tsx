@@ -14,8 +14,10 @@ export function Header({
   dict: Dictionary;
 }) {
   const cvHref = "/cv-jorge-grisales.pdf";
+  // "Explorar" lleva a la fábrica a pantalla completa (ADR-0006); el home
+  // dual vive en "/" y el CTA primario es "Crear empleado" → /crear.
   const navItems = [
-    { href: `/${lang}`, label: dict.nav.explorar },
+    { href: `/${lang}/fabrica`, label: dict.nav.explorar },
     { href: `/${lang}/express`, label: dict.nav.express },
     { href: `/${lang}/ingeniero`, label: dict.nav.ingeniero },
   ];
@@ -36,7 +38,7 @@ export function Header({
           <Link href={cvHref}>{dict.nav.cv}</Link>
         </nav>
 
-        <Link href={`/${lang}/contacto`} className="cta-button">
+        <Link href={`/${lang}/crear`} className="cta-button">
           {dict.nav.cta}
         </Link>
 
@@ -49,8 +51,9 @@ export function Header({
                 {item.label}
               </Link>
             ))}
+            <Link href={`/${lang}/ingeniero`}>{dict.nav.tecnico}</Link>
             <Link href={cvHref}>{dict.nav.cv}</Link>
-            <Link href={`/${lang}/contacto`} className="cta-button">
+            <Link href={`/${lang}/crear`} className="cta-button">
               {dict.nav.cta}
             </Link>
           </nav>

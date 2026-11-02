@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito_Sans, Pixelify_Sans } from "next/font/google";
+import { Nunito, Pixelify_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { Header } from "@/components/Header";
@@ -10,17 +10,18 @@ import { getDictionary } from "@/i18n/dictionaries";
 
 import "../globals.css";
 
-// Display pixel para wordmark y titulares cortos; sans legible para cuerpo.
+// Tipografía del mockup del dueño (2026-11-01): sans redondeada Nunito para
+// TODA la UI incluidos titulares; la fuente pixel SOLO en el wordmark (R12).
 // next/font autoaloja las fuentes en el build: sin dependencia ni request externo.
-const fontDisplay = Pixelify_Sans({
+const fontBody = Nunito({
   subsets: ["latin"],
-  variable: "--next-font-display",
+  variable: "--next-font-body",
   display: "swap",
 });
 
-const fontBody = Nunito_Sans({
+const fontPixel = Pixelify_Sans({
   subsets: ["latin"],
-  variable: "--next-font-body",
+  variable: "--next-font-pixel",
   display: "swap",
 });
 
@@ -80,7 +81,7 @@ export default async function RootLayout({
     <html
       lang={lang}
       data-scene="day"
-      className={`${fontDisplay.variable} ${fontBody.variable}`}
+      className={`${fontBody.variable} ${fontPixel.variable}`}
     >
       <body>
         <a href="#contenido" className="skip-link">
@@ -88,7 +89,7 @@ export default async function RootLayout({
         </a>
         <Header lang={lang} dict={dict} />
         <main id="contenido">{children}</main>
-        <MobileCtaBar href={`/${lang}/contacto`} label={dict.nav.cta} />
+        <MobileCtaBar href={`/${lang}/crear`} label={dict.nav.cta} />
       </body>
     </html>
   );

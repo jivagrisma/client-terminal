@@ -4,8 +4,12 @@ import { expect, test } from "@playwright/test";
 // (display:none: fuera del árbol de accesibilidad, así que los roles no la
 // ven): esos recorridos se cubren con el test de menú.
 test("el header muestra wordmark y navegación principal", async ({ page }) => {
-  await page.goto("/es");
-  await expect(page.getByRole("link", { name: "Fábrica de IA" })).toBeVisible();
+  // En el home móvil la cabecera es la app (T8): el header estándar se prueba
+  // en una página interior.
+  await page.goto("/es/express");
+  await expect(
+    page.getByRole("link", { name: "Fábrica de IA", exact: true }),
+  ).toBeVisible();
   await expect(page.locator(".site-nav")).toBeAttached();
   await expect(
     page.locator('.site-nav a[href$="/express"]'),
@@ -34,17 +38,19 @@ test("el wordmark lleva a Explorar y Modo express a /es/express", async ({
   await expect(page).toHaveURL(/\/en$/);
 });
 
-test("el CTA Comenzar lleva a /es/contacto", async ({ page }) => {
+test("el CTA primario 'Crear empleado' lleva a /es/crear (T8)", async ({
+  page,
+}) => {
   await page.goto("/es");
-  // Desktop: CTA del header; móvil: CTA de la barra inferior fija. El hero
-  // también usa .cta-button pero lleva a /express — se excluye por contenedor.
+  // Desktop: CTA del header · móvil-home: el "+" de la cabecera app · resto de
+  // páginas en móvil: barra inferior fija.
   await page
     .locator(
-      ".site-header .cta-button:visible, .mobile-cta-bar .cta-button:visible",
+      ".site-header .cta-button:visible, .mobile-cta-bar .cta-button:visible, .app-create:visible",
     )
     .first()
     .click();
-  await expect(page).toHaveURL(/\/es\/contacto$/);
+  await expect(page).toHaveURL(/\/es\/crear$/);
 });
 
 test("el skip-link salta al contenido", async ({ page }) => {
@@ -65,7 +71,9 @@ test("en móvil el menú abre, lista enlaces y cierra con Esc", async ({
     (viewport?.width ?? 0) >= 768,
     "el menú móvil solo se muestra bajo 768px",
   );
-  await page.goto("/es");
+  // En el home móvil la cabecera es la app (menú de avatar, T8): el menú del
+  // header estándar se prueba en una página interior.
+  await page.goto("/es/express");
   // El botón cambia su etiqueta al abrir/cerrar: locator estable por clase.
   const button = page.locator(".mobile-menu-button");
   await expect(button).toBeVisible();
