@@ -3,14 +3,18 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { SceneCamera } from "@/components/SceneCamera";
+import { SceneHotspots } from "@/components/SceneHotspots";
 import { SceneStage } from "@/components/SceneStage";
 import { SceneStatic } from "@/components/SceneStatic";
+import hotspotsJson from "@/config/hotspots.json";
+import { PERSONAS } from "@/config/personas";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { parseHotspotsConfig } from "@/scene/hotspots";
 
-// /fabrica (ADR-0006): escena a pantalla completa con cámara 2D (brief §5,
-// Fase 2 §11.2). Único montaje de SceneCamera en la sesión 2A; hotspots,
-// fichas y efectos se montan en T5/T6 sobre estas mismas capas.
+// /fabrica (ADR-0006): escena a pantalla completa con cámara 2D y hotspots
+// (brief §5, Fase 2 §11.2). Los hotspots se validan contra el registro de
+// personajes en render: una config inválida rompe el build, no la escena.
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/fabrica">): Promise<Metadata> {
@@ -40,6 +44,34 @@ export default async function FabricaPage({
   if (!hasLocale(lang)) return null;
 
   const dict = await getDictionary(lang);
+  const hotspots = parseHotspotsConfig(hotspotsJson, PERSONAS);
+
+  // Copy por hotspot desde el diccionario (regla: nada de texto incrustado en
+  // componentes de cliente), aplanado al formato {name, role, business, technique}.
+  const personaCopy = (p: {
+    name: string;
+    role: string;
+    ficha: { business: string; technique: string };
+  }) => ({
+    name: p.name,
+    role: p.role,
+    business: p.ficha.business,
+    technique: p.ficha.technique,
+  });
+
+  const copy = {
+    recepcionista: personaCopy(dict.personas.recepcionista),
+    jorge: personaCopy(dict.personas.jorge),
+    turismo: personaCopy(dict.personas.turismo),
+    matamune: personaCopy(dict.personas.matamune),
+    reservas: personaCopy(dict.personas.reservas),
+    copiloto: personaCopy(dict.personas.copiloto),
+    pagos: personaCopy(dict.personas.pagos),
+    cobros: personaCopy(dict.personas.cobros),
+    ops: personaCopy(dict.personas.ops),
+    soporte: personaCopy(dict.personas.soporte),
+    mesa: personaCopy(dict.personas.mesa),
+  };
 
   return (
     <div className="fabrica-view">
@@ -47,7 +79,19 @@ export default async function FabricaPage({
         {dict.fabrica.back}
       </Link>
       <SceneCamera overviewLabel={dict.fabrica.overview} ariaLabel={dict.fabrica.aria}>
-        <SceneStage>
+        <SceneStage
+          hotspots={
+            <SceneHotspots
+              hotspots={hotspots}
+              copy={copy}
+              hint={dict.fabrica.hint}
+              closeLabel={dict.fabrica.close}
+              layerBusinessLabel={dict.fabrica.layers.business}
+              layerTechniqueLabel={dict.fabrica.layers.technique}
+              todoAvatar={dict.fabrica.todoAvatar}
+            />
+          }
+        >
           <SceneStatic alt={dict.home.sceneAlt} />
         </SceneStage>
       </SceneCamera>

@@ -10,10 +10,16 @@ import { SCENE_LAYERS, type SceneLayerId } from "@/scene/layers";
 // comparten zoom y desplazamiento por construcción.
 //
 // Server Component: el fondo llega como children ya renderizado en el servidor
-// (es el LCP) y el HTML no depende de JS de cliente; 0 KB de JS por la escena.
-// En Fase 2, SceneCamera ('use client') envuelve este componente y anima las
-// variables CSS de cámara.
-export function SceneStage({ children }: { children: ReactNode }) {
+// (es el LCP) y el HTML no depende de JS de cliente. `hotspots` recibe el nodo
+// de cliente (SceneHotspots) cuando el montaje es interactivo (/fabrica); el
+// hero estático no lo pasa y sigue sin JS de la escena.
+export function SceneStage({
+  children,
+  hotspots,
+}: {
+  children: ReactNode;
+  hotspots?: ReactNode;
+}) {
   // Se validan ambas configuraciones aunque hoy no rendericen nada: una config
   // inválida rompe el build en vez de producir una escena rota en producción.
   const effects = parseEffectsConfig(effectsJson);
@@ -25,7 +31,7 @@ export function SceneStage({ children }: { children: ReactNode }) {
     background: true,
     effects: effects.effects.length > 0,
     sprites: sprites.sprites.enabled,
-    hotspots: false,
+    hotspots: Boolean(hotspots),
   };
 
   return (
@@ -39,6 +45,7 @@ export function SceneStage({ children }: { children: ReactNode }) {
           style={{ zIndex: z }}
         >
           {id === "background" ? children : null}
+          {id === "hotspots" ? hotspots : null}
         </div>
       ))}
     </div>

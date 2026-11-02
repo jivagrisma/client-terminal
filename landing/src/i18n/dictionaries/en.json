@@ -210,7 +210,11 @@
   "fabrica": {
     "aria": "Interactive factory scene: drag to look around, scroll or pinch to zoom, and use the keyboard to move",
     "overview": "Overview",
-    "back": "Back"
+    "back": "Back",
+    "hint": "Drag to look around · scroll to zoom · tap an assistant",
+    "close": "Close",
+    "layers": { "business": "For your business", "technique": "How it's built" },
+    "todoAvatar": "TODO_CONTENT: character pixel-art avatar (assets pending)."
   },
   "segments": {
     "negocio": "Business",
@@ -221,18 +225,18 @@
     "proximamente": "Coming soon"
   },
   "personas": {
-    "jorge": { "name": "Jorge", "role": "Founder and AI engineer of the network" },
-    "recepcionista": { "name": "Front Desk AI", "role": "Hotel and farm reception", "row": "Answers your guests 24/7" },
-    "reservas": { "name": "Bookings", "role": "Bookings and availability", "row": "Availability and bookings via chat" },
-    "turismo": { "name": "Tourism", "role": "Local tourism", "row": "Local routes and plans" },
-    "cobros": { "name": "Billing", "role": "Invoicing and collections", "row": "Invoices and recurring payments" },
-    "legal-experto": { "name": "Legal Expert", "role": "Business FAQs", "row": "Answers your business's frequently asked questions" },
-    "copiloto": { "name": "Copilot", "role": "Driver's copilot", "row": "For Uber, inDrive and DiDi drivers" },
-    "youtube-automatiza": { "name": "Automate YouTube", "role": "AI video automation", "row": "Make videos with AI" },
-    "pagos": { "name": "Payments", "role": "Payments and confirmations" },
-    "soporte": { "name": "Support", "role": "Support with human handoff" },
-    "ops": { "name": "Operations", "role": "Keeps everything up and running" },
-    "matamune": { "name": "Matamune", "role": "Live chat (demo)" },
-    "mesa": { "name": "Central table", "role": "The system: message → AI → action → billing" }
+    "jorge": { "name": "Jorge", "role": "Founder and AI engineer of the network", "ficha": { "business": "I built this network of assistants: my story and how to reach me, in 3 lines.", "technique": "Technical profile: stack, architecture and links (CV, Upwork, GitHub)." } },
+    "recepcionista": { "name": "Front Desk AI", "role": "Hotel and farm reception", "row": "Answers your guests 24/7", "ficha": { "business": "Answers your hotel's or farm's guests 24/7 on your business's own number.", "technique": "WhatsApp Cloud API webhook → LLM agent → tools." } },
+    "reservas": { "name": "Bookings", "role": "Bookings and availability", "row": "Availability and bookings via chat", "ficha": { "business": "Availability and bookings via chat, with no missed calls.", "technique": "Tool-using agent + calendar and inventory." } },
+    "turismo": { "name": "Tourism", "role": "Local tourism", "row": "Local routes and plans", "ficha": { "business": "Recommends local routes and plans to your visitors.", "technique": "RAG over verified local content." } },
+    "cobros": { "name": "Billing", "role": "Invoicing and collections", "row": "Invoices and recurring payments", "ficha": { "business": "Invoices and recurring payments without chasing anyone.", "technique": "Giroplay: invoicing + retries." } },
+    "legal-experto": { "name": "Legal Expert", "role": "Business FAQs", "row": "Answers your business's frequently asked questions", "ficha": { "business": "Answers your business's frequently asked questions, with no commitments.", "technique": "Curated knowledge base with verified answers." } },
+    "copiloto": { "name": "Copilot", "role": "Driver's copilot", "row": "For Uber, inDrive and DiDi drivers", "ficha": { "business": "Helps drivers pick the most profitable trips.", "technique": "Real-time trip scoring." } },
+    "youtube-automatiza": { "name": "Automate YouTube", "role": "AI video automation", "row": "Make videos with AI", "ficha": { "business": "One pipeline to produce your channel's videos with AI (free class).", "technique": "Script → voice → automated video assembly." } },
+    "pagos": { "name": "Payments", "role": "Payments and confirmations", "ficha": { "business": "Payment links and automatic confirmations.", "technique": "Wompi integration + reconciliation." } },
+    "soporte": { "name": "Support", "role": "Support with human handoff", "ficha": { "business": "Answers your customers and hands off to a person when needed.", "technique": "Human handoff + conversation state." } },
+    "ops": { "name": "Operations", "role": "Keeps everything up and running", "ficha": { "business": "Watches over your assistant network so it stays up, always.", "technique": "Observability, logs and alerts." } },
+    "matamune": { "name": "Matamune", "role": "Live chat (demo)", "ficha": { "business": "The factory's live chat: try it yourself (AI demo).", "technique": "Streaming, usage limits and a safe system prompt." } },
+    "mesa": { "name": "Central table", "role": "The system: message → AI → action → billing", "ficha": { "business": "The full flow: message → AI → action → billing.", "technique": "System architecture diagram." } }
   }
 }

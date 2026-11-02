@@ -350,6 +350,197 @@ body:has(.fabrica-view) .mobile-cta-bar {
   width: min(100%, calc((100dvh - 64px - 88px) * (2752 / 1536)));
 }
 
+/* --- Hotspots (T5, brief §5/§6): aro sutil, etiqueta, pulso de pista --- */
+
+.scene-hotspot {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--color-surface);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 55%, transparent);
+  padding: 0;
+  cursor: pointer;
+}
+
+.scene-hotspot:hover,
+.scene-hotspot:focus-visible {
+  background: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 75%, transparent);
+}
+
+/* Etiqueta con el nombre: visible al hover/foco (brief §5). */
+.scene-hotspot-tip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-ink);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 6px;
+  padding: 2px var(--space-2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-out;
+}
+
+.scene-hotspot:hover .scene-hotspot-tip,
+.scene-hotspot:focus-visible .scene-hotspot-tip {
+  opacity: 1;
+}
+
+/* Pulso de pista al cargar (copiloto y mesa): un anillo que se expande. */
+.scene-hotspot[data-pulse="true"]::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  animation: hotspot-pulse 2.2s ease-out infinite;
+}
+
+@keyframes hotspot-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Pista de ayuda ("Arrastra para mirar…"), centrada bajo la escena. */
+.hotspots-hint {
+  position: absolute;
+  bottom: var(--space-3);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+  border: 2px solid var(--color-line);
+  border-radius: 999px;
+  padding: var(--space-1) var(--space-4);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* --- Ficha de personaje (T5): bottom sheet en móvil, panel en escritorio --- */
+
+.scene-card-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.scene-card-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(31 26 18 / 0.45);
+}
+
+.scene-card {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 78dvh;
+  overflow: auto;
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 16px 16px 0 0;
+  padding: var(--space-4);
+}
+
+.scene-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.scene-card-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 72px;
+  block-size: 72px;
+  flex-shrink: 0;
+  border: 2px dashed var(--color-line);
+  border-radius: 12px;
+  background: var(--color-bg);
+  padding: var(--space-1);
+  text-align: center;
+}
+
+.scene-card-avatar .todo-note {
+  font-size: 0.6rem;
+  line-height: 1.2;
+}
+
+.scene-card-titles {
+  margin-right: auto;
+}
+
+.scene-card-titles h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.scene-card-titles p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-gold-strong);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.scene-card-close {
+  border: 2px solid var(--color-ink);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+}
+
+.scene-card-layers {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.scene-card-layers h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-gold-strong);
+}
+
+.scene-card-layers p {
+  margin: var(--space-1) 0 0;
+}
+
+@media (min-width: 1024px) {
+  .scene-card-layer {
+    align-items: center;
+  }
+
+  .scene-card {
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 rgb(31 26 18 / 0.35);
+  }
+}
+
 /* Capas absolutas apiladas (z-index lo asigna SceneStage desde scene/layers.ts);
    todo hijo de una capa se posiciona en % sobre la imagen (ADR-0004). */
 .scene-layer {

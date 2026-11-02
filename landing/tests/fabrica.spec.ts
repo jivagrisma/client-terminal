@@ -36,11 +36,13 @@ test.describe("/es/fabrica", () => {
 
     const box = await camera.boundingBox();
     if (!box) throw new Error("la cámara no tiene caja visible");
-    const cx = box.x + box.width / 2;
-    const cy = box.y + box.height / 2;
-    await page.mouse.move(cx, cy);
+    // Punto de agarre despejado (piso inferior-izquierdo): los hotspots son
+    // botones y por diseño no inician arrastre (guardia de SceneCamera).
+    const sx = box.x + box.width * 0.25;
+    const sy = box.y + box.height * 0.7;
+    await page.mouse.move(sx, sy);
     await page.mouse.down();
-    await page.mouse.move(cx + 140, cy, { steps: 6 });
+    await page.mouse.move(sx + 140, sy, { steps: 6 });
     await page.mouse.up();
     const camX = await camera.evaluate((el) =>
       parseFloat(el.style.getPropertyValue("--cam-x") || "0"),
@@ -79,5 +81,47 @@ test.describe("/es/fabrica", () => {
     const body = await sitemap.text();
     expect(body).toContain("/es/fabrica");
     expect(body).toContain("/en/fabrica");
+  });
+});
+
+test.describe("/es/fabrica · hotspots (T5)", () => {
+  test("7 aros visibles con aria-label; los sprite-pendientes sin aro", async ({
+    page,
+  }) => {
+    await page.goto("/es/fabrica");
+    await expect(page.locator(".scene-hotspot")).toHaveCount(7);
+    await expect(page.locator('.scene-hotspot[aria-label^="Copiloto"]')).toBeVisible();
+    // Sin aro sobre escritorios vacíos (decisión del dueño, ADR-0007).
+    await expect(page.locator('.scene-hotspot[aria-label^="Recepcionista"]')).toHaveCount(0);
+    await expect(page.locator(".hotspots-hint")).toBeVisible();
+  });
+
+  test("click en copiloto: ficha con sus dos capas + zoom de cámara; Esc cierra", async ({
+    page,
+  }) => {
+    await page.goto("/es/fabrica");
+    await page.locator('.scene-hotspot[aria-label^="Copiloto"]').click();
+    const card = page.getByRole("dialog", { name: "Copiloto" });
+    await expect(card).toBeVisible();
+    await expect(card).toContainText("Para tu negocio");
+    await expect(card).toContainText("Scoring de viajes en tiempo real");
+    const camera = page.locator(".scene-camera");
+    const zoom = await camera.evaluate((el) =>
+      parseFloat(el.style.getPropertyValue("--cam-zoom") || "1"),
+    );
+    expect(zoom).toBeGreaterThan(1.05);
+
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+  });
+
+  test("?focus=recepcionista abre su ficha aunque no tenga aro (R6)", async ({
+    page,
+  }) => {
+    await page.goto("/es/fabrica?focus=recepcionista");
+    await expect(
+      page.getByRole("dialog", { name: "Recepcionista IA" }),
+    ).toBeVisible();
+    await expect(page.locator(".scene-hotspot")).toHaveCount(7);
   });
 });

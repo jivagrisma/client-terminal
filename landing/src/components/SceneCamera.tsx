@@ -1,9 +1,11 @@
 "use client";
 
 import {
+  createContext,
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   type ReactNode,
   type Ref,
@@ -40,6 +42,9 @@ interface SceneCameraProps {
   ariaLabel: string;
   ref?: Ref<SceneCameraHandle>;
 }
+
+/** Contexto para que los hotspots (T5) pidan zoom sin acoplarse a refs. */
+export const CameraContext = createContext<SceneCameraHandle | null>(null);
 
 const WHEEL_SENSITIVITY = 0.0015;
 /** Velocidad mínima (px/s) al soltar para que arranque la inercia. */
@@ -225,9 +230,9 @@ export function SceneCamera({ children, overviewLabel, ariaLabel, ref }: SceneCa
     };
   }, [startInertia, stopInertia, viewport, write]);
 
-  useImperativeHandle(
-    ref,
-    (): SceneCameraHandle => ({
+  // Un solo handle memoizado: alimenta el ref imperativo y el contexto de hotspots.
+  const cameraHandle = useMemo<SceneCameraHandle>(
+    () => ({
       // Centra el punto (%, de la imagen) con el zoom pedido; clampCamera
       // garantiza que no se muestren bordes exteriores.
       focusAt: (xPercent, yPercent, zoom = 2) => {
@@ -243,6 +248,8 @@ export function SceneCamera({ children, overviewLabel, ariaLabel, ref }: SceneCa
     [animateTo, stopInertia, viewport, write],
   );
 
+  useImperativeHandle(ref, () => cameraHandle, [cameraHandle]);
+
   return (
     <div
       ref={wrapperRef}
@@ -253,14 +260,16 @@ export function SceneCamera({ children, overviewLabel, ariaLabel, ref }: SceneCa
       data-dragging="false"
       data-zoomed="false"
     >
-      {children}
-      <button
-        type="button"
-        className="scene-overview"
-        onClick={() => animateTo(IDENTITY)}
-      >
-        {overviewLabel}
-      </button>
+      <CameraContext.Provider value={cameraHandle}>
+        {children}
+        <button
+          type="button"
+          className="scene-overview"
+          onClick={() => animateTo(IDENTITY)}
+        >
+          {overviewLabel}
+        </button>
+      </CameraContext.Provider>
     </div>
   );
 }
