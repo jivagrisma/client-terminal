@@ -30,3 +30,7 @@ Restricciones: configuración declarativa con validadores (ADR-0004), nada de as
 - Añadir un personaje nuevo (o cambiar filas de segmento) es editar config, no código.
 - Los ids aparecen en URLs futuras (`/asistente/[id]`): `matamune` es estable y pronunciable en ES/EN.
 - Si el dueño entrega assets (avatares pixel-art, búho, robot), solo se actualiza `avatar`/`status` en config.
+
+## Enmienda (2026-11-02): el fantasma rosa pasa a "investigacion-mercado"; `pagos` sale de la escena
+
+Decisión del dueño: el fantasma rosa de la escena —que el brief §6 asociaba a **Pagos (Wompi)**— es **"Investigación de Mercado"**, un empleado IA con esas capacidades. Cambios: `pagos` sale del registro y de `hotspots.json` (queda solo en el brief, sin entrada en la escena); `investigacion-mercado` hereda su hotspot (67.4, 38.5) con `visible: true` y el avatar entregado por el dueño. La integración de pagos (Wompi) no desaparece del producto: vive en el flujo de cobros/pagos de las Fases 4+, no como personaje de escena.

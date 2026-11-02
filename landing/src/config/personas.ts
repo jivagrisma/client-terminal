@@ -9,7 +9,7 @@ import { legalExperto } from "./personas/legal-experto";
 import { matamune } from "./personas/matamune";
 import { mesa } from "./personas/mesa";
 import { ops } from "./personas/ops";
-import { pagos } from "./personas/pagos";
+import { investigacionMercado } from "./personas/investigacion-mercado";
 import { recepcionista } from "./personas/recepcionista";
 import { reservas } from "./personas/reservas";
 import { soporte } from "./personas/soporte";
@@ -46,7 +46,7 @@ export const PERSONAS: readonly Persona[] = validate([
   legalExperto,
   copiloto,
   youtubeAutomatiza,
-  pagos,
+  investigacionMercado,
   soporte,
   ops,
   matamune,

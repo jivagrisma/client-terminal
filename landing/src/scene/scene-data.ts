@@ -37,7 +37,7 @@ export function buildSceneCopy(dict: Dictionary): Record<string, HotspotEntry> {
     "legal-experto": entry(dict.personas["legal-experto"]),
     copiloto: entry(dict.personas.copiloto),
     "youtube-automatiza": entry(dict.personas["youtube-automatiza"]),
-    pagos: entry(dict.personas.pagos),
+    "investigacion-mercado": entry(dict.personas["investigacion-mercado"]),
     soporte: entry(dict.personas.soporte),
     ops: entry(dict.personas.ops),
     matamune: entry(dict.personas.matamune),

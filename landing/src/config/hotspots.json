@@ -6,7 +6,7 @@
     { "id": "matamune", "x": 66.5, "y": 73.5, "visible": false },
     { "id": "reservas", "x": 24.8, "y": 38.5, "visible": true },
     { "id": "copiloto", "x": 56.1, "y": 35.5, "visible": true },
-    { "id": "pagos", "x": 67.4, "y": 38.5, "visible": true },
+    { "id": "investigacion-mercado", "x": 67.4, "y": 38.5, "visible": true },
     { "id": "cobros", "x": 77.5, "y": 35.0, "visible": true },
     { "id": "ops", "x": 75.6, "y": 57.5, "visible": true },
     { "id": "soporte", "x": 88.0, "y": 56.0, "visible": true },
