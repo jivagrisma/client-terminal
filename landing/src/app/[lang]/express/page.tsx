@@ -61,6 +61,7 @@ export default async function ExpressPage({
             height={768}
             sizes="(max-width: 767px) 100vw, 688px"
             className="scene-static"
+            preload
           />
           <span className="express-thumb-cta">{t.hero.thumbCta}</span>
         </Link>

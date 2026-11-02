@@ -11,6 +11,10 @@
         "title": "The factory",
         "description": "Explore WaIA's AI-employee office: move around the scene, tap an assistant and find out what it can do for your business."
       },
+      "crear": {
+        "title": "Design your employee",
+        "description": "Soon you'll be able to design your WhatsApp AI employee: customize its fur, hat, glasses and extras."
+      },
       "express": {
         "title": "AI employees on WhatsApp",
         "description": "WaIA builds AI employees that handle your business's bookings, payments and support over WhatsApp, 24/7."
@@ -221,6 +225,13 @@
     "close": "Close",
     "layers": { "business": "For your business", "technique": "How it's built" },
     "todoAvatar": "TODO_CONTENT: character pixel-art avatar (assets pending)."
+  },
+  "crear": {
+    "title": "Design your AI employee",
+    "note": "Preview: soon you'll be able to design your AI employee — fur, hat, glasses and extras — for your WhatsApp.",
+    "todo": "TODO_CONTENT: the customization flow arrives in Phase 4; this page is a preview and does not create a real assistant.",
+    "notify": "Notify me",
+    "back": "Back to Explore"
   },
   "segments": {
     "negocio": "Business",
