@@ -115,7 +115,9 @@ Regla: sin personajes (es el plate) y mismo encuadre exacto que el plate 2K del 
 6. Confirmación de **qué efectos nivel 1** quedan activos por defecto en la v1 (los 14 están disponibles por config; hoy todos activos).
 7. Veto o confirmación del nombre **Matamune** (ADR-0007).
 
-## Estado de entrega (2026-11-02)
+## Estado de entrega (2026-11-04)
 
 - **Avatares de la sección 1: ENTREGADOS** por el dueño (Nano Banana, JPEG 1024×1024 con fondo verde ≈`#6FEB72`–`#8EF088`) y convertidos a PNG 128×128 transparentes en `landing/public/assets/avatars/` (chroma key por rango de tono + recorte + reducción; gate visual aprobado con recepcionista a 128/72 px). Integrados: los 7 de la sección 1 + jorge (cabecera app), matamune y soporte/nuve (registro). `investigacion-mercado.png` queda como referencia sin entrada en el registro (definición pendiente: el dueño lo identifica como el fantasma rosa de la escena — choque de diseño con `pagos`, §6, por resolver). `reservas` entregado fuera de hora y convertido.
-- Pendientes del resto de la lista: capas del burro (sección 2), sprite sheets (sección 3), escena nocturna (sección 4). Los `.jpeg` fuente quedan sin versionar (gitignore).
+- **Guiones conversables (Fase 3, T4): ENTREGADOS para aprobación** (2026-11-04) — los 12 conversables viven en `landing/src/config/personas/*.ts` (ES/EN: saludo, chips por capa negocio/técnica, fallback); el temario de la clase está en `youtube-automatiza.ts` con `TODO_CONTENT` donde faltan el temario oficial y las herramientas del pipeline. **Gate:** sin push a staging hasta la aprobación del dueño (checkpoint de la sesión 7).
+- **Sprite sheets (sección 3): siguen pendientes.** Novedad T7 (ADR-0009): el cableado acepta DOS formatos — (a) la fila única por personaje con el orden fijo §5.2 C (`idleFrames` + estados en `sprites.json`), o (b) **sheets separados por estado** con el campo `stateSheets: { estado: { src, frames } }` (sin entrada para un estado, ese momento del chat muestra el sheet base). Elige el que te resulte más fácil producir; en ambos casos: PNG transparente, una fila de cuadros uniformes, 1–12 cuadros por estado.
+- Pendientes del resto de la lista: capas del burro (sección 2), escena nocturna (sección 4). Los `.jpeg` fuente quedan sin versionar (gitignore).

@@ -24,6 +24,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 - [handoff-fabrica-ia-sesion4.md](handoff-fabrica-ia-sesion4.md) — ejecución Fase 1 parte 3 y **cierre de la Fase 1** (2026-10-30/31): T0a–T12 completas, PR #1 fusionado a `main`, staging `fabrica-ia-landing-staging` desplegado con noindex, producción intacta; assets 2K JPG (hero + OG con personajes); **incluye el prompt para la sesión 5** (inicio de Fase 2).
 - [handoff-fabrica-ia-sesion5.md](handoff-fabrica-ia-sesion5.md) — **Fase 2 completa** (2026-11-01/02): 2A escena interactiva (cámara, `/fabrica`, hotspots con `?focus=`, efectos) desplegada a staging (`-00004-9b5`); 2B home de acción (home dual móvil/escritorio, Nunito, `/crear` placeholder, fix LCP express); ADR-0006/0007/0008; spec de assets; gaps LCP home móvil y Perf<90 documentados; **incluye el prompt para la sesión 6** (Fase 3).
 - [handoff-fabrica-ia-sesion6.md](handoff-fabrica-ia-sesion6.md) — **Fase 3 en curso** (2026-11-03, corte por apagado tras T3): rama apilada sobre Fase 2; T0–T3 completas (plan+ADR-0009, motor conversacional, modo conversación con globo/chips/pushState); T4–T9 pendientes con el prompt para retomar en la sesión 7; gap de emulación móvil de Playwright documentado.
+- [handoff-fabrica-ia-sesion7.md](handoff-fabrica-ia-sesion7.md) — **Fase 3 COMPLETA en local** (2026-11-04): T4–T8 (guiones ×12 + validador exigente, `/asistente/[id]` SSG ×26 con SEO/JSON-LD, clase gratuita conversable, sprites con `stateSheets`, batería + Lighthouse ×4 con A11y/SEO 100 y Perf 96/LCP 0.8 s en la ficha); **checkpoint ⏸: push, guiones y temario pendientes de confirmación del dueño**; **incluye el prompt para la sesión 8** (Fase 4: IA real y captación).
 
 ## Anexos del brief
 
@@ -40,7 +41,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 
 **Versionados:**
 
-- `plan-fabrica-ia-fase3-2026-11-03.md` — **plan vigente de la Fase 3** (conversaciones por personaje; sesión 6, T0–T9; rama apilada sobre Fase 2).
+- `plan-fabrica-ia-fase3-2026-11-03.md` — **plan de la Fase 3** (conversaciones por personaje; sesiones 6–7, T0–T9 completas en local; rama apilada sobre Fase 2; push pendiente de confirmación).
 - `plan-fabrica-ia-fase2-2026-11-01.md` — plan de la Fase 2 (escena interactiva + home de acción; cerrada, desplegada a staging `-00005-llx`, sin fusionar — la Fase 3 va apilada sobre su rama).
 - `plan-fabrica-ia-fase1-2026-10-28.md` — plan de la Fase 1 (Fundamentos; cerrado, PR #1 fusionado).
 - `plan-client-terminal-2026-09-20.md` — plan del portafolio actual (cerrado).
