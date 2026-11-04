@@ -28,6 +28,7 @@ import {
   type Viewport,
   type Velocity,
 } from "@/scene/camera";
+import { ChatSpriteProvider } from "@/components/ChatSpriteContext";
 
 /** Handle imperativo para hotspots y `?focus=<id>` (T5): zoom a un punto (%) de la imagen. */
 export interface SceneCameraHandle {
@@ -271,7 +272,9 @@ export function SceneCamera({ children, overviewLabel, ariaLabel, ref }: SceneCa
       data-zoomed="false"
     >
       <CameraContext.Provider value={cameraHandle}>
-        {children}
+        {/* Proveedor del estado chat→sprites (ADR-0009, T7): ancestro común de
+            las capas hotspots y sprites dentro del stage. */}
+        <ChatSpriteProvider>{children}</ChatSpriteProvider>
         <button
           type="button"
           className="scene-overview"

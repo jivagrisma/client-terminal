@@ -24,6 +24,13 @@ const SPRITE_STATES: readonly SpriteState[] = [
   "celebrate",
 ];
 
+/** Referencia de un sprite sheet por estado (ADR-0009, T7). */
+export interface SpriteSheetRef {
+  src: string;
+  /** Cuadros de la fila del sheet (1 = estático). */
+  frames: number;
+}
+
 export interface SceneSpriteCharacter {
   /** Id del registro de personajes (ADR-0007): jorge, recepcionista, matamune, turismo. */
   id: string;
@@ -42,6 +49,13 @@ export interface SceneSpriteCharacter {
   src?: string;
   /** Cuadros de la animación idle en el sheet (el validador fija 2 por defecto). */
   idleFrames: number;
+  /**
+   * Sheets por estado del chat (ADR-0009, T7): opcional. Para un estado sin
+   * entrada, el personaje muestra su sheet base (idle) y el feedback del chat
+   * queda cubierto por el latido nivel-1 (§5.2 B). "idle" no va aquí: el
+   * sheet base es src/idleFrames.
+   */
+  stateSheets?: Partial<Record<Exclude<SpriteState, "idle">, SpriteSheetRef>>;
 }
 
 export interface EffectsConfig {
@@ -140,6 +154,39 @@ export function parseSpritesConfig(data: unknown): SpritesConfig {
         if (!Number.isInteger(idleFrames) || idleFrames < 1 || idleFrames > 12) {
           fail(`${path}.idleFrames`, "se espera un entero entre 1 y 12");
         }
+        // Sheets por estado del chat (ADR-0009, T7): opcional y validado como
+        // el resto de la config — una entrada inválida rompe el build.
+        let stateSheets: SceneSpriteCharacter["stateSheets"] | undefined;
+        if (character.stateSheets !== undefined) {
+          if (!isRecord(character.stateSheets)) {
+            fail(`${path}.stateSheets`, "se espera un objeto { estado: { src, frames } }");
+          }
+          stateSheets = {};
+          for (const [key, value] of Object.entries(character.stateSheets)) {
+            const sheetPath = `${path}.stateSheets.${key}`;
+            if (key === "idle") {
+              fail(sheetPath, 'el sheet base (idle) va en src/idleFrames; aquí no va "idle"');
+            }
+            if (!SPRITE_STATES.includes(key as SpriteState)) {
+              fail(
+                sheetPath,
+                `estado desconocido (válidos sin idle: ${SPRITE_STATES.filter((s) => s !== "idle").join(", ")})`,
+              );
+            }
+            if (!isRecord(value)) {
+              fail(sheetPath, "se espera un objeto { src, frames }");
+            }
+            const sheet = value as Record<string, unknown>;
+            const frames = sheet.frames as number;
+            if (!Number.isInteger(frames) || frames < 1 || frames > 12) {
+              fail(`${sheetPath}.frames`, "se espera un entero entre 1 y 12");
+            }
+            stateSheets[key as Exclude<SpriteState, "idle">] = {
+              src: nonEmptyString(`${sheetPath}.src`, sheet.src),
+              frames,
+            };
+          }
+        }
         return {
           id: nonEmptyString(`${path}.id`, character.id),
           x: percent(`${path}.x`, character.x),
@@ -148,6 +195,7 @@ export function parseSpritesConfig(data: unknown): SpritesConfig {
           states,
           src,
           idleFrames,
+          ...(stateSheets ? { stateSheets } : {}),
         };
       }),
     },

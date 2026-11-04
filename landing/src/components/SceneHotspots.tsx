@@ -15,6 +15,7 @@ import { createPortal } from "react-dom";
 
 import { CameraContext } from "@/components/SceneCamera";
 import { ConversationPanel, type ChatPanelCopy } from "@/components/ConversationPanel";
+import { useSetActiveChatSprite } from "@/components/ChatSpriteContext";
 import type { SceneHotspot } from "@/scene/hotspots";
 import type { ChatPersonaProps } from "@/scene/scene-data";
 
@@ -101,6 +102,7 @@ export function SceneHotspots({
   jorgeHref,
 }: SceneHotspotsProps) {
   const camera = useContext(CameraContext);
+  const setChatSprite = useSetActiveChatSprite();
   const [openId, setOpenId] = useState<string | null>(null);
   const [mode, setMode] = useState<"ficha" | "chat" | null>(null);
   const [chatState, setChatState] = useState<ChatState>("idle");
@@ -217,6 +219,20 @@ export function SceneHotspots({
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, [restoreTrigger]);
+
+  // Estado del chat → capa de sprites (ADR-0009, T7, §5.2 C): listening
+  // mientras espera, thinking/talking según el panel; null al cerrar. Con la
+  // capa desmontada (sin assets) esto no produce nada visible.
+  useEffect(() => {
+    if (openId && mode === "chat") {
+      setChatSprite({
+        id: openId,
+        state: chatState === "idle" ? "listening" : chatState,
+      });
+    } else {
+      setChatSprite({ id: null, state: "idle" });
+    }
+  }, [chatState, mode, openId, setChatSprite]);
 
   const openCopy = openId ? copy[openId] : null;
   const openChatProps = openId ? chat[openId] : undefined;
