@@ -1708,3 +1708,132 @@ body:has(.fabrica-view) .mobile-cta-bar {
 .scene-card-chat:hover {
   color: var(--color-gold-strong);
 }
+
+/* Ficha estática /asistente/[id] (ADR-0009, T5): HTML real de cada persona
+   (brief §10) — misma paleta de la casa, legible sin JS y responsiva. */
+.asistente-page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.asistente-back {
+  justify-self: start;
+  font-weight: 700;
+  color: var(--color-ink-muted);
+  text-decoration: none;
+}
+
+.asistente-back:hover {
+  color: var(--color-ink);
+}
+
+.asistente-card {
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 16px;
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  gap: var(--space-6);
+}
+
+.asistente-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.asistente-titles {
+  margin-right: auto;
+}
+
+.asistente-titles h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.asistente-titles p {
+  margin: 0;
+  color: var(--color-ink-muted);
+}
+
+.asistente-badge {
+  display: inline-block;
+  margin-top: var(--space-2);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-strong);
+  border-radius: 999px;
+  padding: 0 var(--space-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.asistente-layers {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 639px) {
+  .asistente-layers {
+    grid-template-columns: 1fr;
+  }
+}
+
+.asistente-layers h2,
+.asistente-chips h2 {
+  margin: 0 0 var(--space-2);
+  font-size: 1rem;
+}
+
+.asistente-layers p {
+  margin: 0;
+  color: var(--color-ink-muted);
+}
+
+.asistente-chips {
+  border-top: 1px solid var(--color-line);
+  padding-top: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.asistente-chip-group h3 {
+  margin: 0 0 var(--space-1);
+  font-size: 0.85rem;
+  color: var(--color-gold-strong);
+}
+
+.asistente-chip-group ul {
+  margin: 0;
+  padding-left: var(--space-4);
+}
+
+.asistente-chip-group li {
+  margin: var(--space-1) 0;
+}
+
+.asistente-open {
+  justify-self: start;
+}
+
+.asistente-ctas {
+  border-top: 1px solid var(--color-line);
+  padding-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.asistente-produccion {
+  font-weight: 700;
+  color: var(--color-gold-strong);
+}
+
+.asistente-jorge {
+  font-weight: 700;
+}

@@ -26,6 +26,10 @@
       "contacto": {
         "title": "Contacto",
         "description": "Cuéntanos qué quieres automatizar y armamos tu fábrica de IA."
+      },
+      "asistente": {
+        "title": "{name} — asistente de IA",
+        "description": "{name} ({role}) de la Fábrica de IA: empleados IA en WhatsApp para tu negocio, 24/7. Conoce qué hace y háblale en la escena."
       }
     },
     "ingeniero": {
@@ -249,6 +253,10 @@
     "negocio": "Negocio",
     "conductor": "Conductor",
     "creador": "Creador"
+  },
+  "asistente": {
+    "openChat": "Abrir conversación en la fábrica",
+    "chipsTitle": "Pregúntale en la fábrica"
   },
   "badge": {
     "proximamente": "Próximamente"

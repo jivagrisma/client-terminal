@@ -26,6 +26,10 @@
       "contacto": {
         "title": "Contact",
         "description": "Tell us what you want to automate and we build your AI factory."
+      },
+      "asistente": {
+        "title": "{name} — AI assistant",
+        "description": "{name} ({role}) of the AI Factory: AI employees on WhatsApp for your business, 24/7. Learn what they do and talk to them in the scene."
       }
     },
     "ingeniero": {
@@ -249,6 +253,10 @@
     "negocio": "Business",
     "conductor": "Driver",
     "creador": "Creator"
+  },
+  "asistente": {
+    "openChat": "Open the conversation in the factory",
+    "chipsTitle": "Ask them in the factory"
   },
   "badge": {
     "proximamente": "Coming soon"
