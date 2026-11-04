@@ -14,6 +14,7 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 | [0006 — Home dual orientado a acción y ruta `/fabrica`](adr/0006-home-dual-fabrica.md) | Una ruta `/[lang]` con ambas estructuras server-rendered y conmutación por CSS (móvil: home tipo app; escritorio: oficina animada); escena con un solo montaje; `/fabrica` fullscreen con cámara (`?focus=<id>`); CTA primario "Crear empleado"; vitest como devDependency para unitarias de cámara | Aceptado |
 | [0007 — Modelo de personajes y segmentos](adr/0007-modelo-personajes-segmentos.md) | Registro `src/config/personas/` (13, incl. búho legal y robot YouTube sin assets, "Próximamente"); segmentos Negocio/Conductor/Creador; naming unificado **matamune** (retira `gatico`/`Gatica`); hotspots de los 4 sprite-pendientes sin aro hasta que existan sprites | Aceptado |
 | [0008 — Personalización `/crear`: capas PNG + recoloreo de paleta](adr/0008-personalizacion-crear-capas-paleta.md) | Grilla 128×128, base con pelaje en color clave `#FF00FF`, 5+5+5 accesorios, paleta de 9 pelajes; recoloreo en canvas sin dependencias; `/crear` reservada como placeholder con contacto funcional | Aceptado |
+| [0009 — Modo conversación guionado y rutas `/asistente/[id]`](adr/0009-modo-conversacion-guionado-asistente.md) | Guiones ES/EN en `src/config/personas/` (motor conversacional puro, sin IA real — llega en Fase 4 con fallback a guion); `/asistente/[id]` SSG ×13×2 con `dynamicParams=false`, JSON-LD y sitemap; panel conversacional con portal + proyección de cámara; URL por pushState desde `/fabrica` (`?chat=<id>`); estados de sprites opcionales con fallback nivel-1. Filas del home siguen a `?focus=`; YouTube sin enlace hasta aprobar su guion (dueño, 2026-11-03) | Aceptado |
 
 ## Handoffs
 
@@ -38,7 +39,8 @@ Jerarquía de autoridad: `docs/adr/` (decisiones, inmutables) > `plan-*.md` (pla
 
 **Versionados:**
 
-- `plan-fabrica-ia-fase2-2026-11-01.md` — plan vigente de la Fase 2 (escena interactiva + home de acción; sesiones 2A: T0–T6 y 2B: T7–T12).
+- `plan-fabrica-ia-fase3-2026-11-03.md` — **plan vigente de la Fase 3** (conversaciones por personaje; sesión 6, T0–T9; rama apilada sobre Fase 2).
+- `plan-fabrica-ia-fase2-2026-11-01.md` — plan de la Fase 2 (escena interactiva + home de acción; cerrada, desplegada a staging `-00005-llx`, sin fusionar — la Fase 3 va apilada sobre su rama).
 - `plan-fabrica-ia-fase1-2026-10-28.md` — plan de la Fase 1 (Fundamentos; cerrado, PR #1 fusionado).
 - `plan-client-terminal-2026-09-20.md` — plan del portafolio actual (cerrado).
 - `CLAUDE.md` — reglas del repo y del proyecto Fábrica de IA.
