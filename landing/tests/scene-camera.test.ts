@@ -14,6 +14,7 @@ import {
   NO_VELOCITY,
   panBy,
   panLimit,
+  projectPoint,
   stepInertia,
   zoomAt,
   type CameraState,
@@ -152,5 +153,36 @@ describe("punteros (pellizco)", () => {
     const b = { x: 3, y: 4 };
     expect(distanceBetween(a, b)).toBe(5);
     expect(midpointBetween(a, b)).toEqual({ x: 1.5, y: 2 });
+  });
+});
+
+describe("projectPoint (ADR-0009: ancla del globo del chat)", () => {
+  const RECT = { left: 40, top: 30, width: 1000, height: 600 };
+
+  it("con identidad, el centro de la imagen cae en el centro del rect y las esquinas en los bordes", () => {
+    const centro = projectPoint(RECT, IDENTITY, 50, 50);
+    expect(centro.left).toBeCloseTo(RECT.left + 500, 6);
+    expect(centro.top).toBeCloseTo(RECT.top + 300, 6);
+
+    const supIzq = projectPoint(RECT, IDENTITY, 0, 0);
+    expect(supIzq.left).toBeCloseTo(RECT.left, 6);
+    expect(supIzq.top).toBeCloseTo(RECT.top, 6);
+
+    const infDer = projectPoint(RECT, IDENTITY, 100, 100);
+    expect(infDer.left).toBeCloseTo(RECT.left + RECT.width, 6);
+    expect(infDer.top).toBeCloseTo(RECT.top + RECT.height, 6);
+  });
+
+  it("espeja focusAt: el punto que focusAt centró se proyecta en el centro", () => {
+    // focusAt(25, 75, 2) produce cam ≈ { x: 500, y: -300, zoom: 2 } (clamped).
+    const cam = clampCamera({ x: 500, y: -300, zoom: 2 }, VIEWPORT);
+    const punto = projectPoint({ left: 0, top: 0, width: 1000, height: 600 }, cam, 25, 75);
+    expect(punto.left).toBeCloseTo(500, 6);
+    expect(punto.top).toBeCloseTo(300, 6);
+  });
+
+  it("el zoom multiplica la separación desde el centro", () => {
+    const punto = projectPoint(RECT, { x: 0, y: 0, zoom: 3 }, 75, 50);
+    expect(punto.left).toBeCloseTo(RECT.left + 500 + 250 * 3, 6);
   });
 });

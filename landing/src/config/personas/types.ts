@@ -9,6 +9,34 @@ export type PersonaSegment = "negocio" | "conductor" | "creador";
 /** `proximamente` = fila con insignia y sin enlace (el chat llega en Fase 3). */
 export type PersonaStatus = "live" | "proximamente";
 
+/** Capa activa del chat y de sus chips (brief §3.4/§5.1.3). */
+export type ChatLayer = "negocio" | "tecnica";
+
+/** Pregunta rápida del chat con su respuesta guionada (ADR-0009). */
+export interface ScriptChip {
+  pregunta: string;
+  respuesta: string;
+}
+
+/** Guion del personaje en un idioma (brief §5.1): saludo, chips por capa y fallback. */
+export interface PersonaScriptLang {
+  saludo: string;
+  negocio: readonly ScriptChip[];
+  tecnica: readonly ScriptChip[];
+  /** Respuesta cuando la entrada libre no coincide con ningún chip. */
+  fallback: string;
+}
+
+/**
+ * Guion bilingüe del personaje (ADR-0009): los datos de flujo (chip →
+ * respuesta) viven en config, junto a la identidad; el copy de la interfaz del
+ * chat vive en los diccionarios. Obligatorio para los conversables (T4).
+ */
+export interface PersonaScript {
+  es: PersonaScriptLang;
+  en: PersonaScriptLang;
+}
+
 export interface Persona {
   /** Estable y URL-safe: será `/[lang]/asistente/[id]` en Fase 3. */
   id: string;
@@ -28,4 +56,6 @@ export interface Persona {
   avatar: string | null;
   /** Estado de vida del personaje en el producto. */
   status: PersonaStatus;
+  /** Guion conversacional bilingüe (ADR-0009); obligatorio si es conversable. */
+  script?: PersonaScript;
 }

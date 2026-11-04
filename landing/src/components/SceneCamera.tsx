@@ -21,6 +21,7 @@ import {
   midpointBetween,
   NO_VELOCITY,
   panBy,
+  projectPoint,
   stepInertia,
   zoomAt,
   type CameraState,
@@ -31,6 +32,8 @@ import {
 /** Handle imperativo para hotspots y `?focus=<id>` (T5): zoom a un punto (%) de la imagen. */
 export interface SceneCameraHandle {
   focusAt: (xPercent: number, yPercent: number, zoom?: number) => void;
+  /** Punto (%) de la imagen → px de viewport: ancla el globo del chat (ADR-0009). */
+  projectAt: (xPercent: number, yPercent: number) => { left: number; top: number };
   overview: () => void;
 }
 
@@ -242,6 +245,13 @@ export function SceneCamera({ children, overviewLabel, ariaLabel, ref }: SceneCa
         const px = (xPercent / 100 - 0.5) * vp.width;
         const py = (yPercent / 100 - 0.5) * vp.height;
         write(clampCamera({ x: -px * z, y: -py * z, zoom: z }, vp));
+      },
+      // El globo del chat (ADR-0009) se posiciona sobre el personaje sin
+      // acoplarse a las variables CSS: lee el estado actual y el rect.
+      projectAt: (xPercent, yPercent) => {
+        const rect = wrapperRef.current?.getBoundingClientRect();
+        if (!rect) return { left: 0, top: 0 };
+        return projectPoint(rect, stateRef.current, xPercent, yPercent);
       },
       overview: () => animateTo(IDENTITY),
     }),

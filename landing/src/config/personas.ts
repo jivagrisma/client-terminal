@@ -15,10 +15,65 @@ import { reservas } from "./personas/reservas";
 import { soporte } from "./personas/soporte";
 import { turismo } from "./personas/turismo";
 import { youtubeAutomatiza } from "./personas/youtube-automatiza";
-import type { Persona } from "./personas/types";
+import type { ChatLayer, Persona, PersonaScript } from "./personas/types";
 
 function fail(reason: string): never {
   throw new Error(`Registro de personajes inválido: ${reason}`);
+}
+
+/** Mínimo de chips por capa del guion (brief §5.1.3: 3–4 preguntas rápidas). */
+export const MIN_CHIPS_POR_CAPA = 3;
+
+const CHAT_LAYERS: readonly ChatLayer[] = ["negocio", "tecnica"];
+
+/**
+ * Personajes conversables (ADR-0009): los 11 de la escena (incluida la mesa,
+ * hotspot informativo del §6) más la clase gratuita de YouTube. Experto Legal
+ * sigue "Próximamente" sin conversación (ADR-0007).
+ */
+export function isConversable(persona: Persona): boolean {
+  return persona.inScene || persona.id === "youtube-automatiza";
+}
+
+/**
+ * Valida la FORMA del guion bilingüe (ADR-0009). Puro y exportado para las
+ * unitarias: en T4 se vuelve exigente (conversable ⇒ con guion completo).
+ */
+export function validateScript(id: string, script: PersonaScript): void {
+  for (const lang of ["es", "en"] as const) {
+    const texto = script[lang];
+    if (!texto) {
+      fail(`guion de "${id}": falta el idioma "${lang}"`);
+    }
+    if (typeof texto.saludo !== "string" || texto.saludo.trim() === "") {
+      fail(`guion de "${id}" (${lang}): el saludo no puede quedar vacío`);
+    }
+    if (typeof texto.fallback !== "string" || texto.fallback.trim() === "") {
+      fail(`guion de "${id}" (${lang}): el fallback no puede quedar vacío`);
+    }
+    for (const layer of CHAT_LAYERS) {
+      const chips = texto[layer];
+      if (!Array.isArray(chips) || chips.length < MIN_CHIPS_POR_CAPA) {
+        fail(
+          `guion de "${id}" (${lang}.${layer}): se esperaban ≥${MIN_CHIPS_POR_CAPA} chips`,
+        );
+      }
+      const vistas = new Set<string>();
+      for (const chip of chips) {
+        if (typeof chip.pregunta !== "string" || chip.pregunta.trim() === "") {
+          fail(`guion de "${id}" (${lang}.${layer}): chip sin pregunta`);
+        }
+        if (typeof chip.respuesta !== "string" || chip.respuesta.trim() === "") {
+          fail(`guion de "${id}" (${lang}.${layer}): chip sin respuesta`);
+        }
+        const clave = chip.pregunta.trim().toLowerCase();
+        if (vistas.has(clave)) {
+          fail(`guion de "${id}" (${lang}.${layer}): pregunta duplicada "${chip.pregunta}"`);
+        }
+        vistas.add(clave);
+      }
+    }
+  }
 }
 
 // Validación pura en carga (misma filosofía que scene/config.ts): una
@@ -33,6 +88,9 @@ function validate(personas: readonly Persona[]): readonly Persona[] {
       fail(`id duplicado: ${persona.id}`);
     }
     seen.add(persona.id);
+    // La forma del guion se valida siempre que exista (T4 vuelve exigente la
+    // obligatoriedad para los conversables).
+    if (persona.script) validateScript(persona.id, persona.script);
   }
   return personas;
 }

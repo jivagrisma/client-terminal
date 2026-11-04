@@ -177,3 +177,29 @@ export function stepInertia(
 export function isMoving(velocity: Velocity, threshold = 8): boolean {
   return Math.hypot(velocity.vx, velocity.vy) >= threshold;
 }
+
+/** Rectángulo absoluto del contenedor (lo da getBoundingClientRect). */
+export interface StageRect {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
+/**
+ * Proyecta un punto (% de la imagen) a coordenadas de viewport (ADR-0009):
+ * el globo del chat se ancla al personaje con esta función pura. Espeja la
+ * transformación del stage — translate + scale con origen en el centro — y la
+ * misma matemática que usa focusAt para centrar un punto.
+ */
+export function projectPoint(
+  rect: StageRect,
+  state: CameraState,
+  xPercent: number,
+  yPercent: number,
+): { left: number; top: number } {
+  return {
+    left: rect.left + rect.width / 2 + (xPercent / 100 - 0.5) * rect.width * state.zoom + state.x,
+    top: rect.top + rect.height / 2 + (yPercent / 100 - 0.5) * rect.height * state.zoom + state.y,
+  };
+}
