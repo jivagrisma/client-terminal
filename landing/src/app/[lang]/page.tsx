@@ -17,7 +17,7 @@ import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { parseEffectsConfig, parseSpritesConfig } from "@/scene/config";
 import { parseHotspotsConfig } from "@/scene/hotspots";
-import { buildSceneCopy } from "@/scene/scene-data";
+import { buildChatProps, buildSceneCopy } from "@/scene/scene-data";
 
 // Home dual (ADR-0006): la MISMA estructura server-rendered se presenta como
 // home tipo app en móvil (<1024 px) y como oficina animada en escritorio
@@ -35,6 +35,14 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
   );
   const sprites = parseSpritesConfig(spritesJson).sprites;
   const sceneCopy = buildSceneCopy(dict);
+  // El hero de escritorio es la misma escena interactiva (ADR-0006): el modo
+  // conversación (ADR-0009) vive en ambos montajes. En la tarjeta móvil los
+  // hotspots quedan ocultos por CSS, así que el chat queda inerte ahí.
+  const chat = buildChatProps(dict, lang);
+  const waNumber = process.env.NEXT_PUBLIC_WA_NUMBER;
+  const jorgeHref = waNumber
+    ? `https://wa.me/${waNumber.replace(/[^0-9]/g, "")}`
+    : `/${lang}/contacto`;
 
   const segments: DirectorySegment[] = SEGMENTS.map((segment) => ({
     id: segment.id,
@@ -99,7 +107,10 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
                     closeLabel={dict.fabrica.close}
                     layerBusinessLabel={dict.fabrica.layers.business}
                     layerTechniqueLabel={dict.fabrica.layers.technique}
-                    todoAvatar={dict.fabrica.todoAvatar}
+                    lang={lang}
+                    chat={chat}
+                    chatCopy={dict.fabrica.chat}
+                    jorgeHref={jorgeHref}
                   />
                 }
               >

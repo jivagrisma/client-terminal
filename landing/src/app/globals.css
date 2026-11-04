@@ -1323,3 +1323,388 @@ body:has(.fabrica-view) .mobile-cta-bar {
 .app-avatar-img {
   border-radius: 50%;
 }
+
+/* --- Modo conversación (Fase 3, ADR-0009, brief §5.1): globo sobre el
+   personaje + panel de chat. Ambos porta al body (el transform de la cámara
+   atraparía position:fixed), igual que la ficha T5. --- */
+
+.chat-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 61;
+}
+
+.chat-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(31 26 18 / 0.45);
+}
+
+/* Globo (escritorio): posición escrita por rAF desde projectAt; la punta
+   apunta al personaje. En móvil se oculta: el sheet deja visible al
+   personaje en el tercio superior. */
+.chat-globo {
+  position: fixed;
+  transform: translate(-50%, calc(-100% - 16px));
+  max-width: 300px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 var(--color-ink);
+  padding: var(--space-2) var(--space-3);
+  pointer-events: none;
+}
+
+.chat-globo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 14px;
+  height: 14px;
+  background: var(--color-surface);
+  border-right: 2px solid var(--color-ink);
+  border-bottom: 2px solid var(--color-ink);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.chat-globo-label,
+.chat-globo-text {
+  margin: 0;
+}
+
+.chat-globo-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.chat-globo-text {
+  margin-top: var(--space-1);
+  font-size: 0.9rem;
+}
+
+.chat-panel {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-3);
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 24px));
+  max-height: min(60vh, 520px);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 rgb(31 26 18 / 0.35);
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-bottom: 2px solid var(--color-line);
+}
+
+.chat-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 44px;
+  block-size: 44px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-line);
+  border-radius: 10px;
+  background: var(--color-bg);
+  font-weight: 800;
+}
+
+.chat-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.chat-titles {
+  margin-right: auto;
+}
+
+.chat-titles h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.chat-titles p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.chat-badge {
+  font-weight: 800;
+  color: var(--color-gold-strong);
+}
+
+.chat-close {
+  border: 2px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chat-note {
+  margin: 0;
+  padding: 4px var(--space-3);
+  font-size: 0.72rem;
+  border-bottom: 2px solid var(--color-line);
+  color: rgb(31 26 18 / 0.65);
+}
+
+.chat-thread {
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-3);
+}
+
+.chat-msg {
+  margin: 0;
+  max-width: 85%;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.chat-msg-persona {
+  align-self: flex-start;
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+  border: 1px solid var(--color-line);
+}
+
+.chat-msg-user {
+  align-self: flex-end;
+  background: color-mix(in srgb, var(--color-accent) 30%, var(--color-surface));
+  border: 1px solid var(--color-line);
+}
+
+.chat-typing {
+  margin: 0;
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.chat-cta {
+  align-self: stretch;
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+}
+
+.chat-cta p {
+  margin: 0 0 var(--space-1);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.chat-cta a {
+  display: inline-block;
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-ink);
+  padding: 2px var(--space-3);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+.chat-cta a:hover {
+  color: var(--color-gold-strong);
+}
+
+.chat-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-2) var(--space-3);
+  border-top: 2px solid var(--color-line);
+}
+
+.chat-layers {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-layers button {
+  border: 2px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chat-layers button[data-active="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-ink);
+}
+
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chat-chip {
+  border: 2px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.chat-chip:hover,
+.chat-chip:focus-visible {
+  background: color-mix(in srgb, var(--color-accent) 25%, var(--color-surface));
+}
+
+.chat-input {
+  display: flex;
+  gap: 6px;
+  padding: var(--space-2) var(--space-3);
+  border-top: 2px solid var(--color-line);
+}
+
+.chat-input input {
+  flex: 1;
+  min-width: 0;
+  border: 2px solid var(--color-line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: var(--font-body);
+  background: var(--color-surface);
+}
+
+.chat-input button {
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-ink);
+  background: var(--color-accent);
+  padding: 4px var(--space-3);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chat-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chat-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 6px var(--space-3);
+  border-top: 2px solid var(--color-line);
+  font-size: 0.78rem;
+}
+
+.chat-status a {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.chat-status a:hover {
+  color: var(--color-gold-strong);
+}
+
+/* Móvil (<1024px): bottom sheet ≤65 % con el personaje visible arriba. */
+@media (max-width: 1023px) {
+  .chat-globo {
+    display: none;
+  }
+
+  .chat-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    max-height: 65dvh;
+    border-radius: 14px 14px 0 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+}
+
+/* Latido nivel-1 sobre el hotspot mientras piensa/habla (brief §5.2 B). */
+.scene-hotspot[data-chat-state="thinking"],
+.scene-hotspot[data-chat-state="talking"] {
+  animation: chat-latido 900ms ease-in-out infinite alternate;
+}
+
+@keyframes chat-latido {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-hotspot[data-chat-state="thinking"],
+  .scene-hotspot[data-chat-state="talking"] {
+    animation: none;
+  }
+}
+
+/* Avatar real en la ficha (Fase 3): los entregados por el dueño; letra si falta. */
+.scene-card-avatar[data-filled="true"] {
+  border-style: solid;
+}
+
+.scene-card-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.scene-card-avatar-letter {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* Botón "Hablar con X" de la ficha (única acción de conversión del panel). */
+.scene-card-chat {
+  margin-top: var(--space-3);
+  width: 100%;
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-ink);
+  background: var(--color-accent);
+  padding: 6px var(--space-3);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.scene-card-chat:hover {
+  color: var(--color-gold-strong);
+}

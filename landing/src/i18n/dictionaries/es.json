@@ -224,7 +224,19 @@
     "hint": "Arrastra para mirar · rueda para acercar · toca un asistente",
     "close": "Cerrar",
     "layers": { "business": "Para tu negocio", "technique": "Cómo está construido" },
-    "todoAvatar": "TODO_CONTENT: avatar pixel-art del personaje (assets pendientes)."
+    "chat": {
+      "open": "Hablar con {name}",
+      "placeholder": "Escribe tu pregunta…",
+      "send": "Enviar",
+      "typing": "Escribiendo…",
+      "status": "Platica con {name} · Esc para salir",
+      "badgeDemo": "DEMO IA",
+      "badgeYo": "VERSIÓN IA",
+      "demoNote": "Demo con respuestas guionadas · la conversación con IA llega pronto.",
+      "ctaTitle": "¿Quieres uno así para tu negocio?",
+      "cta": "Tengo un proyecto",
+      "talkJorge": "Hablar con Jorge"
+    }
   },
   "crear": {
     "title": "Crea tu empleado de IA",

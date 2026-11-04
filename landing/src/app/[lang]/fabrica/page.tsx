@@ -16,7 +16,7 @@ import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { parseEffectsConfig, parseSpritesConfig } from "@/scene/config";
 import { parseHotspotsConfig } from "@/scene/hotspots";
-import { buildSceneCopy } from "@/scene/scene-data";
+import { buildChatProps, buildSceneCopy } from "@/scene/scene-data";
 
 // /fabrica (ADR-0006): escena a pantalla completa con cámara 2D y hotspots
 // (brief §5, Fase 2 §11.2). Los hotspots se validan contra el registro de
@@ -60,6 +60,14 @@ export default async function FabricaPage({
 
   // Copy por hotspot desde el diccionario (builder compartido con el home, T8).
   const copy = buildSceneCopy(dict);
+  // Chat conversable por personaje (ADR-0009): guion del idioma + badge.
+  const chat = buildChatProps(dict, lang);
+  // Contacto humano siempre visible en el chat (R10): wa.me si hay número en
+  // build (igual que /crear), si no el formulario de contacto.
+  const waNumber = process.env.NEXT_PUBLIC_WA_NUMBER;
+  const jorgeHref = waNumber
+    ? `https://wa.me/${waNumber.replace(/[^0-9]/g, "")}`
+    : `/${lang}/contacto`;
 
   return (
     <div className="fabrica-view">
@@ -80,7 +88,10 @@ export default async function FabricaPage({
               closeLabel={dict.fabrica.close}
               layerBusinessLabel={dict.fabrica.layers.business}
               layerTechniqueLabel={dict.fabrica.layers.technique}
-              todoAvatar={dict.fabrica.todoAvatar}
+              lang={lang}
+              chat={chat}
+              chatCopy={dict.fabrica.chat}
+              jorgeHref={jorgeHref}
             />
           }
         >

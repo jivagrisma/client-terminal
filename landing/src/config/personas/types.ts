@@ -58,4 +58,9 @@ export interface Persona {
   status: PersonaStatus;
   /** Guion conversacional bilingüe (ADR-0009); obligatorio si es conversable. */
   script?: PersonaScript;
+  /**
+   * Etiqueta del chat (§5.1.2): "yo" para la versión IA de Jorge; por defecto
+   * "demo". El texto vive en los diccionarios (fabrica.chat.badge*).
+   */
+  chatBadge?: "demo" | "yo";
 }

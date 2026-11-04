@@ -224,7 +224,19 @@
     "hint": "Drag to look around · scroll to zoom · tap an assistant",
     "close": "Close",
     "layers": { "business": "For your business", "technique": "How it's built" },
-    "todoAvatar": "TODO_CONTENT: character pixel-art avatar (assets pending)."
+    "chat": {
+      "open": "Talk to {name}",
+      "placeholder": "Type your question…",
+      "send": "Send",
+      "typing": "Typing…",
+      "status": "Chat with {name} · Esc to exit",
+      "badgeDemo": "AI DEMO",
+      "badgeYo": "AI VERSION",
+      "demoNote": "Scripted demo · real AI chat is coming soon.",
+      "ctaTitle": "Want one like this for your business?",
+      "cta": "I have a project",
+      "talkJorge": "Talk to Jorge"
+    }
   },
   "crear": {
     "title": "Design your AI employee",
