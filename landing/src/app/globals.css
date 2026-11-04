@@ -1771,6 +1771,19 @@ body:has(.fabrica-view) .mobile-cta-bar {
   font-weight: 700;
 }
 
+/* Insignia de la clase gratuita (ADR-0007/0009, T6): acento WhatsApp. */
+.asistente-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.asistente-badge-clase {
+  background: rgb(37 211 102 / 0.14);
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
 .asistente-layers {
   display: grid;
   gap: var(--space-4);

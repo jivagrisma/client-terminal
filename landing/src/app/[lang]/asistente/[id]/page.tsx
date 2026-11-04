@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { AsistenteChat } from "@/components/AsistenteChat";
 import { getPersona, isConversable, PERSONAS } from "@/config/personas";
 import { SITE_LOCALES, SITE_URL } from "@/config/site";
 import { hasLocale } from "@/i18n/config";
@@ -61,9 +62,20 @@ export default async function AsistentePage({
   const dict = await getDictionary(lang);
   const copy = dict.personas[persona.id as keyof typeof dict.personas];
   const script = persona.script?.[lang];
-  // Chat en la fábrica: los 11 con hotspot. La clase de YouTube se conecta en
-  // T6 desde esta misma ficha (Duda 3 del plan Fase 3).
-  const chatReady = isConversable(persona) && persona.inScene;
+  // Chat en la fábrica: los 11 con hotspot (botón → /fabrica?chat=<id>).
+  // La clase de YouTube conversa AQUÍ (Duda 3 del plan): chat embebido en la
+  // ficha, mismo panel de la escena (T6).
+  const inSceneChat = isConversable(persona) && persona.inScene;
+  const claseChat = persona.id === "youtube-automatiza" && Boolean(persona.script);
+  const chatProps = persona.script
+    ? {
+        script: persona.script[lang],
+        badge:
+          persona.chatBadge === "yo"
+            ? dict.fabrica.chat.badgeYo
+            : dict.fabrica.chat.badgeDemo,
+      }
+    : undefined;
   const waNumber = process.env.NEXT_PUBLIC_WA_NUMBER;
   const jorgeHref = waNumber
     ? `https://wa.me/${waNumber.replace(/[^0-9]/g, "")}`
@@ -123,9 +135,16 @@ export default async function AsistentePage({
           <div className="asistente-titles">
             <h1>{copy.name}</h1>
             <p>{copy.role}</p>
-            {persona.status === "proximamente" ? (
-              <span className="asistente-badge">{dict.badge.proximamente}</span>
-            ) : null}
+            <div className="asistente-badges">
+              {persona.id === "youtube-automatiza" ? (
+                <span className="asistente-badge asistente-badge-clase">
+                  {dict.badge.clase}
+                </span>
+              ) : null}
+              {persona.status === "proximamente" ? (
+                <span className="asistente-badge">{dict.badge.proximamente}</span>
+              ) : null}
+            </div>
           </div>
         </header>
 
@@ -159,13 +178,27 @@ export default async function AsistentePage({
                 ))}
               </ul>
             </div>
-            {chatReady ? (
+            {inSceneChat ? (
               <Link
                 href={`/${lang}/fabrica?chat=${persona.id}`}
                 className="cta-button asistente-open"
               >
                 {dict.asistente.openChat}
               </Link>
+            ) : null}
+            {claseChat && chatProps ? (
+              <AsistenteChat
+                name={copy.name}
+                role={copy.role}
+                avatar={persona.avatar}
+                chat={chatProps}
+                copy={dict.fabrica.chat}
+                layerBusinessLabel={dict.fabrica.layers.business}
+                layerTechniqueLabel={dict.fabrica.layers.technique}
+                closeLabel={dict.fabrica.close}
+                openLabel={dict.asistente.openChat}
+                jorgeHref={jorgeHref}
+              />
             ) : null}
           </section>
         ) : null}

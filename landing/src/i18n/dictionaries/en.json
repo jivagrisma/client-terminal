@@ -259,7 +259,8 @@
     "chipsTitle": "Ask them in the factory"
   },
   "badge": {
-    "proximamente": "Coming soon"
+    "proximamente": "Coming soon",
+    "clase": "Free class"
   },
   "personas": {
     "jorge": { "name": "Jorge", "role": "Founder and AI engineer of the network", "ficha": { "business": "I built this network of assistants: my story and how to reach me, in 3 lines.", "technique": "Technical profile: stack, architecture and links (CV, Upwork, GitHub)." } },

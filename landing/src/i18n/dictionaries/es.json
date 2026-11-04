@@ -259,7 +259,8 @@
     "chipsTitle": "Pregúntale en la fábrica"
   },
   "badge": {
-    "proximamente": "Próximamente"
+    "proximamente": "Próximamente",
+    "clase": "Clase gratuita"
   },
   "personas": {
     "jorge": { "name": "Jorge", "role": "Fundador e ingeniero de IA de la red", "ficha": { "business": "Construí esta red de asistentes: mi historia y cómo contactarme, en 3 líneas.", "technique": "Perfil técnico: stack, arquitectura y enlaces (CV, Upwork, GitHub)." } },

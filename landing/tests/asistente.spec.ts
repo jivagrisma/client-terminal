@@ -1,8 +1,14 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
 
-// Fichas estáticas /asistente/[id] (ADR-0009, T5, brief §10): SSG 13×2,
+// Fichas estáticas /asistente/[id] (ADR-0009, T5/T6, brief §10): SSG 13×2,
 // metadata/hreflang/canonical, JSON-LD Person|Service, puente a viajemos.co
-// solo con caso real y 404 limpio para ids fuera del registro.
+// solo con caso real y 404 limpio para ids fuera del registro. La clase de
+// YouTube conversa embebida en su ficha (Duda 3 del plan).
+
+/** Clic por dispatchEvent: mismo gap de emulación móvil que conversacion.spec (T3). */
+async function tap(locator: Locator) {
+  await locator.dispatchEvent("click");
+}
 
 test.describe("/asistente/[id] · fichas estáticas (T5)", () => {
   test("recepcionista ES: ficha completa con chips, chat y puente a producción", async ({
@@ -74,16 +80,27 @@ test.describe("/asistente/[id] · fichas estáticas (T5)", () => {
     await expect(page.getByRole("link", { name: "Hablar con Jorge" })).toBeVisible();
   });
 
-  test("youtube-automatiza: ficha de la clase con chips; el chat se conecta en T6", async ({
+  test("youtube-automatiza: clase gratuita conversable en la propia ficha (T6)", async ({
     page,
   }) => {
     await page.goto("/es/asistente/youtube-automatiza");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Automatiza YouTube");
-    await expect(page.locator(".asistente-badge")).toHaveText("Próximamente");
+    // Insignias: Clase gratuita + Próximamente (fila del home sigue sin enlace).
+    await expect(page.locator(".asistente-badge-clase")).toHaveText("Clase gratuita");
+    await expect(page.getByText("Próximamente", { exact: true })).toBeVisible();
     await expect(page.locator(".asistente-chip-group")).toHaveCount(2);
-    await expect(
-      page.getByRole("link", { name: "Abrir conversación en la fábrica" }),
-    ).toHaveCount(0);
+
+    // La clase abre en ESTA url (sin pushState a /fabrica): saludo + chip.
+    const abrir = page.getByRole("button", { name: "Abrir conversación en la fábrica" });
+    await expect(abrir).toBeVisible();
+    await tap(abrir);
+    const panel = page.getByRole("dialog", { name: "Automatiza YouTube" });
+    await expect(panel).toBeVisible();
+    await expect(panel).toContainText("clase gratuita de YouTube");
+    await tap(page.locator(".chat-chip", { hasText: "¿Qué aprendo en la clase?" }));
+    await expect(page.locator(".chat-typing")).toHaveCount(0);
+    await expect(panel).toContainText("temario");
+    await expect(page).toHaveURL(/\/es\/asistente\/youtube-automatiza$/);
   });
 
   test("id inválido responde 404 limpio (dynamicParams=false)", async ({ page }) => {
