@@ -12,7 +12,13 @@ import {
   TYPING_MIN_MS,
   typingDelay,
 } from "../src/conversation/engine";
-import { MIN_CHIPS_POR_CAPA, validateScript } from "../src/config/personas";
+import {
+  getPersona,
+  isConversable,
+  MIN_CHIPS_POR_CAPA,
+  PERSONAS,
+  validateScript,
+} from "../src/config/personas";
 import type { PersonaScript, PersonaScriptLang } from "../src/config/personas/types";
 
 const ES: PersonaScriptLang = {
@@ -156,5 +162,49 @@ describe("validateScript (forma del guion, ADR-0009)", () => {
     expect(() => validateScript("x", { es: ES } as unknown as PersonaScript)).toThrow(
       /idioma "en"/,
     );
+  });
+});
+
+// Importar el registro ejecuta su validación en carga: si un solo guion está
+// incompleto, estas unitarias fallan (exigente desde T4, ADR-0009).
+describe("validador exigente del registro (T4): conversable ⇒ guion completo", () => {
+  const CONVERSABLES = PERSONAS.filter(isConversable);
+
+  it("los 11 hotspots + youtube-automatiza son conversables y traen guion", () => {
+    expect(CONVERSABLES.map((p) => p.id).sort()).toEqual(
+      [
+        "cobros",
+        "copiloto",
+        "investigacion-mercado",
+        "jorge",
+        "matamune",
+        "mesa",
+        "ops",
+        "recepcionista",
+        "reservas",
+        "soporte",
+        "turismo",
+        "youtube-automatiza",
+      ].sort(),
+    );
+    for (const persona of CONVERSABLES) {
+      expect(persona.script, `falta guion de ${persona.id}`).toBeDefined();
+    }
+  });
+
+  it("legal-experto (no conversable) sigue sin guion", () => {
+    expect(getPersona("legal-experto")?.script).toBeUndefined();
+  });
+
+  it("cada conversable tiene saludo y fallback no vacíos en ES y EN", () => {
+    for (const persona of CONVERSABLES) {
+      for (const lang of ["es", "en"] as const) {
+        const texto = persona.script![lang];
+        expect(texto.saludo.trim().length, `${persona.id} (${lang}) saludo`).toBeGreaterThan(10);
+        expect(texto.fallback.trim().length, `${persona.id} (${lang}) fallback`).toBeGreaterThan(
+          10,
+        );
+      }
+    }
   });
 });

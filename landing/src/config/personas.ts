@@ -37,7 +37,8 @@ export function isConversable(persona: Persona): boolean {
 
 /**
  * Valida la FORMA del guion bilingüe (ADR-0009). Puro y exportado para las
- * unitarias: en T4 se vuelve exigente (conversable ⇒ con guion completo).
+ * unitarias. La OBLIGATORIEDAD para los conversables la aplica `validate()`
+ * (exigente desde T4): una config incompleta rompe el build, no la UI.
  */
 export function validateScript(id: string, script: PersonaScript): void {
   for (const lang of ["es", "en"] as const) {
@@ -88,9 +89,16 @@ function validate(personas: readonly Persona[]): readonly Persona[] {
       fail(`id duplicado: ${persona.id}`);
     }
     seen.add(persona.id);
-    // La forma del guion se valida siempre que exista (T4 vuelve exigente la
-    // obligatoriedad para los conversables).
-    if (persona.script) validateScript(persona.id, persona.script);
+    // Exigente (ADR-0009, T4): todo conversable DEBE traer guion bilingüe
+    // completo; los no conversables pueden declararlo y se valida igual.
+    if (isConversable(persona)) {
+      if (!persona.script) {
+        fail(`"${persona.id}" es conversable y no tiene guion bilingüe`);
+      }
+      validateScript(persona.id, persona.script);
+    } else if (persona.script) {
+      validateScript(persona.id, persona.script);
+    }
   }
   return personas;
 }

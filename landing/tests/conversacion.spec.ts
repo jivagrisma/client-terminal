@@ -108,6 +108,40 @@ test.describe("/en/fabrica · modo conversación", () => {
   });
 });
 
+// T4 (§11.3): los 11 hotspots abren conversación con contenido real en ambos
+// idiomas. youtube-automatiza se verifica en su spec de T6 (no está en escena).
+test.describe("los 11 hotspots abren conversación real (T4, §11.3)", () => {
+  const HOTSPOTS = [
+    "recepcionista",
+    "jorge",
+    "turismo",
+    "matamune",
+    "reservas",
+    "copiloto",
+    "investigacion-mercado",
+    "cobros",
+    "ops",
+    "soporte",
+    "mesa",
+  ] as const;
+
+  for (const id of HOTSPOTS) {
+    test(`?chat=${id}: saludo completo y chip que responde en ES y EN`, async ({ page }) => {
+      for (const lang of ["es", "en"] as const) {
+        await page.goto(`/${lang}/fabrica?chat=${id}`);
+        const panel = page.getByRole("dialog");
+        await expect(panel).toBeVisible();
+        const saludo = await panel.locator(".chat-msg-persona").first().textContent();
+        expect(saludo?.trim().length ?? 0).toBeGreaterThan(20);
+        await tap(panel.locator(".chat-chip").first());
+        const respuesta = await panel.locator(".chat-msg-persona").nth(1).textContent();
+        expect(respuesta?.trim().length ?? 0).toBeGreaterThan(20);
+        await expect(panel.locator(".chat-typing")).toHaveCount(0);
+      }
+    });
+  }
+});
+
 test.describe("conversación en móvil 390×844", () => {
   // El proyecto escritorio (1440×900) no la ejecuta: el sheet es diseño móvil.
   test.skip(({ viewport }) => viewport?.width !== 390, "solo en el proyecto móvil");
