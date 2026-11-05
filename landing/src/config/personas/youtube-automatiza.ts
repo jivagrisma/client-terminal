@@ -4,10 +4,10 @@ import type { Persona } from "./types";
 // "Automatiza YouTube", con insignia "Clase gratuita" (se conecta en la UI en
 // T6). Aún NO tiene sitio en la escena; su conversación vive en
 // /asistente/youtube-automatiza (Duda 3 del plan Fase 3).
-// Guion del modo conversación (ADR-0009): clase gratuita en formato chat,
-// con TODO_CONTENT donde falte el temario aprobado por el dueño. Gate del T6:
-// este guion se muestra al dueño antes del push a staging, y su fila del home
-// queda sin enlace hasta esa aprobación (decisión 2026-11-03). Sin promesas
+// Guion del modo conversación (ADR-0009): clase gratuita en formato chat.
+// Decisión del dueño (2026-11-04): el temario queda fuera de alcance por
+// ahora; el botón de la clase llevará a una landing/formulario de registro
+// (Fase 4) y su fila del home sigue sin enlace hasta entonces. Sin promesas
 // de creación real ni de monetización.
 
 export const youtubeAutomatiza: Persona = {
@@ -21,12 +21,12 @@ export const youtubeAutomatiza: Persona = {
   script: {
     es: {
       saludo:
-        "¡Hola! Soy el asistente de la clase gratuita de YouTube con IA: cómo producir videos de forma automatizada. Pregúntame qué aprendes, cómo funciona o pídeme el temario.",
+        "¡Hola! Soy el asistente de la clase gratuita de YouTube con IA: cómo producir videos de forma automatizada. Pregúntame qué aprendes y cómo funciona — la clase abre pronto.",
       negocio: [
         {
           pregunta: "¿Qué aprendo en la clase?",
           respuesta:
-            "El flujo completo para producir videos con IA: idea → guion → voz → ensamble → publicación. Al final entiendes cómo se automatiza un canal paso a paso. TODO_CONTENT: temario oficial aprobado por el dueño.",
+            "El flujo completo para producir videos con IA: idea → guion → voz → ensamble → publicación. Al final entiendes cómo se automatiza un canal paso a paso.",
         },
         {
           pregunta: "¿La clase es gratis?",
@@ -41,7 +41,7 @@ export const youtubeAutomatiza: Persona = {
         {
           pregunta: "¿Cómo la tomo?",
           respuesta:
-            "La clase se toma en formato de chat aquí en la fábrica: preguntas y avanzas. Está próxima a abrir; esta conversación te adelanta su temario.",
+            "Abre pronto: aquí en la fábrica vas a poder dejar tus datos para enterarte de su apertura. Mientras tanto, esta conversación te adelanta de qué va la clase.",
         },
       ],
       tecnica: [
@@ -62,16 +62,16 @@ export const youtubeAutomatiza: Persona = {
         },
       ],
       fallback:
-        "Eso no está en el temario todavía. Pregúntame qué aprendes en la clase, cómo se hace un video con IA o cómo se publica — o te paso con Jorge.",
+        "Eso no está en mi guion todavía. Pregúntame qué aprendes en la clase, cómo se hace un video con IA o cómo se publica — o te paso con Jorge.",
     },
     en: {
       saludo:
-        "Hi! I am the free YouTube-with-AI class assistant: how to produce videos in an automated way. Ask me what you learn, how it works or ask for the syllabus.",
+        "Hi! I am the free YouTube-with-AI class assistant: how to produce videos in an automated way. Ask me what you learn and how it works — the class is opening soon.",
       negocio: [
         {
           pregunta: "What do I learn in the class?",
           respuesta:
-            "The full flow for producing videos with AI: idea → script → voice → assembly → publishing. By the end you understand how a channel gets automated step by step. TODO_CONTENT: official syllabus approved by the owner.",
+            "The full flow for producing videos with AI: idea → script → voice → assembly → publishing. By the end you understand how a channel gets automated step by step.",
         },
         {
           pregunta: "Is the class free?",
@@ -86,7 +86,7 @@ export const youtubeAutomatiza: Persona = {
         {
           pregunta: "How do I take it?",
           respuesta:
-            "The class is taken as a chat here in the factory: you ask and move forward. It is opening soon; this conversation previews its syllabus.",
+            "It opens soon: here in the factory you will be able to leave your details to hear about its launch. In the meantime, this conversation gives you a preview of what the class is about.",
         },
       ],
       tecnica: [
@@ -107,7 +107,7 @@ export const youtubeAutomatiza: Persona = {
         },
       ],
       fallback:
-        "That is not in the syllabus yet. Ask me what you learn in the class, how a video is made with AI or how publishing works — or I can pass you to Jorge.",
+        "That is not in my script yet. Ask me what you learn in the class, how a video is made with AI or how publishing works — or I can pass you to Jorge.",
     },
   },
 };

@@ -99,7 +99,7 @@ test.describe("/asistente/[id] · fichas estáticas (T5)", () => {
     await expect(panel).toContainText("clase gratuita de YouTube");
     await tap(page.locator(".chat-chip", { hasText: "¿Qué aprendo en la clase?" }));
     await expect(page.locator(".chat-typing")).toHaveCount(0);
-    await expect(panel).toContainText("temario");
+    await expect(panel).toContainText("paso a paso");
     await expect(page).toHaveURL(/\/es\/asistente\/youtube-automatiza$/);
   });
 
